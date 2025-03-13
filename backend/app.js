@@ -1,13 +1,12 @@
 //TyslDJir7WM2Up5u
 const express = require("express");
 const mongoose = require("mongoose");
+const doctorRoute = require("./Routes/doctor-route")
 
 const app = express();
 
 //Middleware
-app.use("/", (req, res, next)=>{
-    res.send("Working...");
-})
+app.use("/doctors", doctorRoute)
 
 //Connecting mongodb
 mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")
