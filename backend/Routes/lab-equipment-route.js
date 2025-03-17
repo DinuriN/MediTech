@@ -7,6 +7,7 @@ const labEquipmentController = require("../Controllers/lab-equipment-controller"
 
 router.get("/",labEquipmentController.getAllLabEquipments);
 router.post("/",labEquipmentController.addLabEquipment);
+router.get("/:id",labEquipmentController.getLabEquipmentById);
 
 
 //export
