@@ -44,14 +44,26 @@ function UpdateDoctor() {
       setProfilePicture(file);
     }
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    // Handle the doctorAvailableDays input by splitting the input into an array
+    if (name === "doctorAvailableDays") {
+      const daysArray = value
+        .split(",") // Split by commas
+        .map((day) => day.trim()) // Trim any extra spaces
+        .filter((day) => day); // Remove any empty days
+      setInputs((prevState) => ({
+        ...prevState,
+        [name]: daysArray, // Store the array in the state
+      }));
+    } else {
+      setInputs((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +84,8 @@ function UpdateDoctor() {
           updatedDoctor.doctorProfilePicture = uploadRes.data.filePath;
         } else {
           throw new Error("Image upload failed");
-        }      }
+        }
+      }
 
       // Send updated doctor data
       await axios.put(`http://localhost:5000/doctors/${id}`, updatedDoctor);
@@ -112,19 +125,16 @@ function UpdateDoctor() {
           </div>
 
           <div className="form-group">
-  <label>Doctor Profile Picture</label>
-  
-  {/* Show Current Profile Picture */}
-  {inputs.doctorProfilePicture && (
-    <div>
-      <img src={`http://localhost:5000${inputs.doctorProfilePicture}`} alt="Current Profile" width="100" />
-    </div>
-  )}
-
-  {/* Upload New Picture */}
-  <input type="file" accept="image/*" onChange={handleFileChange} />
-</div>
-
+            <label>Doctor Profile Picture</label>
+            {/* Show Current Profile Picture */}
+            {inputs.doctorProfilePicture && (
+              <div>
+                <img src={`http://localhost:5000${inputs.doctorProfilePicture}`} alt="Current Profile" width="100" />
+              </div>
+            )}
+            {/* Upload New Picture */}
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+          </div>
 
           <div className="form-group">
             <label htmlFor="doctorPhoneNumber" className="form-label">Phone Number</label>
@@ -137,6 +147,37 @@ function UpdateDoctor() {
           </div>
 
           <div className="form-group">
+            <label htmlFor="doctorQualifications" className="form-label">Qualifications</label>
+            <input type="text" className="form-input" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorExperience" className="form-label">Experience</label>
+            <input type="text" className="form-input" id="doctorExperience" name="doctorExperience" value={inputs.doctorExperience || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorLanguagesSpoken" className="form-label">Languages Spoken</label>
+            <input type="text" className="form-input" id="doctorLanguagesSpoken" name="doctorLanguagesSpoken" value={inputs.doctorLanguagesSpoken || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorHospitalAffiliation" className="form-label">Hospital Affiliation</label>
+            <input type="text" className="form-input" id="doctorHospitalAffiliation" name="doctorHospitalAffiliation" value={inputs.doctorHospitalAffiliation || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorLicenseNumber" className="form-label">License Number</label>
+            <input type="text" className="form-input" id="doctorLicenseNumber" name="doctorLicenseNumber" value={inputs.doctorLicenseNumber || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorAvailableDays" className="form-label">Available Days</label>
+            <input type="text" className="form-input" id="doctorAvailableDays" name="doctorAvailableDays" value={inputs.doctorAvailableDays?.join(", ") || ''} onChange={handleChange} />
+            <small>Enter days separated by commas (e.g., Monday, Tuesday, Wednesday)</small>
+          </div>
+
+          <div className="form-group">
             <label htmlFor="doctorAvailableTimeStart" className="form-label">Available Time Start</label>
             <input type="time" className="form-input" id="doctorAvailableTimeStart" name="doctorAvailableTimeStart" value={inputs.doctorAvailableTimeStart || ''} onChange={handleChange} />
           </div>
@@ -144,6 +185,11 @@ function UpdateDoctor() {
           <div className="form-group">
             <label htmlFor="doctorAvailableTimeEnd" className="form-label">Available Time End</label>
             <input type="time" className="form-input" id="doctorAvailableTimeEnd" name="doctorAvailableTimeEnd" value={inputs.doctorAvailableTimeEnd || ''} onChange={handleChange} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="doctorConsultationFees" className="form-label">Consultation Fees</label>
+            <input type="text" className="form-input" id="doctorConsultationFees" name="doctorConsultationFees" value={inputs.doctorConsultationFees || ''} onChange={handleChange} />
           </div>
 
           <button type="submit" className="btn-submit">Update Doctor</button>

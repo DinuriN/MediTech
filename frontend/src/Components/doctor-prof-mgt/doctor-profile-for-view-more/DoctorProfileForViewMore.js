@@ -41,11 +41,21 @@ function DoctorProfileForViewMore() {
     doctorConsultationFees
   } = doctorDetails;
 
-  const formattedAvailableDays = Array.isArray(doctorAvailableDays)
-    ? doctorAvailableDays.join(", ")
-    : typeof doctorAvailableDays === "string"
-    ? doctorAvailableDays.split(/(?=[A-Z])/).join(", ")
-    : "N/A";
+  const formatCommaSeparatedValues = (value) => {
+    if (Array.isArray(value)) {
+      return value.join(", ");
+    } else if (typeof value === "string") {
+      // Split by capital letters to format correctly (works for camelCase strings)
+      return value.split(/(?=[A-Z])/).join(", ");
+    } else {
+      return "N/A";
+    }
+  };
+  
+  // Format doctorAvailableDays and doctorLanguagesSpoken
+  const formattedAvailableDays = formatCommaSeparatedValues(doctorAvailableDays);
+  const formattedLanguagesSpoken = formatCommaSeparatedValues(doctorLanguagesSpoken);
+  
 
   const formatDoctorTime = (time) => {
     const [hour, minute] = time.split(":");
@@ -63,7 +73,7 @@ function DoctorProfileForViewMore() {
       <br />
       <hr/>
       <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
-      <hr/>
+      <hr/> 
       <div className="doctor-profile">
       <img
   src={`http://localhost:5000${doctorProfilePicture}`}
@@ -76,7 +86,7 @@ function DoctorProfileForViewMore() {
         <p><strong>Email:</strong> {doctorEmail}</p>
         <p><strong>Qualifications:</strong> {doctorQualifications}</p>
         <p><strong>Experience:</strong> {doctorExperience} years</p>
-        <p><strong>Languages Spoken:</strong> {doctorLanguagesSpoken}</p>
+        <p><strong>Languages Spoken:</strong> {formattedLanguagesSpoken}</p>
         <p><strong>Hospital Affiliation:</strong> {doctorHospitalAffiliation}</p>
         <p><strong>License Number:</strong> {doctorLicenseNumber}</p>
         <p><strong>Available Days:</strong> {formattedAvailableDays}</p>
