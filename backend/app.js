@@ -7,12 +7,9 @@ const registerPatientRouter = require("./Routes/register-patient-route");
 const app = express();
 
 //Middleware
-// app.use("/", (req, res, next)=>{
-//     res.send("Working...");
-// })
-app.use(express.json());
-app.use(cors());
-app.use("/patients", registerPatientRouter)
+ app.use("/", (req, res, next)=>{
+     res.send("Working...");
+ })
 
 
 //Connecting mongodb
