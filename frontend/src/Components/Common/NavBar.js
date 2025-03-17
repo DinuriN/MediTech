@@ -6,7 +6,7 @@ function NavBar() {
     <div>
       <ul className='nav'>
         <li className='nav-li'>
-            <Link to ="/addPatients" className="active home-a">
+            <Link to ="/" className="active home-a">
             <h1>Book an appointment</h1>
             </Link>
         </li>
