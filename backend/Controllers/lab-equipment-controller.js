@@ -57,8 +57,37 @@ const getLabEquipmentById = async(req, res, next) => {
     return res.status(200).json({labEquipments})
 }
 
+//update 
+const updateLabEquipmentDetails = async(req, res, next) => {
+    const id = req.params.id;
+
+    const{EquipmentId, EquipmentName, EquipmentCategory, EquipmentBrand, EquipmentSerialNum, EquipmentLocation, EquipmentCost, EquipmentLastMaintenance, EquipmentNextMaintenance, status} = req.body;
+
+    let labEquipments;
+
+    try{
+        labEquipments = await labEquipment.findByIdAndUpdate(id, 
+            {EquipmentId: EquipmentId, EquipmentName: EquipmentName, EquipmentCategory: EquipmentCategory, EquipmentBrand: EquipmentBrand, EquipmentSerialNum: EquipmentSerialNum, EquipmentLocation: EquipmentLocation, EquipmentCost: EquipmentCost, EquipmentLastMaintenance: EquipmentLastMaintenance, EquipmentNextMaintenance: EquipmentNextMaintenance, status: status});
+        labEquipments = await labEquipments.save();
+    }catch(err){
+        console.log(err);
+    }
+
+    //update failed
+    if(!labEquipments){
+        return res.status(404).json({message: 'cannot update lab equipment details'});
+    }
+    return res.status(200).json({labEquipments})
+}
+
+ 
+
 
 
 exports.getAllLabEquipments = getAllLabEquipments;
 exports.addLabEquipment = addLabEquipment;
 exports.getLabEquipmentById = getLabEquipmentById;
+exports.updateLabEquipmentDetails = updateLabEquipmentDetails;
+
+
+
