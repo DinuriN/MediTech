@@ -80,6 +80,25 @@ const updateLabEquipmentDetails = async(req, res, next) => {
     return res.status(200).json({labEquipments})
 }
 
+//delete
+const deleteLabEquipment = async(req, res, next) => {
+    const id = req.params.id;
+
+    let labEquipments;
+
+    try{
+        labEquipments = await labEquipment.findByIdAndDelete(id);
+    }catch(err){
+        console.log(err);
+    }
+
+    //deletion failed
+    if(!labEquipments){
+        return res.status(404).json({message: 'cannot delete lab equipment details'});
+    }
+    return res.status(200).json({labEquipments})
+}
+
  
 
 
@@ -88,6 +107,7 @@ exports.getAllLabEquipments = getAllLabEquipments;
 exports.addLabEquipment = addLabEquipment;
 exports.getLabEquipmentById = getLabEquipmentById;
 exports.updateLabEquipmentDetails = updateLabEquipmentDetails;
+exports.deleteLabEquipment = deleteLabEquipment;
 
 
 

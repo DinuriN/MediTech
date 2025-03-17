@@ -9,6 +9,7 @@ router.get("/",labEquipmentController.getAllLabEquipments);
 router.post("/",labEquipmentController.addLabEquipment);
 router.get("/:id",labEquipmentController.getLabEquipmentById);
 router.put("/:id",labEquipmentController.updateLabEquipmentDetails);
+router.delete("/:id",labEquipmentController.deleteLabEquipment);
 
 
 //export
