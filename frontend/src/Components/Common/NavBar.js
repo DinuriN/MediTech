@@ -18,7 +18,7 @@ function NavBar() {
         </li>
 
         <li className='nav-li'>
-            <Link to ="/" className="active home-a">
+            <Link to ="/patientDetails" className="active home-a">
             <h1>Patient Registration</h1>
             </Link>
         </li>
