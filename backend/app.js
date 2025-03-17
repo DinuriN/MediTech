@@ -1,13 +1,14 @@
 //TyslDJir7WM2Up5u
 const express = require("express");
 const mongoose = require("mongoose");
-
+const routerLabEqipment = require("./Routes/lab-equipment-route");
+const cors = require("cors");
 const app = express();
 
 //Middleware
-app.use("/", (req, res, next)=>{
-    res.send("Working...");
-})
+app.use(express.json());
+app.use(cors());
+app.use("/labEquipments", routerLabEqipment);
 
 //Connecting mongodb
 mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")

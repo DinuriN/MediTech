@@ -1,0 +1,11 @@
+{
+  "name": "meditech",
+  "version": "1.0.0",
+  "description": "Main Components\r     1. Consultation and Scan Scheduling\r     2. Online Pharmacy\r     3. Patient Medical History Management\r     4. Doctor Profile and Schedule Management\r     5. Lab Inventory Tracking System",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
