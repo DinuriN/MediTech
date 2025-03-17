@@ -1,6 +1,7 @@
 const Doctor = require("../Models/doctor-model");
 
 /*{ 
+    doctorId,
     doctorName, 
     doctorSpecialization, 
     doctorProfilePicture, 
@@ -38,23 +39,36 @@ const getAllDoctors = async (req, res, next) => {
 
 //Data insert
 const addDoctors = async (req, res, next) => {
-    const {name, specialization, profilePicture, phoneNumber, gmail, qualifications, experience, languagesSpoken, hospitalAffiliation, licenseNumber, availableDays, availableTimeStart, availableTimeEnd, consultationFees} = req.body;
+    const {
+        doctorId, doctorName, doctorSpecialization, doctorPhoneNumber, doctorEmail,
+        doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
+        doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
+        doctorConsultationFees
+    } = req.body;
 
-    let doctors;
+    const doctorProfilePicture = req.body.doctorProfilePicture || ''; // Ensure it's defined
 
-    try{
-        doctors = new Doctor({name, specialization, profilePicture, phoneNumber, gmail, qualifications, experience, languagesSpoken, hospitalAffiliation, licenseNumber, availableDays, availableTimeStart, availableTimeEnd, consultationFees});
-        await doctors.save();
-    }catch (err) {
-        console.log(err);
+    let doctor;
+
+    try {
+        doctor = new Doctor({
+            doctorId, doctorName, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
+            doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
+            doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
+            doctorConsultationFees
+        });
+        await doctor.save();
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
     }
 
-    //not insert doctors
-    if (!doctors){
-        return res.status(404).json({ message: "unable to add doctors" });
+    // Check if doctor was created
+    if (!doctor) {
+        return res.status(400).json({ message: "Unable to add doctor" });
     }
-    return res.status(200).json({ doctors });
-;}
+    return res.status(201).json({ doctor });
+};
+
 
 //Get by ID
 const getById = async (req, res, next) => {
@@ -77,23 +91,47 @@ const getById = async (req, res, next) => {
 };
 
 //Update doctors
+// Update doctor
 const updateDoctor = async (req, res, next) => {
-
     const id = req.params.id;
-    const {name, specialization, profilePicture, phoneNumber, gmail, qualifications, experience, languagesSpoken, hospitalAffiliation, licenseNumber, availableDays, availableTimeStart, availableTimeEnd, consultationFees} = req.body;
 
-    let doctors;
-    try{
-        doctors = await Doctor.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    }catch (err) {
-        console.log(err);
-    }
-    if (!doctors) {
-        return res.status(404).json({ message: "Unable to update doctor details" });
-    }
-    return res.status(200).json({ doctors });
+    const {
+        doctorId, doctorName, doctorSpecialization, doctorPhoneNumber, doctorEmail,
+        doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
+        doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
+        doctorConsultationFees
+    } = req.body;
 
+    try {
+        // Find existing doctor
+        let existingDoctor = await Doctor.findById(id);
+        if (!existingDoctor) {
+            return res.status(404).json({ message: "Doctor not found" });
+        }
+
+        // Preserve existing profile picture if no new one is provided
+        const doctorProfilePicture = req.body.doctorProfilePicture || existingDoctor.doctorProfilePicture;
+
+        // Update doctor data
+        const updatedDoctor = await Doctor.findByIdAndUpdate(
+            id,
+            {
+                doctorId, doctorName, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
+                doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
+                doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
+                doctorConsultationFees
+            },
+            { new: true, runValidators: true }
+        );
+
+        return res.status(200).json({ doctor: updatedDoctor });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 };
+
+
 
 //Delete doctor
 const deleteDoctor = async (req, res, next) => {
