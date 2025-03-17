@@ -21,10 +21,10 @@ const getAllLabEquipments = async(req, res, next) => {
 //insert
 const addLabEquipment = async(req, res, next) => {
     const{EquipmentId, EquipmentName, EquipmentCategory, EquipmentBrand, EquipmentSerialNum, EquipmentLocation, EquipmentCost, EquipmentLastMaintenance, EquipmentNextMaintenance, status} = req.body;
-    let labEquipment;
+    let labEquipments;
 
     try{
-        labEquipments = new labEquipments({EquipmentId, EquipmentName, EquipmentCategory, EquipmentBrand, EquipmentSerialNum, EquipmentLocation, EquipmentCost, EquipmentLastMaintenance, EquipmentNextMaintenance, status});
+        labEquipments = new labEquipment({EquipmentId, EquipmentName, EquipmentCategory, EquipmentBrand, EquipmentSerialNum, EquipmentLocation, EquipmentCost, EquipmentLastMaintenance, EquipmentNextMaintenance, status});
         await labEquipments.save();
     }catch(err){
         console.log(err);
