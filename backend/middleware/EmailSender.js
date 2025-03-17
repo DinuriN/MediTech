@@ -31,7 +31,7 @@ export  async function sendPaymentSuccessEmail(userEmail, name, appointmentType,
           <p style="font-size: 16px;">We have received your payment for <b>${appointmentType}</b> - <b>${doctorOrScanType}</b>.</p>
           <p style="font-size: 16px;">Your appointment is confirmed. We look forward to serving you.</p>
           <hr>
-          <p style="font-size: 14px; color: gray;">If you have any questions, please contact support.</p>
+          <p style="font-size: 14px; color: gray;">If you have any questions, please contact our support.</p>
         </div>
       </div>
     `,
