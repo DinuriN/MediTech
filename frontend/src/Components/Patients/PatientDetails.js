@@ -65,10 +65,14 @@ function PatientDetails() {
                   <td>
                     <button class="btn btn-success" >Medical Records</button>
                     
-                    
+                    <Link
+                      to={`/updatePatient/${patient._id}`}
+                      style={{ marginRight: "10px", marginLeft: "10px" }}
+                    >
                       <button type="button" class="btn btn-primary">
                         Update
                       </button>
+                      </Link>
                     <button
                     onClick={() => deleteHandler(patient._id)}
                       type="button"
