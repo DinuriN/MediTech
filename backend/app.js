@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const registerPatientRouter = require("./Routes/register-patient-route");
+const medicalHistoryRouter=require("./Routes/medical-history-router");
 
 const app = express();
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/patients", registerPatientRouter)
+app.use("/medicalHistory", medicalHistoryRouter)
 
 
 //Connecting mongodb
