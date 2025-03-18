@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { use, useEffect, useRef, useState } from 'react';
-import { data, useParams } from 'react-router-dom';
+import { data, Link, useParams } from 'react-router-dom';
 
 const URL = "http://Localhost:5000/medicalHistory";
 
@@ -32,7 +32,12 @@ function MedicalHistoryDetails() {
   return (
     <div>
       <div>
-        <h1>Medical History</h1>
+        <h1>Medical History of Patient {patientId}</h1>
+        <div>
+            <Link to={`/addMedicalHistory/${patientId}`}>
+            <button className='btn btn-success' style={{ marginBottom: "10px"}}>Add New Record</button>
+            </Link>
+        </div>
 
         {/*Medical History Table */}
         
@@ -62,7 +67,10 @@ function MedicalHistoryDetails() {
                                 <td>{medHistory.doctor}</td>
                                 <td>{medHistory.requiredReports}</td>
                                 <td>{medHistory.comments}</td>
-                                <td><button>Actions</button></td>
+                                <td>
+                                    <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button>
+                                    <button className='btn btn-danger'>Delete</button>
+                                    </td>
                             </tr>
                         ))
                     }
@@ -72,7 +80,9 @@ function MedicalHistoryDetails() {
         
       </div>
       <div>
-
+        <Link to={`/patientDetails`}>
+        <button className='btn btn-primary'>Go Back</button>
+        </Link>
       </div>
     </div>
   );

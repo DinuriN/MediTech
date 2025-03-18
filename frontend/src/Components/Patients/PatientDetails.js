@@ -35,7 +35,7 @@ function PatientDetails() {
       <h1>Patient Details</h1>
       <div className='addPatient-button'>
       <Link to ="/addPatient" className="active home-a">
-            <h1>Add patient</h1>
+            <button className="btn btn-success" style={{ marginBottom: "10px"}}>Add patient</button>
         </Link>
         </div>
 
