@@ -63,7 +63,7 @@ function PatientDetails() {
                   <td>{patient.contactNo}</td>
                   <td>{patient.address}</td>
                   <td>
-                    <button class="btn btn-success" >Medical Records</button>
+                  <Link to={`/medicalHistoryDetails/${patient._id}`}><button class="btn btn-success" >Medical Records</button></Link>
                     
                     <Link
                       to={`/updatePatient/${patient._id}`}
