@@ -2,14 +2,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const registerPatientRouter = require("./Routes/register-patient-route");
+//const registerPatientRouter = require("./Routes/register-patient-route");
+const onlinePharmacyRouter = require("./Routes/online-pharmacy-route");
 
 const app = express();
 
 //Middleware
- app.use("/", (req, res, next)=>{
-     res.send("Working...");
- })
+ app.use(express.json());
+ app.use("/onlinePharmacy",onlinePharmacyRouter);
+
 
 
 //Connecting mongodb
