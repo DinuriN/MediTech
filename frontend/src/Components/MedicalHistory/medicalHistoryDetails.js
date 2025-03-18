@@ -26,6 +26,16 @@ function MedicalHistoryDetails() {
         });
     }, [patientId]);
 
+    const deleteHandler =async(id)=>{
+        const confirmDelete = window.confirm("Are you sure you want to delete this record?");
+        if(confirmDelete){
+            await axios
+            .delete(`http://Localhost:5000/medicalHistory/${id}`)
+            .then(()=>
+                setMedicalHistory(medicalHistory.filter((medHistory) => medHistory._id !== id))
+            )
+        }
+    }
    
 
 
@@ -69,7 +79,9 @@ function MedicalHistoryDetails() {
                                 <td>{medHistory.comments}</td>
                                 <td>
                                     <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button>
-                                    <button className='btn btn-danger'>Delete</button>
+                                    <button 
+                                    onClick={() => deleteHandler(medHistory._id)}
+                                    className='btn btn-danger'>Delete</button>
                                     </td>
                             </tr>
                         ))
