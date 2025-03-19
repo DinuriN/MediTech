@@ -52,13 +52,13 @@ function AddMedicalHistory() {
             Appointment Date
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="appointmentDate"
               name="appointmentDate"
               value={formData.appointmentDate}
               onChange={handleChange}
-              
+              max={new Date().toISOString().split("T")[0]}
             />
         </div>
         <div className="mb-3">

@@ -14,6 +14,8 @@ const fetchHandler = async () => {
 function PatientDetails() {
 
     const [patients, setPatients] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [noResults, setNoResults] = useState(false);
 
     useEffect(() => {
         fetchHandler().then((data) => setPatients(data.patients));
@@ -30,6 +32,19 @@ function PatientDetails() {
         }
       };  
 
+      const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    
+        fetchHandler().then((data) => {
+          const filteredPatients = data.patients.filter((patient) =>
+            patient.name.toLowerCase().includes(e.target.value.toLowerCase()) || 
+            patient.patientId.toLowerCase().includes(e.target.value.toLowerCase())  // Search by doctorName and doctorId
+          );
+          setPatients(filteredPatients);
+          setNoResults(filteredPatients.length === 0);
+        });
+      };
+
   return (
     <div>
       <h1>Patient Details</h1>
@@ -37,6 +52,17 @@ function PatientDetails() {
       <Link to ="/addPatient" className="active home-a">
             <button className="btn btn-success" style={{ marginBottom: "10px"}}>Add patient</button>
         </Link>
+        </div>
+
+        <div className="d-flex mb-3">
+        <input
+        className="form-control rounded"
+          onChange={handleSearch}
+          type="text"
+          name="search"
+          value={searchQuery}
+          placeholder="Search Patient"
+        />
         </div>
 
         <div className='patientDetails-table'>

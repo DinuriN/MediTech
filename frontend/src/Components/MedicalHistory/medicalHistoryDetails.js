@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { use, useEffect, useRef, useState } from 'react';
 import { data, Link, useParams } from 'react-router-dom';
+import "boxicons/css/boxicons.min.css";
+
 
 const URL = "http://Localhost:5000/medicalHistory";
 
@@ -11,6 +13,9 @@ const fetchHandler = async () => {
 function MedicalHistoryDetails() {
     const {patientId}=useParams();
     const [medicalHistory, setMedicalHistory]=useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [noResults, setNoResults] = useState(false);
+    const [copiedId, setCopiedId] = useState(null);
     
 
     useEffect(()=>{
@@ -36,6 +41,33 @@ function MedicalHistoryDetails() {
             )
         }
     }
+
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    
+        fetchHandler().then((data) => {
+          const filteredMedicalRecords = data.medicalHistory.filter((medicalHistory) =>
+            medicalHistory._id.toLowerCase().includes(e.target.value.toLowerCase()) || 
+          medicalHistory.appointmentDate.toLowerCase().includes(e.target.value.toLowerCase())  // Search by doctorName and doctorId
+          );
+          setMedicalHistory(filteredMedicalRecords);
+          setNoResults(filteredMedicalRecords.length === 0);
+        });
+      };
+
+      const copyToClipboard=(copyId)=>{
+        const input=document.createElement("input");
+        document.body.appendChild(input);
+        input.value=copyId;
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        setCopiedId(copyId);
+
+        setTimeout(() => {
+           setCopiedId(false); 
+        }, 1000);
+      };
    
 
 
@@ -47,6 +79,17 @@ function MedicalHistoryDetails() {
             <Link to={`/addMedicalHistory/${patientId}`}>
             <button className='btn btn-success' style={{ marginBottom: "10px"}}>Add New Record</button>
             </Link>
+        </div>
+
+        <div className="d-flex mb-3">
+        <input
+        className="form-control rounded"
+          onChange={handleSearch}
+          type="text"
+          name="search"
+          value={searchQuery}
+          placeholder="Search Medical Record"
+        />
         </div>
 
         {/*Medical History Table */}
@@ -71,8 +114,26 @@ function MedicalHistoryDetails() {
                         medicalHistory.map((medHistory)=>(
                             <tr key={medHistory._id}>
                                 <td>{medHistory._id}</td>
-                                <td></td>
-                                <td>{medHistory.appointmentDate}</td>
+                                <td>
+                                <button
+                      onClick={() => copyToClipboard(medHistory._id)}
+                      className={`btn ${
+                        copiedId === medHistory._id ? "btn-success" : "btn-light"
+                      }`}
+                    >
+                      <i className="bx bx-copy"></i>
+                    </button>
+                                </td>
+                                <td>{new Date(medHistory.appointmentDate).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        year:"numeric",
+                                        month: "long",
+                                        day:"numeric",
+                                    }
+                                )}
+
+                                </td>
                                 <td>{medHistory.department}</td>
                                 <td>{medHistory.doctor}</td>
                                 <td>{medHistory.requiredReports}</td>

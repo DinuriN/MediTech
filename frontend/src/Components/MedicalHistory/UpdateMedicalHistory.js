@@ -14,6 +14,11 @@ function UpdateMedicalHistory() {
             .then((res)=>res.data)
             .then((data)=>{
                 const medicalHistory = data.medicalHistory;
+                if (medicalHistory.appointmentDate) {
+                  medicalHistory.appointmentDate = new Date(medicalHistory.appointmentDate)
+                    .toISOString()
+                    .split("T")[0];
+                }
                 
                 setInputs(medicalHistory);
             });
@@ -56,12 +61,13 @@ function UpdateMedicalHistory() {
               Appointment Date
             </label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="appointmentDate"
               name="appointmentDate"
               value={inputs.appointmentDate}
               onChange={handleChange}
+              max={new Date().toISOString().split("T")[0]}
               required
             />
         </div>
