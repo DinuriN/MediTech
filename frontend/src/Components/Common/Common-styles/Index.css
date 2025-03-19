@@ -30,11 +30,50 @@ body{
     left: 0;
     z-index: -1; 
   }
-  
-  .footer-container-home {
-    position: relative;
-    z-index: 20; 
+
+  .doctor-appointment-button button {
+    padding: 1.203vh;
+    margin: 3.008vh 7.22vh;
+    border-radius: 3.61vh;
+    border-color: rgb(10, 10, 84);
+    font-size: 2.647vh;
+    color: rgb(10, 10, 84);
+    background-color: rgba(240, 248, 255, 0.7);
+    animation: scaleButton 1.5s ease-in-out infinite; 
   }
+  
+  @keyframes scaleButton {
+    0% {
+      transform: scale(1); 
+    }
+    50% {
+      transform: scale(1.05); 
+    }
+    100% {
+      transform: scale(1); 
+    }
+  }
+  
+  .doctor-appointment-button button:hover {
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.9);
+    transform: scale(1.06);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .bg-img-content-1 {
+    width: 75vh;
+    border-style:hidden;
+    border-radius: 12px;
+    color: white;
+    position: absolute; 
+    bottom: 40px; 
+    right: 40px; 
+    padding: 15px 25px 15px 30px;
+    background-color: rgba(0, 0, 0, 0.69);
+    line-height: 180%;
+}
+
 
   .index-content {
     position: relative;
@@ -43,3 +82,9 @@ body{
     padding: 20px;
     text-align: center;
 }
+  
+  .footer-container-home {
+    position: relative;
+    z-index: 20; 
+  }
+
