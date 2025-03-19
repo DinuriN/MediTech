@@ -141,9 +141,14 @@ function MedicalHistoryDetails() {
                                 <td>
                                     <Link to={`/updateMedicalHistory/${medHistory._id}`}>
                                     <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button></Link>
-                                    <button 
-                                    onClick={() => deleteHandler(medHistory._id)}
-                                    className='btn btn-danger'>Delete</button>
+                                    {new Date() - new Date(medHistory.appointmentDate) > 5 * 365 * 24 * 60 * 60 * 1000 && (
+        <button 
+            onClick={() => deleteHandler(medHistory._id)}
+            className='btn btn-danger'
+        >
+            Delete
+        </button>
+    )}
                                     </td>
                             </tr>
                         ))

@@ -76,7 +76,7 @@ function UpdateMedicalHistory() {
             <label htmlFor="department" className="form-label">
               Department
             </label>
-            <input
+            <select
               type="text"
               className="form-control"
               id="department"
@@ -84,14 +84,20 @@ function UpdateMedicalHistory() {
               value={inputs.department}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="">Select a Department</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Pediatrics">Pediatrics</option>
+            </select>
         </div>
 
         <div className="mb-3">
             <label htmlFor="doctor" className="form-label">
               Doctor
             </label>
-            <input
+            <select
               type="text"
               className="form-control"
               id="doctor"
@@ -99,7 +105,18 @@ function UpdateMedicalHistory() {
               value={inputs.doctor}
               onChange={handleChange}
               required
-            />
+            >
+
+<option value="">Select a Doctor</option>
+              <option value="Dr. Nalin Perera">Dr. Nalin Perera</option>
+              <option value="Dr. Ayesha Fernando">Dr. Ayesha Fernando</option>
+              <option value="Dr. Rajitha Kumara">Dr. Rajitha Kumara</option>
+              <option value="Dr. Shalini Wickramasinghe">Dr. Shalini Wickramasinghe</option>
+              <option value="Dr. Pradeep Fernando">Dr. Pradeep Fernando</option>
+              <option value="Dr. Sanath Perera">Dr. Sanath Perera</option>
+              <option value="Dr. Nihal Bandu">Dr. Nihal Bandu</option>
+              <option value="Dr. Yamuna Nadee">Dr. Yamuna Nadee</option>
+            </select>
         </div>
 
         <div className="mb-3">
