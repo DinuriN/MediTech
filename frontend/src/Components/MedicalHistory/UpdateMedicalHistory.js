@@ -1,0 +1,136 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+function UpdateMedicalHistory() {
+    const {patientId}=useParams();
+    const [inputs, setInputs]=useState({});
+    const updatedMedHistory=useNavigate();
+
+    useEffect(()=>{
+        const fetchHandler=async()=>{
+            await axios
+            .get(`http://Localhost:5000/medicalHistory/${patientId}`)
+            .then((res)=>res.data)
+            .then((data)=>{
+                const medicalHistory = data.medicalHistory;
+                
+                setInputs(medicalHistory);
+            });
+        };
+        fetchHandler();
+    }, [patientId]);
+
+    const sendUpdatedMedHistory = async()=>{
+        await axios
+        .put(`http://Localhost:5000/medicalHistory/${patientId}`, {
+            patientId: String(inputs.patientId),
+            appointmentDate: String(inputs.appointmentDate),
+            department: String(inputs.department),
+            doctor: String(inputs.doctor),
+            requiredReports: String(inputs.requiredReports),
+            comments: String(inputs.comments),
+        })
+        .then((res)=> res.data);
+    };
+
+    const handleChange=(e)=>{
+        setInputs((prevState)=>({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();
+        sendUpdatedMedHistory().then(()=>updatedMedHistory(`/medicalHistoryDetails/${inputs.patientId}`));
+    };
+
+
+  return (
+    <div>
+      <h1>Update Medical History</h1>
+      <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+            <label htmlFor="appointmentDate" className="form-label">
+              Appointment Date
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="appointmentDate"
+              name="appointmentDate"
+              value={inputs.appointmentDate}
+              onChange={handleChange}
+              required
+            />
+        </div>
+
+        <div className="mb-3">
+            <label htmlFor="department" className="form-label">
+              Department
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="department"
+              name="department"
+              value={inputs.department}
+              onChange={handleChange}
+              required
+            />
+        </div>
+
+        <div className="mb-3">
+            <label htmlFor="doctor" className="form-label">
+              Doctor
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="doctor"
+              name="doctor"
+              value={inputs.doctor}
+              onChange={handleChange}
+              required
+            />
+        </div>
+
+        <div className="mb-3">
+            <label htmlFor="requiredReports" className="form-label">
+              Required Reports
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="requiredReports"
+              name="requiredReports"
+              value={inputs.requiredReports}
+              onChange={handleChange}
+              required
+            />
+        </div>
+
+        <div className="mb-3">
+            <label htmlFor="comments" className="form-label">
+              Comments
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="comments"
+              name="comments"
+              value={inputs.comments}
+              onChange={handleChange}
+              required
+            />
+        </div>
+        <button type="submit" className="btn btn-success">
+            Save Changes
+          </button>
+      </form>
+    </div>
+  );
+}
+
+export default UpdateMedicalHistory;

@@ -78,7 +78,8 @@ function MedicalHistoryDetails() {
                                 <td>{medHistory.requiredReports}</td>
                                 <td>{medHistory.comments}</td>
                                 <td>
-                                    <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button>
+                                    <Link to={`/updateMedicalHistory/${medHistory._id}`}>
+                                    <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button></Link>
                                     <button 
                                     onClick={() => deleteHandler(medHistory._id)}
                                     className='btn btn-danger'>Delete</button>

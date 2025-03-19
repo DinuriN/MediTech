@@ -9,6 +9,7 @@ import AddPatient from "./Components/Patients/AddPatient";
 import UpdatePatient from './Components/Patients/UpdatePatient';
 import MedicalHistoryDetails from './Components/MedicalHistory/medicalHistoryDetails';
 import AddMedicalHistory from './Components/MedicalHistory/AddMedicalHistory';
+import UpdateMedicalHistory from './Components/MedicalHistory/UpdateMedicalHistory';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/updatePatient/:id" element={<UpdatePatient/>} />
           <Route path="/medicalHistoryDetails/:patientId" element={<MedicalHistoryDetails/>} />
           <Route path="/addMedicalHistory/:patientId" element={<AddMedicalHistory/>} />
+          <Route path="/updateMedicalHistory/:patientId" element={<UpdateMedicalHistory/>} />
+
         </Routes>
       </React.Fragment>
 
