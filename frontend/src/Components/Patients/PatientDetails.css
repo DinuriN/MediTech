@@ -1,0 +1,123 @@
+.col-2{
+    width: 81%;
+    padding: 3vh;
+    position: relative;
+}
+
+.col-2-row-1{
+    display: flex;
+    padding-bottom: 12px;
+}
+
+.search-and-btn{
+    display: flex;
+    position: absolute;
+    padding-top:12px ;
+    gap: 2vh;
+    right: 8vh;
+}
+
+.patient-searchbar-top-right{
+    border-style: solid;
+    border-radius: 3vh;
+    padding: 7px 20px;
+    width: 50vh;
+    font-size: large;
+}
+
+.btn-add-patient{
+    border-style: solid;
+    border-radius: 3vh;
+    border-color: #255F38;
+    padding: 7px 20px;
+    background-color: #D0E8C5;
+    font-weight: 630;
+    font-size: large;
+}
+
+.btn-add-patient:hover{
+    background-color: #255F38; /* Dark green */
+    color: white;
+    border-color: white;
+    transition: all 0.15s ease-in-out;
+}
+
+
+
+.patientDetails-table{
+    width: 100%;
+    overflow-x: auto; 
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.table-patient-details-tbl {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-patient-details-tbl-thead {
+    background-color: #a8d5ba; /* Light green */
+    color: #021e0b; /* Dark green */
+    text-align: left;
+}
+
+.patientDetails-table th, 
+.patientDetails-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.btn-medical-record-view{
+    border-style: solid;
+    font-weight:500;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 12vh;
+    border-color: #255F38;
+    background-color:#D5E5D5; 
+}
+
+.btn-medical-record-view:hover{
+    border-color: #1e4f2e;
+    background-color: #b5d6b5;
+    transition: 0.3s;
+}
+
+.btn-patient-update-btn{
+    border-style: solid;
+    font-weight:500;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 12vh;
+    border-color: #155E95;
+    background-color:#E8F9FF; 
+}
+
+.btn-patient-update-btn:hover{
+    border-color: #0f4066;
+    background-color:#afd4e2; 
+    transition: 0.3s;
+}
+
+.btn-patient-delete-btn{
+    border-style: solid;
+    font-weight:500;
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: 12vh;
+    border-color: #A31D1D;
+    background-color:#FAD4D4; 
+}
+
+.btn-patient-delete-btn:hover{
+    border-color: #721111;
+    background-color:#d99999; 
+    transition: 0.3s;
+}
+
+
+
+

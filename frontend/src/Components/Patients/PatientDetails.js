@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../Common/AdminProfile/AdminProfileSample.css";
+import "../Patients/PatientDetails.css";
 import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
 
 const URL = "http://localhost:5000/patients";
@@ -54,16 +55,14 @@ function PatientDetails() {
 
         </div> 
         <div className='col-2'>
+          <div className="col-2-row-1">
       <h1>Patient Details</h1>
-      <div className='addPatient-button'>
-      <Link to ="/addPatient" className="active home-a">
-            <button className="btn btn-success" style={{ marginBottom: "10px"}}>Add patient</button>
-        </Link>
-        </div>
+      
 
+      <div className="search-and-btn">
         <div className="d-flex mb-3">
         <input
-        className="form-control rounded"
+        className="patient-searchbar-top-right"
           onChange={handleSearch}
           type="text"
           name="search"
@@ -72,9 +71,19 @@ function PatientDetails() {
         />
         </div>
 
+        
+        <div className='addPatient-button'>
+      <Link to ="/addPatient" className="active home-a">
+            <button className="btn-add-patient" style={{ marginBottom: "10px"}}>Register New Patient</button>
+        </Link>
+        </div>
+        </div>
+        </div>
+        <hr/>
+
         <div className='patientDetails-table'>
-            <table className='table'>
-            <thead class="table-success">
+            <table className='table-patient-details-tbl'>
+            <thead class="table-patient-details-tbl-thead">
             <tr>
               <th>ID</th>
               <th>Patient ID</th>
@@ -96,20 +105,20 @@ function PatientDetails() {
                   <td>{patient.contactNo}</td>
                   <td>{patient.address}</td>
                   <td>
-                  <Link to={`/medicalHistoryDetails/${patient._id}`}><button class="btn btn-success" >Medical Records</button></Link>
+                  <Link to={`/medicalHistoryDetails/${patient._id}`}><button class="btn-medical-record-view" >Medical Records</button></Link>
                     
                     <Link
                       to={`/updatePatient/${patient._id}`}
                       style={{ marginRight: "10px", marginLeft: "10px" }}
                     >
-                      <button type="button" class="btn btn-primary">
+                      <button type="button" class="btn-patient-update-btn">
                         Update
                       </button>
                       </Link>
                     <button
                     onClick={() => deleteHandler(patient._id)}
                       type="button"
-                      class="btn btn-danger"
+                      class="btn-patient-delete-btn"
                     >
                       
                       Delete

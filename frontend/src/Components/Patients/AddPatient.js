@@ -142,6 +142,12 @@ function AddPatient() {
             <button type="submit" className="btn btn-success w-100">
               Submit
             </button>
+          <br/><br/>
+          <Link to={`/patientDetails`}>
+            <button type="submit" className="btn btn-primary w-100">
+              Go back
+            </button>
+            </Link>
           </form>
         </div>
       </div>
