@@ -7,6 +7,8 @@ import NavBar from './Components/Common/NavBar';
 import PatientDetails from './Components/Patients/PatientDetails';
 import AddPatient from "./Components/Patients/AddPatient";
 import UpdatePatient from './Components/Patients/UpdatePatient';
+import AddStaff from './Components/StaffMeditech/AddMeditechStaff';
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/patientDetails" element={<PatientDetails/>} />
           <Route path="/addPatient" element={<AddPatient/>} />
           <Route path="/updatePatient/:id" element={<UpdatePatient/>} />
+          <Route path="/addStaff" element={<AddStaff/>} />
+
         </Routes>
       </React.Fragment>
 
