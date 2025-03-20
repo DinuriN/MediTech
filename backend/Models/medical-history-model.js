@@ -19,6 +19,9 @@ const medicalHistorySchema = new Schema({
       type: String,
       required: true,
     },
+    diagnoses: {
+      type: String,
+    },
     requiredReports: {
       type: String,
     },

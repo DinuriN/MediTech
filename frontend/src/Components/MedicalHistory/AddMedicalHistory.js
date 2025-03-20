@@ -10,6 +10,7 @@ function AddMedicalHistory() {
         appointmentDate: "",
         department: "",
         doctor: "",
+        diagnoses: "",
         requiredReports: "",
         comments: ""
     });
@@ -111,6 +112,24 @@ function AddMedicalHistory() {
               <option value="Dr. Yamuna Nadee">Dr. Yamuna Nadee</option>
             </select>
         </div>
+
+        <div className="mb-3">
+            <label htmlFor="diagnoses" className="form-label">
+            Diagnoses
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="diagnoses"
+              name="diagnoses"
+              value={formData.diagnoses}
+              onChange={handleChange}
+              
+              
+            />
+        </div>
+
+
         <div className="mb-3">
             <label htmlFor="requiredReports" className="form-label">
             Required Reports

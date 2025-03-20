@@ -33,6 +33,7 @@ function UpdateMedicalHistory() {
             appointmentDate: String(inputs.appointmentDate),
             department: String(inputs.department),
             doctor: String(inputs.doctor),
+            diagnoses: String(inputs.diagnoses),
             requiredReports: String(inputs.requiredReports),
             comments: String(inputs.comments),
         })
@@ -117,6 +118,21 @@ function UpdateMedicalHistory() {
               <option value="Dr. Nihal Bandu">Dr. Nihal Bandu</option>
               <option value="Dr. Yamuna Nadee">Dr. Yamuna Nadee</option>
             </select>
+        </div>
+
+        <div className="mb-3">
+            <label htmlFor="diagnoses" className="form-label">
+              Diagnoses
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="diagnoses"
+              name="diagnoses"
+              value={inputs.diagnoses}
+              onChange={handleChange}
+              required
+            />
         </div>
 
         <div className="mb-3">

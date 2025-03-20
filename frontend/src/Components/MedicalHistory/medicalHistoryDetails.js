@@ -102,6 +102,7 @@ function MedicalHistoryDetails() {
                         <th>Appointment Date</th>
                         <th>Department</th>
                         <th>Doctor</th>
+                        <th>Diagnoses</th>
                         <th>Required Reports</th>
                         <th>Comments</th>
                         <th>Actions</th>
@@ -136,6 +137,7 @@ function MedicalHistoryDetails() {
                                 </td>
                                 <td>{medHistory.department}</td>
                                 <td>{medHistory.doctor}</td>
+                                <td>{medHistory.diagnoses}</td>
                                 <td>{medHistory.requiredReports}</td>
                                 <td>{medHistory.comments}</td>
                                 <td>
