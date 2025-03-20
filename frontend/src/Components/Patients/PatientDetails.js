@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../Common/AdminProfile/AdminProfileSample.css";
 import "../Patients/PatientDetails.css";
 import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
+import DeleteIcon from "./delete-icon-dinuri.png"
 
 const URL = "http://localhost:5000/patients";
 
@@ -112,7 +113,7 @@ function PatientDetails() {
                       style={{ marginRight: "10px", marginLeft: "10px" }}
                     >
                       <button type="button" class="btn-patient-update-btn">
-                        Update
+                      <i class='bx bx-edit'></i>
                       </button>
                       </Link>
                     <button
@@ -121,7 +122,7 @@ function PatientDetails() {
                       class="btn-patient-delete-btn"
                     >
                       
-                      Delete
+                      <img src={DeleteIcon} alt="Delete"/>
                     </button>
                   </td>
                 </tr>

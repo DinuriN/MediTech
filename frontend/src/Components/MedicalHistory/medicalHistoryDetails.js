@@ -2,6 +2,11 @@ import axios from 'axios';
 import React, { use, useEffect, useRef, useState } from 'react';
 import { data, Link, useParams } from 'react-router-dom';
 import "boxicons/css/boxicons.min.css";
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
+import "../Common/AdminProfile/AdminProfileSample.css";
+import "../Patients/PatientDetails.css";
+import DeleteIcon from "../Patients/delete-icon-dinuri.png"
+
 
 
 const URL = "http://Localhost:5000/medicalHistory";
@@ -25,7 +30,7 @@ function MedicalHistoryDetails() {
               (history) => history.patientId === patientId
           );
           setMedicalHistory(filteredHistory);
-          setOriginalMedicalHistory(filteredHistory); // Keep a copy for searching
+          setOriginalMedicalHistory(filteredHistory);
       });
   }, [patientId]);
   
@@ -70,17 +75,21 @@ function MedicalHistoryDetails() {
 
   return (
     <div>
-      <div>
-        <h1>Medical History of Patient {patientId}</h1>
-        <div>
-            <Link to={`/addMedicalHistory/${patientId}`}>
-            <button className='btn btn-success' style={{ marginBottom: "10px"}}>Add New Record</button>
-            </Link>
-        </div>
+      <div className='admin-prof-container'>
 
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div>
+        <div className='col-2'>
+        <h2>Medical History of Patient {patientId}</h2>
+        <hr/>
+        
+
+<div className='search-and-btn-med-recs'>
         <div className="d-flex mb-3">
         <input
-        className="form-control rounded"
+        className="patient-searchbar-top-right"
           onChange={handleSearch}
           type="text"
           name="search"
@@ -88,11 +97,18 @@ function MedicalHistoryDetails() {
           placeholder="Search Medical Record"
         />
         </div>
+        <div className='add-new-med-rec'>
+            <Link to={`/addMedicalHistory/${patientId}`}>
+            <button className='btn-add-patient' style={{ marginBottom: "10px"}}>Add New Record</button>
+            </Link>
+        </div>
+        </div>
 
         {/*Medical History Table */}
+        <div className='patientDetails-table'>
         
-            <table className='table table-bordered table-hover'>
-                <thead className='table-dark'>
+            <table className='table-patient-details-tbl'>
+                <thead className='table-patient-details-tbl-thead'>
                     <tr>
                         <th>Visit ID</th>
                         <th></th>
@@ -139,13 +155,13 @@ function MedicalHistoryDetails() {
                                 <td>{medHistory.comments}</td>
                                 <td>
                                     <Link to={`/updateMedicalHistory/${medHistory._id}`}>
-                                    <button className='btn btn-primary' style={{ marginRight: "10px"}}>Update</button></Link>
+                                    <button className='btn-patient-update-btn' style={{ marginRight: "10px"}}><i class='bx bx-edit'></i></button></Link>
                                     {new Date() - new Date(medHistory.appointmentDate) > 5 * 365 * 24 * 60 * 60 * 1000 && (
         <button 
             onClick={() => deleteHandler(medHistory._id)}
-            className='btn btn-danger'
+            className='btn-patient-delete-btn'
         >
-            Delete
+            <img src={DeleteIcon} alt="Delete"/>
         </button>
     )}
                                     </td>
@@ -155,12 +171,10 @@ function MedicalHistoryDetails() {
                 </tbody>
 
             </table>
+            </div>
         
       </div>
-      <div>
-        <Link to={`/patientDetails`}>
-        <button className='btn btn-primary'>Go Back</button>
-        </Link>
+      
       </div>
     </div>
   );

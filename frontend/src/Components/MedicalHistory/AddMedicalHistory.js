@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import "./MedicalHistoryForms.css"
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
+
 
 function AddMedicalHistory() {
     const {patientId} = useParams();
@@ -67,10 +70,16 @@ function AddMedicalHistory() {
         navigate(`/medicalHistoryDetails/${patientId}`);
     }
   return (
-    <div>
-      <h1>Add Medical History</h1>
+    <div className="admin-prof-container">
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div> 
+        <div className='col-2'>
+      <h2>Add New Medical Record</h2>
+      <hr/>
       <form onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className="form-label-input-field">
             <label htmlFor="patientId" className="form-label">
               Patient ID
             </label>
@@ -83,7 +92,7 @@ function AddMedicalHistory() {
               disabled
             />
         </div>
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="appointmentDate" className="form-label">
             Appointment Date
             </label>
@@ -98,7 +107,7 @@ function AddMedicalHistory() {
               required
             />
         </div>
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="department" className="form-label">
             Department
             </label>
@@ -119,7 +128,7 @@ function AddMedicalHistory() {
               <option value="Pediatrics">Pediatrics</option>
             </select>
         </div>
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="doctor" className="form-label">
             Doctor
             </label>
@@ -146,7 +155,7 @@ function AddMedicalHistory() {
             </select>
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="diagnoses" className="form-label">
             Diagnoses
             </label>
@@ -160,13 +169,13 @@ function AddMedicalHistory() {
               
               
             />
-            <button type="button" className="btn btn-secondary" onClick={startListening} disabled={isListening}>
-              {isListening? "Listening...": "🎤"}
+            <button type="button" className="btn-microphone-med-history" onClick={startListening} disabled={isListening}>
+              {isListening? "Listening...": <i class='bx bx-microphone' ></i>}
             </button>
         </div>
 
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="requiredReports" className="form-label">
             Required Reports
             </label>
@@ -181,7 +190,7 @@ function AddMedicalHistory() {
               
             />
         </div>
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="comments" className="form-label">
             Comments
             </label>
@@ -197,9 +206,10 @@ function AddMedicalHistory() {
             
         </div>
 
-        <button type='submit' className='btn btn-primary'>Add Record</button>
+        <button type='submit' className='btn-add-record-btn-green'>Add Record</button>
 
       </form>
+      </div>
     </div>
   );
 }

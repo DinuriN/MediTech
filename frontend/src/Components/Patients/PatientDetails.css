@@ -1,5 +1,10 @@
-.col-2{
-    width: 81%;
+.admin-prof-container .col-1{
+    width: 15vh; 
+    position: relative;
+}
+
+.admin-prof-container .col-2{
+    width: 81%; 
     padding: 3vh;
     position: relative;
 }
@@ -94,6 +99,7 @@
     border-radius: 12vh;
     border-color: #155E95;
     background-color:#E8F9FF; 
+    margin-bottom: 5px;
 }
 
 .btn-patient-update-btn:hover{
@@ -116,6 +122,22 @@
     border-color: #721111;
     background-color:#d99999; 
     transition: 0.3s;
+}
+
+.btn-patient-delete-btn img{
+    width: 2vh;
+    padding-bottom: 2px;
+}
+
+/*medical records file*/
+.search-and-btn-med-recs{
+    display: flex;
+    gap: 10vh;
+}
+
+.add-new-med-rec{
+    position: absolute;
+    right: 5vh;
 }
 
 
