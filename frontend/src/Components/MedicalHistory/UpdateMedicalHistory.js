@@ -206,6 +206,7 @@ function UpdateMedicalHistory() {
               onChange={handleChange}
               required
             />
+            
         </div>
         <button type="submit" className="btn btn-success">
             Save Changes

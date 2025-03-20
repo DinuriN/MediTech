@@ -194,6 +194,7 @@ function AddMedicalHistory() {
               onChange={handleChange}
               
             />
+            
         </div>
 
         <button type='submit' className='btn btn-primary'>Add Record</button>
