@@ -19,7 +19,7 @@ function AdminSideNavBar() {
               <ul className='side-bar-list-ul'>
                 <li><a href='#'><img src={AdminProfDashboardIcon}/>     Dashboard</a></li>
                 <li><a href='#'><img src={AdminStaffIcon}/>     Staff</a></li>
-                <li><a href='#'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
+                <li><a href='/patientDetails'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
                 <li><a href='#'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
                 <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
                 <li><a href='#'><img src={AdminProfDepartmentsIcon}/>     Departments</a></li>

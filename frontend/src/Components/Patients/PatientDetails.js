@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import "../Common/AdminProfile/AdminProfileSample.css";
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
 
 const URL = "http://localhost:5000/patients";
 
@@ -46,7 +48,12 @@ function PatientDetails() {
       };
 
   return (
-    <div>
+    <div className="admin-prof-container">
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div> 
+        <div className='col-2'>
       <h1>Patient Details</h1>
       <div className='addPatient-button'>
       <Link to ="/addPatient" className="active home-a">
@@ -114,6 +121,7 @@ function PatientDetails() {
             </table>
         </div>
 
+        </div>
 
     </div>
   );
