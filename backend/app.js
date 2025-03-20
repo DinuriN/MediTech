@@ -1,26 +1,18 @@
-
-
-import express from "express";
-import mongoose from "mongoose";
-import cors from 'cors';  // Import the CORS middleware
-import consultationRoutes from "./Routes/ConsultationRout.js";
-import paymentRoutes from "./Routes/PaymentRout.js";
+//TyslDJir7WM2Up5u
+const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 
-// Use CORS middleware to enable cross-origin requests
-app.use(cors());
+//Middleware
+app.use("/", (req, res, next)=>{
+    res.send("Working...");
+})
 
-app.use(express.json());
-
-const mongoDBUri = "mongodb+srv://admin:hOPTUkwQGtUKIVaz@cluster0.cg58q.mongodb.net/";
-
-mongoose.connect(mongoDBUri)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log("Database connection failed", err));
-
-app.use("/appointments", consultationRoutes);  // Corrected typo here
-app.use("/payments", paymentRoutes);
-
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//Connecting mongodb
+mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")
+.then(()=>console.log("Connected to MongoDB"))
+.then(()=>{
+    app.listen(5000);
+})
+.catch((err)=>console.log((err)));
