@@ -6,6 +6,8 @@ function UpdateMedicalHistory() {
     const {patientId}=useParams();
     const [inputs, setInputs]=useState({});
     const updatedMedHistory=useNavigate();
+    const [isListening, setIsListening] = useState(false);
+    let recognition = null;
 
     useEffect(()=>{
         const fetchHandler=async()=>{
@@ -25,6 +27,39 @@ function UpdateMedicalHistory() {
         };
         fetchHandler();
     }, [patientId]);
+
+    if ("webkitSpeechRecognition" in window) {
+      recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = "en-US";
+
+      recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          setInputs((prev) => ({
+              ...prev,
+              diagnoses: prev.diagnoses + " " + transcript
+          }));
+      };
+
+      recognition.onerror = (event) => {
+          console.error("Speech Recognition Error: ", event.error);
+      };
+
+      recognition.onend = () => {
+          setIsListening(false);
+      };
+  }
+
+  const startListening = () => {
+      if (recognition) {
+          setIsListening(true);
+          recognition.start();
+      } else {
+          alert("Speech recognition is not supported in this browser");
+      }
+  };
+    
 
     const sendUpdatedMedHistory = async()=>{
         await axios
@@ -133,6 +168,14 @@ function UpdateMedicalHistory() {
               onChange={handleChange}
               required
             />
+            <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={startListening}
+                        disabled={isListening}
+                    >
+                        {isListening ? "Listening..." : "🎤"}
+                    </button>
         </div>
 
         <div className="mb-3">

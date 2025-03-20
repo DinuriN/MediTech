@@ -15,6 +15,39 @@ function AddMedicalHistory() {
         comments: ""
     });
 
+    const [isListening, setIsListening]=useState(false);
+    let recognition=null;
+
+    if("webkitSpeechRecognition" in window) {
+      recognition=new window.webkitSpeechRecognition();
+      recognition.continuous=false;
+      recognition.interimResults=false;
+      recognition.lang="en-US";
+
+      recognition.onresult=(event)=>{
+        const transcript=event.results[0][0].transcript;
+        setFormData((prev)=>({...prev, diagnoses:prev.diagnoses + " "+transcript}));
+      };
+
+      recognition.onerror=(event)=>{
+        console.error("Speech Recognition Error: ",event.error);
+      };
+
+      recognition.onend=()=>{
+        setIsListening(false);
+      };
+    };
+
+      const startListening=()=>{
+        if(recognition){
+          setIsListening(true);
+          recognition.start();
+        } else{
+          alert("Speech recognition is not supported in this browser");
+        }
+      };
+   
+
     const handleChange=(e)=>{
         setFormData({...formData, [e.target.name]: e.target.value});
     };
@@ -127,6 +160,9 @@ function AddMedicalHistory() {
               
               
             />
+            <button type="button" className="btn btn-secondary" onClick={startListening} disabled={isListening}>
+              {isListening? "Listening...": "🎤"}
+            </button>
         </div>
 
 
