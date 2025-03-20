@@ -11,7 +11,7 @@ function Payment({ payment }) {
     return <p>No payment details available</p>;
   }
 
-  const { _id, cardNo, holderName, paymentMethod, paymentDate } = payment;
+  const { _id, cardNo, holderName, paymentMethod, expires } = payment;
 
   return (
     <div className="payment-container">
@@ -38,8 +38,8 @@ function Payment({ payment }) {
             <td>{paymentMethod}</td>
           </tr>
           <tr>
-            <td>Payment Date</td>
-            <td>{paymentDate}</td>
+            <td>Expires</td>
+            <td>{expires}</td>
           </tr>
         </tbody>
       </table>

@@ -1,141 +1,90 @@
-import Patient from "../Models/ConsultationModel.js";
 
-//Display part
-const getAllPatients = async(req,res,next) =>{//display function
+const Appointment = require("../Models/ConsultationModel.js");  // Ensure model is imported correctly
 
-    let patients;
+// Display part
+const getAllAppointments = async (req, res, next) => {  // Display function
+    let appointments;
 
-    //Get all users
-    try{
-
-        patients=await Patient.find();
-    }catch(err) {
-        console.log(err);
-    }
-
-    //not found
-
-    if(!patients){
-        return res.status(404).json({message:"patients not found"})
-    }
-
-    //Display all users
-
-    return res.status(200).json({patients});
-
-};
-
-//Data Insert
-
-const addPatients=async(req,res,next) =>{
-
-const {name,gmail,age,contact,address,appointmentType,doctorOrScanType} = req.body;
-
-let patients;
-
-try {
-    patients=new Patient( {name,gmail,age,contact,address,appointmentType,doctorOrScanType});
-    await patients.save(); //Save the detail in the data base
-    
-} catch (err) {
-    console.log(err);
-}
-
-//If not insert users
-
-if(!patients){
-    return res.status(404).send({message :"Unable to add patients"});
-}
-
-return res.status(200).json({patients});
-
-
-};
-
-//Get by Id
-
-const getById =async(req,res,next) =>{
-
-    const id=req.params.id;
-
-    let patient;
-
-    try { 
-        patient = await Patient.findById(id);
-        
+    // Get all appointments
+    try {
+        appointments = await Appointment.find();
     } catch (err) {
         console.log(err);
     }
 
-    //If not available id
+    // Not found
+    if (!appointments) {
+        return res.status(404).json({ message: "appointments not found" });
+    }
 
-if(!patient){
-    return res.status(404).send({message :"patient not found"});
-}
-
-return res.status(200).json({patient});
-
+    // Display all appointments
+    return res.status(200).json({ appointments });
 };
 
+// Data Insert
+const addAppointments = async (req, res, next) => {
+    const { name,gmail,age,contact,appointmentDate,appointmentTime,address,appointmentType,doctorOrScanType } = req.body;
 
-//Update User detail
-
-
-const UpdatePatient =async(req,res,next) =>{
-
-    const id=req.params.id;
-    const {name,gmail,age,contact,address,appointmentType,doctorOrScanType} = req.body;
-
-    let patients;
+    let appointments;
 
     try {
-
-        patients =await Patient.findByIdAndUpdate(id ,
-        {name :name,gmail :gmail,age :age,contact:contact,address :address,appointmentType:appointmentType,doctorOrScanType:doctorOrScanType});
-
-        patients=await patients.save();
-        
+        appointments = new Appointment({name,gmail,age,contact,appointmentDate,appointmentTime,address,appointmentType,doctorOrScanType });
+        await appointments.save();  // Save the details in the database
     } catch (err) {
         console.log(err);
     }
 
-    if(!patients){
-        return res.status(404).send({message :"patient not found"});
+    // If not inserted
+    if (!appointments) {
+        return res.status(404).send({ message: "Unable to add appointments" });
     }
-    
-    return res.status(200).json({patients});
+
+    return res.status(200).json({ appointments });
 };
 
-const deletePatient =async(req,res,next) => {
-    
-    const id=req.params.id;
+// Get by Id
+const getById = async (req, res) => {
+    try {
+      const appointment = await Appointment.findById(req.params.id);
+      if (!appointment) return res.status(404).json({ message: 'Appointment not found' });
+      res.status(200).json({ appointment });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
 
-    let patient;
+// Update Appointment detail
+const updateAppointment = async (req, res) => {
+    try {
+      const updatedAppointment = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      if (!updatedAppointment) return res.status(404).json({ message: 'Appointment not found' });
+      res.status(200).json(updatedAppointment);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  };
+// Delete Appointment
+const deleteAppointment = async (req, res, next) => {
+    const id = req.params.id;
+    let appointment;
 
     try {
-        patient =await Patient.findByIdAndDelete(id);
-        
+        appointment = await Appointment.findByIdAndDelete(id);
     } catch (err) {
         console.log(err);
     }
 
-    if(!patient){
-        return res.status(404).json({message :"patient not found"});
+    if (!appointment) {
+        return res.status(404).json({ message: "appointment not found" });
     }
-    
-    return res.status(200).json({patient});
-    
+
+    return res.status(200).json({ appointment });
 };
 
-
-
-const _getAllPatients = getAllPatients;
-export { _getAllPatients as getAllPatients };
-const _addPatients = addPatients;
-export { _addPatients as addPatients };
-const _getById = getById;
-export { _getById as getById };
-const _UpdatePatient = UpdatePatient;
-export { _UpdatePatient as UpdatePatient };
-const _deletePatient = deletePatient;
-export { _deletePatient as deletePatient };
+module.exports = {
+    getAllAppointments,
+    addAppointments,
+    getById,
+    updateAppointment,
+    deleteAppointment
+};

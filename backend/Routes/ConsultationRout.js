@@ -1,12 +1,11 @@
-
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import { getAllPatients, addPatients, getById, UpdatePatient, deletePatient } from "../Controllers/ConsultationController.js";
+const { getAllAppointments, addAppointments, getById, updateAppointment, deleteAppointment } = require("../Controllers/ConsultationController.js");
 
-router.get("/", getAllPatients);
-router.post("/", addPatients);
+router.get("/", getAllAppointments);
+router.post("/", addAppointments);
 router.get("/:id", getById);
-router.put("/:id", UpdatePatient);
-router.delete("/:id", deletePatient); // Add delete route
+router.put("/:id", updateAppointment);
+router.delete("/:id", deleteAppointment);  // Add delete route
 
-export default router;
+module.exports = router;

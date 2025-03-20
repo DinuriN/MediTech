@@ -1,5 +1,4 @@
-
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema({
   cardNo: {
@@ -14,11 +13,14 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  paymentDate: {
-    type: Date,
+  expires: {
+    type: String,
     required: true,
   },
-
+  cvv: {
+    type: String,
+    required: true,
+  }
 });
 
-export default mongoose.model("PaymentModel", paymentSchema);
+module.exports = mongoose.model("Payment", paymentSchema); // Ensure model is named 'Payment'

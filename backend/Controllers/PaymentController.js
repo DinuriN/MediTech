@@ -1,148 +1,76 @@
+const Payment = require('../models/PaymentModel');  // Assuming a Mongoose model
 
-import { sendPaymentSuccessEmail } from "../middleware/EmailSender.js";
-import Payment from "../Models/PaymentModel.js";
-
-//Display part
-const getAllPayments = async(req,res,next) =>{//display function
-
-    let payments;
-
-    //Get all users
-    try{
-
-        payments=await Payment.find();
-    }catch(err) {
-        console.log(err);
+// Get all payments
+const getAllPayments = async (req, res) => {
+    try {
+        const payments = await Payment.find();
+        res.status(200).json(payments);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-
-    //not found
-
-    if(!payments){
-        return res.status(404).json({message:"payments not found"})
-    }
-
-    //Display all users
-
-    return res.status(200).json({payments});
-
 };
 
-//Data Insert
+// Add a new payment
+const addPayments = async (req, res) => {
+    const { cardNo, holderName, paymentMethod, expires, cvv } = req.body;
 
-const addPayments=async(req,res,next) =>{
-
-
-
-const {cardNo,holderName,paymentMethod,paymentDate} = req.body;
-
-console.log(req.body);
-
-
-
-
-
-
-
-let payments;
-
-try {
-    payments=new Payment( {cardNo,holderName,paymentMethod,paymentDate});
-    await payments.save(); //Save the detail in the data base
-    await sendPaymentSuccessEmail(req.body.gmail, req.body.name, req.body.appointmentType, req.body.doctorOrScanType);  
-    
-} catch (err) {
-    console.log(err);
-}
-
-//If not insert users
-
-if(!payments){
-    return res.status(404).send({message :"Unable to add payment"});
-}
-
-return res.status(200).json({payments});
-
-
-};
-
-//Get by Id
-
-const getByPayId = async (req, res, next) => {
-    const paymentId = req.params.paymentId; // Ensure param name matches route
+    console.log('Received data:', req.body); // Log received data to debug
 
     let payment;
 
-    try { 
-        payment = await Payment.findById(paymentId);
+    try {
+        payment = new Payment({ cardNo, holderName, paymentMethod, expires, cvv });
+        await payment.save();  // Save the details in the database
     } catch (err) {
-        console.error("Error fetching payment:", err);
+        console.log(err);
         return res.status(500).json({ message: "Internal server error" });
     }
 
+    // If not inserted
     if (!payment) {
-        return res.status(404).send({ message: "Payment not found" });
+        return res.status(404).send({ message: "Unable to add payment" });
     }
 
-    return res.status(200).json({ payment });
+    return res.status(201).json({ message: "Payment added successfully", payment });
 };
 
-
-//Update User detail
-
-
-const UpdatePayment =async(req,res,next) =>{
-
-    const paymentId=req.params.id;
-    const {cardNo,holderName,paymentMethod,paymentDate} = req.body;
-
-    let payments;
-
+// Get a payment by ID
+const getByPayId = async (req, res) => {
     try {
-
-        payments =await Payments.findByIdAndUpdate(paymentId ,
-        {cardNo :cardNo,holderName :holderName,paymentMethod :paymentMethod,paymentDate:paymentDate});
-
-        payments=await payments.save();
-        
+        const payment = await Payment.findById(req.params.paymentId);
+        if (!payment) return res.status(404).json({ message: 'Payment not found' });
+        res.status(200).json(payment);
     } catch (err) {
-        console.log(err);
+        res.status(500).json({ message: err.message });
     }
-
-    if(!payments){
-        return res.status(404).send({message :"payments not found"});
-    }
-    
-    return res.status(200).json({payments});
 };
 
-const deletePayment=async(req,res,next) => {
-    
-    const paymentId=req.params.id;
-
-    let payment;
-
+// Update a payment by ID
+const updatePayment = async (req, res) => {
     try {
-        payment =await Payment.findByIdAndDelete(paymentId);
-        
+        const updatedPayment = await Payment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedPayment) return res.status(404).json({ message: 'Payment not found' });
+        res.status(200).json(updatedPayment);
     } catch (err) {
-        console.log(err);
+        res.status(400).json({ message: err.message });
     }
-
-    if(!payment){
-        return res.status(404).json({message :"payment not found"});
-    }
-    
-    return res.status(200).json({payment});
-    
 };
 
-const _getAllPayments = getAllPayments;
-export { _getAllPayments as getAllPayments };
-const _addPayments = addPayments;
-export { _addPayments as addPayments };
-const _getByPayId = getByPayId;
-export { _getByPayId as getByPayId };
-const _UpdatePayment = UpdatePayment;
-export { _UpdatePayment as UpdatePayment };
-const _deletePayment = deletePayment;
-export { _deletePayment as deletePayment };
+// Delete a payment by ID
+const deletePayment = async (req, res) => {
+    try {
+        const payment = await Payment.findByIdAndDelete(req.params.id);
+        if (!payment) return res.status(404).json({ message: 'Payment not found' });
+        res.status(200).json({ message: 'Payment deleted' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+module.exports = {
+    getAllPayments,
+    addPayments,
+    getByPayId,
+    updatePayment,
+    deletePayment,
+};
