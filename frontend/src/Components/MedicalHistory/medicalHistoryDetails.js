@@ -16,20 +16,29 @@ function MedicalHistoryDetails() {
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
     const [copiedId, setCopiedId] = useState(null);
+    const [originalMedicalHistory, setOriginalMedicalHistory] = useState([]);
     
 
-    useEffect(()=>{
-        fetchHandler().then((data)=>setMedicalHistory(data.medicalHistory))
-    }, []);
-
-    useEffect(()=>{
-        fetchHandler().then((data)=>{
-            const filteredHistory=data.medicalHistory.filter(
-                (history)=>history.patientId === patientId
-            );
-            setMedicalHistory(filteredHistory);
-        });
-    }, [patientId]);
+    useEffect(() => {
+      fetchHandler().then((data) => {
+          const filteredHistory = data.medicalHistory.filter(
+              (history) => history.patientId === patientId
+          );
+          setMedicalHistory(filteredHistory);
+          setOriginalMedicalHistory(filteredHistory); // Keep a copy for searching
+      });
+  }, [patientId]);
+  
+  const handleSearch = (e) => {
+      setSearchQuery(e.target.value);
+  
+      const filteredMedicalRecords = originalMedicalHistory.filter((medHistory) =>
+          medHistory._id.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          medHistory.appointmentDate.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+  
+      setMedicalHistory(filteredMedicalRecords);
+  };
 
     const deleteHandler =async(id)=>{
         const confirmDelete = window.confirm("Are you sure you want to delete this record?");
@@ -42,18 +51,6 @@ function MedicalHistoryDetails() {
         }
     }
 
-    const handleSearch = (e) => {
-        setSearchQuery(e.target.value);
-    
-        fetchHandler().then((data) => {
-          const filteredMedicalRecords = data.medicalHistory.filter((medicalHistory) =>
-            medicalHistory._id.toLowerCase().includes(e.target.value.toLowerCase()) || 
-          medicalHistory.appointmentDate.toLowerCase().includes(e.target.value.toLowerCase())  // Search by doctorName and doctorId
-          );
-          setMedicalHistory(filteredMedicalRecords);
-          setNoResults(filteredMedicalRecords.length === 0);
-        });
-      };
 
       const copyToClipboard=(copyId)=>{
         const input=document.createElement("input");

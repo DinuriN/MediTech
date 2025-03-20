@@ -17,6 +17,7 @@ app.use("/patients", registerPatientRouter)
 app.use("/medicalHistory", medicalHistoryRouter)
 
 
+
 //Connecting mongodb
 mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")
 .then(()=>console.log("Connected to MongoDB"))
