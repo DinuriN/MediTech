@@ -10,6 +10,8 @@ import UpdatePatient from './Components/Patients/UpdatePatient';
 import MedicalHistoryDetails from './Components/MedicalHistory/medicalHistoryDetails';
 import AddMedicalHistory from './Components/MedicalHistory/AddMedicalHistory';
 import UpdateMedicalHistory from './Components/MedicalHistory/UpdateMedicalHistory';
+import AdminSideNavBar from './Components/Common/AdminProfile/AdminSideNavBar';
+import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSample';
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
           <Route path="/medicalHistoryDetails/:patientId" element={<MedicalHistoryDetails/>} />
           <Route path="/addMedicalHistory/:patientId" element={<AddMedicalHistory/>} />
           <Route path="/updateMedicalHistory/:patientId" element={<UpdateMedicalHistory/>} />
-
+          <Route path="/adminSideNavBar" element={<AdminSideNavBar/>} />
+          <Route path="/adminProfileSample" element={<AdminProfiileSample/>} />
         </Routes>
       </React.Fragment>
 
