@@ -46,3 +46,18 @@
     background-color: rgb(181, 219, 181);
     transition: 0.3s ease;
 }
+
+.btn-add-record-btn-blue{
+    border-style: solid;
+    background-color: rgb(227, 239, 250);
+    border-color: rgb(2, 2, 62);
+    border-radius: 30px;
+    padding: 5px 15px;
+    font-weight: 600;
+}
+
+.btn-add-record-btn-blue:hover{ 
+    background-color: rgb(185, 202, 218);
+    border-color: rgb(3, 3, 44);
+    transition: 0.3s ease;
+}

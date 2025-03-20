@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
+import "./MedicalHistoryForms.css"
+
 
 function UpdateMedicalHistory() {
     const {patientId}=useParams();
@@ -89,10 +92,16 @@ function UpdateMedicalHistory() {
 
 
   return (
-    <div>
-      <h1>Update Medical History</h1>
+    <div className='admin-prof-container'>
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div> 
+        <div className='col-2'>
+      <h2>Update Medical History</h2>
+      <hr/>
       <form onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className="form-label-input-field">
             <label htmlFor="appointmentDate" className="form-label">
               Appointment Date
             </label>
@@ -108,7 +117,7 @@ function UpdateMedicalHistory() {
             />
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="department" className="form-label">
               Department
             </label>
@@ -129,7 +138,7 @@ function UpdateMedicalHistory() {
             </select>
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="doctor" className="form-label">
               Doctor
             </label>
@@ -155,7 +164,7 @@ function UpdateMedicalHistory() {
             </select>
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="diagnoses" className="form-label">
               Diagnoses
             </label>
@@ -170,15 +179,15 @@ function UpdateMedicalHistory() {
             />
             <button
                         type="button"
-                        className="btn btn-secondary"
+                        className="btn-microphone-med-history"
                         onClick={startListening}
                         disabled={isListening}
                     >
-                        {isListening ? "Listening..." : "🎤"}
+                        {isListening ? "Listening..." : <i class='bx bx-microphone' ></i>}
                     </button>
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="requiredReports" className="form-label">
               Required Reports
             </label>
@@ -193,7 +202,7 @@ function UpdateMedicalHistory() {
             />
         </div>
 
-        <div className="mb-3">
+        <div className="form-label-input-field">
             <label htmlFor="comments" className="form-label">
               Comments
             </label>
@@ -208,10 +217,11 @@ function UpdateMedicalHistory() {
             />
             
         </div>
-        <button type="submit" className="btn btn-success">
+        <button type="submit" className="btn-add-record-btn-green">
             Save Changes
           </button>
       </form>
+      </div>
     </div>
   );
 }

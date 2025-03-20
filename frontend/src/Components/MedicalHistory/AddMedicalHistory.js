@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./MedicalHistoryForms.css"
 import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';

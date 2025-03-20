@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../MedicalHistory/MedicalHistoryForms.css"
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
 
 function AddPatient() {
   const patientHistory = useNavigate();
@@ -44,12 +46,18 @@ function AddPatient() {
   };
 
   return (
-    <div>
+    <div className="admin-prof-container">
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div> 
+        <div className='col-2'>
       <div>
-        <h1 className="text-center mb-4">Add Patient</h1>
+        <h2>Add Patient</h2>
+        <hr/>
         <div>
           <form onSubmit={handleSubmit} className="container mt-4">
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientId" className="form-label">
                 Patient ID:
               </label>
@@ -64,7 +72,7 @@ function AddPatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientName" className="form-label">
                 Patient Name:
               </label>
@@ -79,7 +87,7 @@ function AddPatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientEmail" className="form-label">
                 Patient Email:
               </label>
@@ -94,7 +102,7 @@ function AddPatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientTempPw" className="form-label">
                 Temporary Password:
               </label>
@@ -109,7 +117,7 @@ function AddPatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientContactNo" className="form-label">
                 Contact No:
               </label>
@@ -124,7 +132,7 @@ function AddPatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientAddress" className="form-label">
                 Address:
               </label>
@@ -139,17 +147,19 @@ function AddPatient() {
               />
             </div>
 
-            <button type="submit" className="btn btn-success w-100">
-              Submit
-            </button>
-          <br/><br/>
-          <Link to={`/patientDetails`}>
-            <button type="submit" className="btn btn-primary w-100">
+            <Link to={`/patientDetails`}>
+            <button type="submit" className="btn-add-record-btn-blue">
               Go back
             </button>
             </Link>
+            <button type="submit" className="btn-add-record-btn-green">
+              Submit
+            </button>
+          <br/><br/>
+          
           </form>
         </div>
+      </div>
       </div>
     </div>
   );
