@@ -68,7 +68,7 @@ function Index() {
             </div>
             <div className="index-col-2-box">
             <div className="index-col-2-box-icon">
-                <img src={doctorIconIndex} alt="doctor-icon"/>
+                <img src={patientFeedbacklIconIndex} alt="doctor-icon"/>
                 </div>
                 <div className="index-col-2-box-text">
                 <h2>Patient Feedback</h2>
