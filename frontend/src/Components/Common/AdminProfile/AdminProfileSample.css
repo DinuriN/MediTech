@@ -1,0 +1,8 @@
+.admin-prof-container{
+    display: flex;
+    position: relative;
+}
+
+.col-1{
+    width: 20%;
+}
