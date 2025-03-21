@@ -8,9 +8,12 @@ import PatientDetails from './Components/Patients/PatientDetails';
 import AddPatient from "./Components/Patients/AddPatient";
 import UpdatePatient from './Components/Patients/UpdatePatient';
 import AddStaff from './Components/StaffMeditech/AddMeditechStaff';
+import LoginForUsers from './Components/Common/LoginForUsers/LoginForUsers';
 
 
 function App() {
+  const isAuthenticated= !!localStorage.getItem("token");
+
   return (
     <div className="App">
       <React.Fragment>
@@ -20,6 +23,7 @@ function App() {
           <Route path="/addPatient" element={<AddPatient/>} />
           <Route path="/updatePatient/:id" element={<UpdatePatient/>} />
           <Route path="/addStaff" element={<AddStaff/>} />
+          <Route path='/loginForUsers' element={<LoginForUsers/>} />
 
         </Routes>
       </React.Fragment>
