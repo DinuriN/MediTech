@@ -2,6 +2,8 @@ import React from "react";
 import "boxicons/css/boxicons.min.css";
 import meditechLogo from "../Common/common-images/meditech-logo-1.png";
 import "../Common/Common-styles/Header.css";
+import LoginForUsers from "./LoginForUsers/LoginForUsers";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -27,7 +29,7 @@ function Header() {
             <div className="col-2-row-1-col-1">
             <div className="authentication-button-container">
                 <div className="authentication-btn">
-                    <button>Login</button>
+                    <Link to={`LoginForUsers`}><button>Login</button></Link>
                 </div>
                 <div className="authentication-btn">
                     <button>Sign Up</button>

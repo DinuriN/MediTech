@@ -12,7 +12,7 @@ const Logout = () => {
     localStorage.removeItem("name");
 
    
-    navigate("/loginForUsers");
+    navigate("/");
   };
 
   return (
