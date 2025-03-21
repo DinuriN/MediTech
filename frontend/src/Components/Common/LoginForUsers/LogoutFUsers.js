@@ -5,13 +5,13 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear user authentication data
+    
     localStorage.removeItem("token");
     localStorage.removeItem("userType");
     localStorage.removeItem("userId");
     localStorage.removeItem("name");
 
-    // Redirect to login page
+   
     navigate("/loginForUsers");
   };
 
