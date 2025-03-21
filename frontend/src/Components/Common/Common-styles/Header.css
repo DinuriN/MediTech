@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-main-container {
+    padding: 20px 15px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: auto; 
+    width: 100%;
+  }
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    width: 75%;
+    border-style: solid;
+    border-radius: 12px;
+    border-style: hidden;
+    background-color: rgba(240, 248, 255, 0.745);
+}
+
+.meditech-logo-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.meditech-logo-container img {
+    width: auto;
+    height: 100px;
+    max-width: 100%;
+}
+
+
+.col-2-row-1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-2-row-1-col-1{
+    padding-right: 20px;
+}
+
+
+.search-bar-container input{
+    padding: 1.203vh;
+    position: relative;
+    width: 60.168vh; 
+    height: 4.813vh;
+    border-style: solid;
+    border-radius: 30px;
+    border-color: rgb(2, 2, 39);
+  }
+
+
+.authentication-button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.authentication-btn{
+    padding-right: 20px;
+}
+
+.authentication-btn button{
+    border: none;
+    cursor: pointer;
+    background-color:rgb(168, 211, 235);
+    padding: 15px 30px;
+    border-radius: 35px;
+}
+
+.authentication-btn button:hover{
+    background-color:rgb(177, 168, 235);
+}
+
+.col-2-row-2-menu-container {
+    padding-top: 12px;
+    display: flex;
+    justify-content: flex-end; 
+    width: 100%;
+  }
+
+  .col-2-row-2-menu-ul{
+    padding-right: 25px;
+    gap: 30px;
+  }
+
+.col-2-row-2-menu-ul{
+    list-style: none;
+    display: flex;
+}
+
+.col-2-row-2-menu-li{
+    padding-right: 20px;
+}
+
+.col-2-row-2-menu-li a{
+    text-decoration: none;
+    color: black;
+}
+
+.col-2-row-2-menu-li a:hover{
+    text-decoration: none;
+    color: rgb(29, 20, 125);
+}

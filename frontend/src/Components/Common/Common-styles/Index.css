@@ -1,0 +1,140 @@
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.index-container{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+.header-container-home {
+    width: 100%;
+    height: 80vh;
+    position: relative;
+  }
+.meditech-banner-container {
+    width: 100%;
+  }
+
+  .meditech-banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; 
+  }
+
+  .doctor-appointment-button button {
+    padding: 1.203vh;
+    margin: 3.008vh 7.22vh;
+    border-radius: 3.61vh;
+    border-color: rgb(10, 10, 84);
+    font-size: 2.647vh;
+    color: rgb(10, 10, 84);
+    background-color: rgba(240, 248, 255, 0.7);
+    animation: scaleButton 1.5s ease-in-out infinite; 
+  }
+  
+  @keyframes scaleButton {
+    0% {
+      transform: scale(1); 
+    }
+    50% {
+      transform: scale(1.05); 
+    }
+    100% {
+      transform: scale(1); 
+    }
+  }
+  
+  .doctor-appointment-button button:hover {
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.9);
+    transform: scale(1.06);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .bg-img-content-1 {
+    width: 75vh;
+    border-style:hidden;
+    border-radius: 12px;
+    color: white;
+    position: absolute; 
+    bottom: 40px; 
+    right: 40px; 
+    padding: 15px 25px 15px 30px;
+    background-color: rgba(0, 0, 0, 0.69);
+    line-height: 180%;
+}
+
+
+  .index-content {
+    position: relative;
+    z-index: 5;
+    background: white;
+    padding: 20px;
+    display: flex;
+}
+
+.index-content-col-1-img-1{
+    width: 60vh;
+}
+  
+.index-content-col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 5vh;
+    padding: 20px;
+}
+
+.index-col-2-box{
+    display: flex;
+    gap: 2vh;
+    justify-content: space-between;
+    padding: 4vh;
+    border-radius: 5vh;
+    background-color:rgb(215, 222, 239);
+}
+
+.index-col-2-box-icon img{
+    width: 12vh;
+}
+
+.index-col-2-box:hover{
+    cursor: pointer;
+    background-color:rgb(206, 212, 228);
+}
+
+
+.go-to-top-button{
+display: none;  
+  position: fixed; 
+  bottom: 20px; 
+  right: 30px; 
+  z-index: 99; 
+  border: none; 
+  outline: none; 
+  background-color: rgb(5, 7, 85); 
+  color: white; 
+  cursor: pointer; 
+  padding: 15px; 
+  border-radius: 50%; 
+  font-size: 18px; 
+}
+
+.go-to-top-button:hover{
+    background-color: #555;
+}
+
+  .footer-container-home {
+    position: relative;
+    z-index: 20; 
+  }
+
