@@ -8,6 +8,9 @@ import UpdateDoctor from "./Components/doctor-prof-mgt/update-doctor/UpdateDocto
 import DoctorProfile from "./Components/doctor-prof-mgt/doctor-profile-for-view-more/DoctorProfileForViewMore";
 import TimetableAllDoctors from "./Components/doctor-prof-timetable-all-doctors/TimetableAllDoctors";
 import NavBar from './Components/Common/NavBar';
+import AdminSideNavBar from './Components/Common/AdminProfile/AdminSideNavBar';
+import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSample';
+
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route path="/doctorProfile/:id" element={<DoctorProfile/>}/>
           <Route path="/doctorsTimetable" element={<TimetableAllDoctors/>}/>
           <Route path="/registerADoctor" element={<DoctorForm/>}/>
+          <Route path="/adminSideNavBar" element={<AdminSideNavBar/>} />
+          <Route path="/adminProfileSample" element={<AdminProfiileSample/>} />
+
         </Routes>
       </React.Fragment>
     </div>
