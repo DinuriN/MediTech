@@ -1,0 +1,68 @@
+.table-res {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background for the table */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tableOfDoctors {
+    width: 100%;
+    border-collapse: collapse; /* To remove any unwanted space between table cells */
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .tableOfDoctors th, .tableOfDoctors td {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    color: #333; /* Text color */
+    border-right: 1px solid #ddd; /* Adds separation between columns */
+  }
+  
+  /* Add this to remove border-right for the last column */
+  .tableOfDoctors td:last-child, .tableOfDoctors th:last-child {
+    border-right: none;
+  }
+  
+  .tableOfDoctors th {
+    background-color: #0077b6; /* Darker blue background for headers */
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .tableOfDoctors td {
+    background-color: #ffffff; /* White background for table data */
+    border-bottom: 1px solid #ddd; /* Light border between rows */
+  }
+  
+  .tableOfDoctors tr:hover {
+    background-color: #f1f1f1; /* Light grey hover effect */
+  }
+  
+  .tableOfDoctors .headerRow {
+    background: linear-gradient(to right, #00b4d8, #0077b6); /* Gradient for header row */
+  }
+  
+  .tableOfDoctors td:last-child {
+    text-align: center; /* Center-align the "Action" column */
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .tableOfDoctors {
+      font-size: 12px; /* Adjust font size for smaller screens */
+    }
+  
+    .tableOfDoctors th, .tableOfDoctors td {
+      padding: 8px; /* Reduced padding on smaller screens */
+    }
+  
+    .table-res {
+      padding: 5px;
+      margin: 10px 0;
+    }
+  }
+  
