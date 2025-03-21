@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import Logout from "../Common/LoginForUsers/LogoutFUsers";
+
 
 const URL = "http://localhost:5000/patients";
 
@@ -12,7 +14,7 @@ const fetchHandler = async () => {
   
 
 function PatientDetails() {
-
+  const isAuthenticated = localStorage.getItem("token");
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
@@ -86,6 +88,8 @@ function PatientDetails() {
               ))}
             </tbody>
             </table>
+
+            {isAuthenticated && <li><Logout /></li>}
         </div>
 
 

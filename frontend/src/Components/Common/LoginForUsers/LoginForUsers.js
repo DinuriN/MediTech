@@ -15,6 +15,7 @@ function LoginForUsers() {
         try{
             const res=await axios.post("http://localhost:5000/api/auth/loginForUsers", {email, password});
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("userType", res.data.userType);
             localStorage.setItem("userId", res.data.userId);
             localStorage.setItem("name", res.data.name);
             
