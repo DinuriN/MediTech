@@ -22,7 +22,7 @@ function LoginForUsers() {
             if (res.data.userType === "patient") {
                 navigate("/patientDetails"); 
             } else if (res.data.userType === "staff") {
-                navigate("/addPatient"); 
+                navigate("/patientDetails"); 
             }
 
 

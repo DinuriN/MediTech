@@ -26,17 +26,17 @@ function App() {
         <Routes>
           <Route path="/" element={<NavBar/>} />
           {/* <Route path="/patientDetails" element={<PatientDetails/>} /> */}
-          {/* <Route path="/addPatient" element={<AddPatient/>} /> */}
+          <Route path="/addPatient" element={<AddPatient/>} />
           <Route path="/updatePatient/:id" element={<UpdatePatient/>} />
           <Route path="/addStaff" element={<AddStaff/>} />
           <Route path='/loginForUsers' element={<LoginForUsers/>} />
-          <Route element={<ProtectedRoute allowedUserType="patient" />}>
+          <Route element={<ProtectedRoute allowedUserType="staff" />}>
           <Route path="/patientDetails" element={<PatientDetails />} />
         </Route>
 
-        <Route element={<ProtectedRoute allowedUserType="staff" />}>
+        {/* <Route element={<ProtectedRoute allowedUserType="staff" />}>
           <Route path="/addPatient" element={<AddPatient />} />
-        </Route>
+        </Route> */}
 
           <Route path="/medicalHistoryDetails/:patientId" element={<MedicalHistoryDetails/>} />
           <Route path="/addMedicalHistory/:patientId" element={<AddMedicalHistory/>} />
