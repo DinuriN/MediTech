@@ -6,6 +6,8 @@ import "../Common/AdminProfile/AdminProfileSample.css";
 import "../Patients/PatientDetails.css";
 import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
 import DeleteIcon from "./delete-icon-dinuri.png"
+import Logout from "../Common/LoginForUsers/LogoutFUsers";
+
 
 const URL = "http://localhost:5000/patients";
 
@@ -16,7 +18,7 @@ const fetchHandler = async () => {
   
 
 function PatientDetails() {
-
+  const isAuthenticated = localStorage.getItem("token");
     const [patients, setPatients] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
@@ -127,6 +129,8 @@ function PatientDetails() {
               ))}
             </tbody>
             </table>
+
+            {isAuthenticated && <li><Logout /></li>}
         </div>
 
         </div>
