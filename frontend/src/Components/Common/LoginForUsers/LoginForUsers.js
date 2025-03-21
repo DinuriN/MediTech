@@ -15,9 +15,16 @@ function LoginForUsers() {
         try{
             const res=await axios.post("http://localhost:5000/api/auth/loginForUsers", {email, password});
             localStorage.setItem("token", res.data.token);
-            localStorage.setItem("patientId", res.data.patientId);
+            localStorage.setItem("userId", res.data.userId);
             localStorage.setItem("name", res.data.name);
-            navigate("/patientDetails");
+            
+            if (res.data.userType === "patient") {
+                navigate("/patientDetails"); 
+            } else if (res.data.userType === "staff") {
+                navigate("/addPatient"); 
+            }
+
+
         }catch(error){
             setError(error.response?.data?.message || "Login failed");
         }
