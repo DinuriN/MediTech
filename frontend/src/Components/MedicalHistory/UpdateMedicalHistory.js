@@ -72,8 +72,8 @@ function UpdateMedicalHistory() {
             department: String(inputs.department),
             doctor: String(inputs.doctor),
             diagnoses: String(inputs.diagnoses),
-            requiredReports: String(inputs.requiredReports),
-            comments: String(inputs.comments),
+            requiredReports: inputs.requiredReports.trim() === "" ? "None" : inputs.requiredReports,
+        comments: inputs.comments.trim() === "" ? "None" : inputs.comments,
         })
         .then((res)=> res.data);
     };
@@ -132,9 +132,17 @@ function UpdateMedicalHistory() {
             >
               <option value="">Select a Department</option>
               <option value="Cardiology">Cardiology</option>
+              <option value="Emergency Department">Emergency Department </option>
+              <option value="ENT">ENT</option>
+              <option value="Hematology">Hematology</option>
               <option value="Neurology">Neurology</option>
+              <option value="Ophthalmology">Ophthalmology</option>
               <option value="Orthopedics">Orthopedics</option>
+              <option value="Pathology">Pathology</option>
               <option value="Pediatrics">Pediatrics</option>
+              <option value="Psychiatric">Psychiatric</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Urology">Urology</option>
             </select>
         </div>
 
@@ -198,7 +206,6 @@ function UpdateMedicalHistory() {
               name="requiredReports"
               value={inputs.requiredReports}
               onChange={handleChange}
-              required
             />
         </div>
 
@@ -213,7 +220,7 @@ function UpdateMedicalHistory() {
               name="comments"
               value={inputs.comments}
               onChange={handleChange}
-              required
+              
             />
             
         </div>

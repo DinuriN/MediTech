@@ -123,9 +123,17 @@ function AddMedicalHistory() {
             >
               <option value="">Select a Department</option>
               <option value="Cardiology">Cardiology</option>
+              <option value="Emergency Department">Emergency Department </option>
+              <option value="ENT">ENT</option>
+              <option value="Hematology">Hematology</option>
               <option value="Neurology">Neurology</option>
+              <option value="Ophthalmology">Ophthalmology</option>
               <option value="Orthopedics">Orthopedics</option>
+              <option value="Pathology">Pathology</option>
               <option value="Pediatrics">Pediatrics</option>
+              <option value="Psychiatric">Psychiatric</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Urology">Urology</option>
             </select>
         </div>
         <div className="form-label-input-field">

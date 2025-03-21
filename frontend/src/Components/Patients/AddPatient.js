@@ -68,6 +68,8 @@ function AddPatient() {
                 className="form-control"
                 onChange={handleChange}
               value={inputs.patientId}
+              pattern="^P\d{5}$"  // Regex for "P" followed by exactly 3 digits
+    title="Patient ID should start with 'P' followed by 5 digits, e.g., P12345"
                 required
               />
             </div>
@@ -92,7 +94,7 @@ function AddPatient() {
                 Patient Email:
               </label>
               <input
-                type="text"
+                type="email"
                 id="patientEmail"
                 name="patientEmail"
                 className="form-control"
@@ -128,6 +130,8 @@ function AddPatient() {
                 className="form-control"
                 onChange={handleChange}
               value={inputs.patientContactNo}
+              pattern="^\d{10}$"  
+    title="Contact number must be exactly 10 digits."
                 required
               />
             </div>

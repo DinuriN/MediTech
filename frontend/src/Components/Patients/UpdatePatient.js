@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import "../MedicalHistory/MedicalHistoryForms.css"
+import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
+
 function UpdatePatient() {
     const [inputs, setInputs] = useState({});
   const patientHistory = useNavigate();
@@ -20,7 +23,6 @@ function UpdatePatient() {
   const sendRequest = async () => {
     await axios
       .put(`http://localhost:5000/patients/${id}`, {
-        patientId: String(inputs.patientId),
         name: String(inputs.name),
         email: String(inputs.email),
         password: String(inputs.password),
@@ -47,12 +49,17 @@ function UpdatePatient() {
 
 
   return (
-    <div>
+    <div className="admin-prof-container">
+      <div className='col-1'>
+            <AdminSideNavBar />
+
+        </div> 
+        <div className='col-2'>
       <div>
-        <h1 className="text-center mb-4">Add Patient</h1>
+        <h2>Update Patient Details</h2>
         <div>
           <form onSubmit={handleSubmit} className="container mt-4">
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientId" className="form-label">
                 Patient ID:
               </label>
@@ -62,13 +69,13 @@ function UpdatePatient() {
                 name="patientId"
                 className="form-control"
                 onChange={handleChange}
-              value={inputs.patientId}
+              value={inputs._id}
                 required
                 disabled
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientName" className="form-label">
                 Patient Name:
               </label>
@@ -83,12 +90,12 @@ function UpdatePatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientEmail" className="form-label">
                 Patient Email:
               </label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 className="form-control"
@@ -98,7 +105,7 @@ function UpdatePatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientTempPw" className="form-label">
                 Temporary Password:
               </label>
@@ -113,7 +120,7 @@ function UpdatePatient() {
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientContactNo" className="form-label">
                 Contact No:
               </label>
@@ -124,11 +131,13 @@ function UpdatePatient() {
                 className="form-control"
                 onChange={handleChange}
               value={inputs.contactNo}
+              pattern="^\d{10}$"  
+    title="Contact number must be exactly 10 digits."
                 required
               />
             </div>
 
-            <div className="mb-3">
+            <div className="form-label-input-field">
               <label htmlFor="patientAddress" className="form-label">
                 Address:
               </label>
@@ -143,11 +152,12 @@ function UpdatePatient() {
               />
             </div>
 
-            <button type="submit" className="btn btn-success w-100">
+            <button type="submit" className="btn-add-record-btn-green">
               Update
             </button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

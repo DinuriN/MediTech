@@ -62,9 +62,29 @@
     overflow: hidden;
 }
 
+.table-patient-details-tbl td:nth-child(1) {
+    max-width: 120px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    transition: max-width 0.3s ease-in-out;
+  }
+  
+  .table-patient-details-tbl td:nth-child(1):hover {
+    max-width: 150px; 
+    overflow: visible;
+    white-space: normal;
+    z-index: 10; 
+    position: relative;
+    font-size: small;
+    transition: 0.15s ease-in-out;
+  }
+  
+  
+
 .table-patient-details-tbl-thead {
-    background-color: #a8d5ba; /* Light green */
-    color: #021e0b; /* Dark green */
+    background-color: #a8d5ba; 
+    color: #021e0b; 
     text-align: left;
 }
 
@@ -73,6 +93,13 @@
     padding: 12px 15px;
     border-bottom: 1px solid #ddd;
 }
+
+.table-patient-details-tbl tbody tr:hover {
+    background-color: #f2f2f2; 
+    transition: 0.3s ease;
+    cursor: pointer; 
+}
+
 
 
 .btn-medical-record-view{
@@ -139,6 +166,66 @@
     position: absolute;
     right: 5vh;
 }
+
+.table-med-history-details-tbl{
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-med-history-details-tbl-thead {
+    background-color: #a8d5ba; /* Light green */
+    color: #021e0b; /* Dark green */
+    text-align: left;
+}
+
+.table-med-history-details-tbl th:nth-child(1), 
+.table-med-history-details-tbl td:nth-child(1) { 
+    max-width: 120px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-med-history-details-tbl td:nth-child(1):hover {
+    max-width: 150px; 
+    overflow: visible;
+    white-space: normal;
+    z-index: 10; 
+    position: relative;
+    font-size: small;
+    transition: 0.3s ease;
+  }
+
+.table-med-history-details-tbl tbody tr:hover {
+    background-color: #f2f2f2; 
+    transition: 0.15s ease-in-out;
+    cursor: pointer; 
+}
+
+.no-records-found{
+    text-align: center;
+    pointer-events: none;
+    
+}
+
+.no-records-found tr,
+.no-records-found td{
+    
+    border-bottom: none;
+}
+
+.no-records-found div{
+    border-style: solid;
+    border-color: #dbb42c;
+    border-radius: 30vh;
+    background-color: #fdf8e1;
+    padding: 15px;
+    font-weight: 700;
+    color: #dc562e;
+}
+
+
 
 
 
