@@ -1,0 +1,17 @@
+/* Add this CSS to your stylesheet or a <style> tag */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table-responsive table {
+    width: 100%;
+    table-layout: fixed; /* Ensures equal column width */
+  }
+  
+  .table-responsive th,
+  .table-responsive td {
+    white-space: normal; /* Allows text to wrap */
+    word-wrap: break-word; /* Breaks long words if necessary */
+    padding: 8px; /* Adds padding for better readability */
+  }
