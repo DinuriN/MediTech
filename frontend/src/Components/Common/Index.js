@@ -8,7 +8,6 @@ import doctorIconIndex from "../Common/common-images/doctors-icon-index.png"
 import labReportIconIndex from "../Common/common-images/lab-report-icon.index.png"
 import paymentPortalIconIndex from "../Common/common-images/payment-portal-icon-index.png"
 import patientFeedbacklIconIndex from "../Common/common-images/patient-feedback-icon-index.png"
-import LoginForUsers from "./LoginForUsers/LoginForUsers.js";
 
 
 
