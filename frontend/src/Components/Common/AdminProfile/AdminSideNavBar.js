@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "../AdminProfile/AdminSideNavBar.css";
 import AdminProfDashboardIcon from "../AdminProfile/AdminProfImages/admin-prof-dashboard-icon.png"
 import AdminStaffIcon from "../AdminProfile/AdminProfImages/admin-prof-stafficon.png"
@@ -6,9 +6,16 @@ import AdminProfpatientsIcon from "../AdminProfile/AdminProfImages/admin-prof-pa
 import AdminProfAppointmentIcon from "../AdminProfile/AdminProfImages/admin-prof-appointment-icon.png"
 import AdminProfInventoryIcon from "../AdminProfile/AdminProfImages/admin-prof-laboratory-icon.png"
 import AdminProfDepartmentsIcon from "../AdminProfile/AdminProfImages/admin-prof-department-icon.png"
+import LogOutForUsers from "../LoginForUsers/LogoutFUsers";
+
 
 
 function AdminSideNavBar() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(!!localStorage.getItem("token")); 
+  }, []);
   return (
     <div>
         <div className='side-nav-bar'>
@@ -23,7 +30,20 @@ function AdminSideNavBar() {
                 <li><a href='#'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
                 <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
                 <li><a href='#'><img src={AdminProfDepartmentsIcon}/>     Departments</a></li>
+                
               </ul>
+              {/* Logout Button - Only visible if logged in */}
+             
+              <div className='logout-button-contanier'>
+                
+        {isAuthenticated && (
+          <div className="nav-li logout-li">
+            
+            <LogOutForUsers />
+            </div>
+          
+        )}
+        </div>
             </div>
             
         </div>

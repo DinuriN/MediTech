@@ -57,3 +57,23 @@
     color: red;
     font-size: 14px;
 }
+
+/* logout */
+.log-out-button-users{
+    border-style: hidden;
+    border-radius: 30vh;
+    padding: 5px 20px;
+    font-weight: 600;
+    border-color: gray;
+    background-color: #eaeaec;
+    color: gray;
+    position: absolute;
+    bottom: 5vh;
+}
+
+.log-out-button-users:hover{
+    border-color: black;
+    color: black;
+    background-color: #ccc;
+    transition: 0.3s ease;
+}

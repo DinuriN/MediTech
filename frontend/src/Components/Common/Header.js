@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "boxicons/css/boxicons.min.css";
 import meditechLogo from "../Common/common-images/meditech-logo-1.png";
 import "../Common/Common-styles/Header.css";
 import { Link } from "react-router-dom";
 import LoginForUsers from "./LoginForUsers/LoginForUsers";
 
+
 function Header() {
   const [showLogin, setShowLogin] = useState(false);
+  
 
   return (
     <div className="header-main-container">
@@ -32,6 +34,8 @@ function Header() {
                 <div className="authentication-btn">
                   <button onClick={() => setShowLogin(true)}>Login</button>
                 </div>
+
+
                 <div className="authentication-btn">
                   <button>Sign Up</button>
                 </div>
