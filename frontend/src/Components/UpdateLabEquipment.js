@@ -3,9 +3,10 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css"; // For Bootstrap icons
-import "./AddLabEquipment.css"; // Reuse the same CSS file
+import "./AddLabEquipment.css"; // Reuse the same CSS file that make for adding page
 
 function UpdateLabEquipment() {
+  const [errorMessage, setErrorMessage] = useState(""); // Add error message state
   const [inputs, setInputs] = useState({
     EquipmentId: "",
     EquipmentName: "",
@@ -56,7 +57,7 @@ function UpdateLabEquipment() {
         EquipmentName: String(inputs.EquipmentName),
         EquipmentCategory: String(inputs.EquipmentCategory),
         EquipmentBrand: String(inputs.EquipmentBrand),
-        EquipmentSerialNum: Number(inputs.EquipmentSerialNum),
+        EquipmentSerialNum: String(inputs.EquipmentSerialNum),
         EquipmentLocation: String(inputs.EquipmentLocation),
         EquipmentCost: Number(inputs.EquipmentCost),
         EquipmentLastMaintenance: inputs.EquipmentLastMaintenance || null,
@@ -68,14 +69,36 @@ function UpdateLabEquipment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
-    await sendRequest();
-    navigate("/labEquipmentDetails");
+
+    // Validate Next Maintenance Date
+    if (inputs.EquipmentLastMaintenance) {
+      const lastMaintenanceDate = new Date(inputs.EquipmentLastMaintenance);
+      const nextMaintenanceDate = new Date(inputs.EquipmentNextMaintenance);
+
+      if (nextMaintenanceDate <= lastMaintenanceDate) {
+        setErrorMessage("Next Maintenance Date must be after the Last Maintenance Date.");
+        return; // Stop the submission if validation fails
+      }
+    }
+
+    try {
+      await sendRequest();
+      navigate("/labEquipmentDetails"); // Navigate to the details page after successful update
+    } catch (error) {
+      setErrorMessage("Failed to update lab equipment. Please try again."); // Set error message if the request fails
+    }
   };
 
   return (
     <div className="add-lab-equipment-container">
       <h1 className="text-center mb-4">Update Lab Equipment</h1>
+
+      {/* Display error message if it exists */}
+      {errorMessage && (
+        <div className="alert alert-danger" role="alert">
+          {errorMessage}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="modern-form">
         <div className="row">
@@ -130,10 +153,10 @@ function UpdateLabEquipment() {
               <option value="Analytical Instruments">Analytical Instruments</option>
               <option value="Diagnostic Equipment">Diagnostic Equipment</option>
               <option value="Sample Processing Equipment">Sample Processing Equipment</option>
-              <option value="Storage and Preservation Equipment">Storage and Preservation Equipment</option>
-              <option value="General Laboratory Equipment">General Laboratory Equipment</option>
-              <option value="Cleaning and Safety Equipment">Cleaning and Safety Equipment</option>
-              <option value="Support and Utility Equipment">Support and Utility Equipment</option>
+              <option value="Storage and Preservation">Storage and Preservation</option>
+              <option value="General">General Laboratory</option>
+              <option value="Cleaning and Safety">Cleaning and Safety</option>
+              <option value="Support and Utility">Support and Utility</option>
             </select>
           </div>
 
@@ -173,19 +196,27 @@ function UpdateLabEquipment() {
 
           {/* Equipment Location */}
           <div className="col-md-6 mb-3">
-            <label htmlFor="EquipmentLocation" className="form-label">
-              <i className="bi bi-geo-alt"></i> Equipment Location:
-            </label>
-            <input
-              type="text"
-              id="EquipmentLocation"
-              name="EquipmentLocation"
-              className="form-control"
-              onChange={handleChange}
-              value={inputs.EquipmentLocation}
-              required
-            />
-          </div>
+<label htmlFor="EquipmentLocation" className="form-label">
+  <i className="bi bi-geo-alt"></i> Equipment Location:
+</label>
+<select
+  id="EquipmentLocation"
+  name="EquipmentLocation"
+  className="form-control"
+  onChange={handleChange}
+  value={inputs.EquipmentLocation}
+  required
+>
+  <option value="">Select Location</option>
+  <option value="Lab A">Lab A</option>
+  <option value="Lab B">Lab B</option>
+  <option value="Lab C">Lab C</option>
+  <option value="Lab D">Lab D</option>
+  <option value="Lab E">Lab E</option>
+</select>
+</div>
+
+          
         </div>
 
         <div className="row">
@@ -252,7 +283,7 @@ function UpdateLabEquipment() {
               required
             >
               <option value="Available">Available</option>
-              <option value="Not Available">Not Available</option>
+              <option value="Not Available">In Use</option>
               <option value="Under Maintained">Under Maintained</option>
             </select>
           </div>

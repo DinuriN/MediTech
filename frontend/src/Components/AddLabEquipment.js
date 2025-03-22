@@ -44,7 +44,18 @@ function AddLabEquipment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-  
+  if(inputs.EquipmentLastMaintenance){
+    // Convert dates to JavaScript Date objects for comparison
+    const lastMaintenanceDate = new Date(inputs.EquipmentLastMaintenance);
+   const nextMaintenanceDate = new Date(inputs.EquipmentNextMaintenance);
+
+   // Validate that Next Maintenance Date is after Last Maintenance Date
+    if (nextMaintenanceDate <= lastMaintenanceDate) {
+     setErrorMessage("Next Maintenance Date must be after the Last Maintenance Date.");
+     return;
+   }
+  }
+
   
     const isDuplicate = await checkDuplicateId(inputs.EquipmentId);
     if (isDuplicate) {
@@ -122,11 +133,11 @@ function AddLabEquipment() {
 > <option value="">Select the Category</option>
   <option value="Analytical Instruments" selected>Analytical Instruments</option>
   <option value="Diagnostic Equipment">Diagnostic Equipment</option>
-  <option value="Sample Processing Equipment">Sample Processing </option>
-  <option value="Storage and Preservation Equipment">Storage and Preservation</option>
-  <option value="General Laboratory Equipment">General</option>
-  <option value="Cleaning and Safety Equipment">Cleaning and Safety</option>
-  <option value="Support and Utility Equipment">Support and Utility</option>
+  <option value="Sample Processing">Sample Processing </option>
+  <option value="Storage and Preservation">Storage and Preservation</option>
+  <option value="General">General</option>
+  <option value="Cleaning and Safety ">Cleaning and Safety</option>
+  <option value="Support and Utility">Support and Utility</option>
 </select>
 </div>
 
@@ -166,21 +177,27 @@ function AddLabEquipment() {
           </div>
 
           {/* Equipment Location */}
-          <div className="col-md-6 mb-3">
-            <label htmlFor="EquipmentLocation" className="form-label">
-              <i className="bi bi-geo-alt"></i> Equipment Location:
-            </label>
-            <input
-              type="text"
-              id="EquipmentLocation"
-              name="EquipmentLocation"
-              className="form-control"
-              onChange={handleChange}
-              value={inputs.EquipmentLocation}
-              required
-            />
-          </div>
-        </div>
+<div className="col-md-6 mb-3">
+<label htmlFor="EquipmentLocation" className="form-label">
+  <i className="bi bi-geo-alt"></i> Equipment Location:
+</label>
+<select
+  id="EquipmentLocation"
+  name="EquipmentLocation"
+  className="form-control"
+  onChange={handleChange}
+  value={inputs.EquipmentLocation}
+  required
+>
+  <option value="">Select Location</option>
+  <option value="Lab A">Lab A</option>
+  <option value="Lab B">Lab B</option>
+  <option value="Lab C">Lab C</option>
+  <option value="Lab D">Lab D</option>
+  <option value="Lab E">Lab E</option>
+</select>
+</div></div>
+
 
         <div className="row">
           {/* Equipment Cost */}
@@ -246,7 +263,7 @@ function AddLabEquipment() {
   required
 > <option value="">Select Status</option>
   <option value="Available" selected>Available</option>
-  <option value="Not Available">Not Available</option>
+  <option value="Not Available">In Use</option>
   <option value="Under Maintained">Under Maintained</option>
 </select>
 </div></div>
