@@ -1,19 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import React from "react";
+import Home from "./Components/Home/home";
+import { Route, Routes } from 'react-router-dom';
+// import Appoinments from "./Components/Appoinment Detail/Appoinments";
+// import Payments from "./Components/Payment Detail/Payments";
+import AddAppoinment from "./Components/Add Appoinment/AddAppoinment";
+import UpdateAppoinment from './Components/Update Appoinment/UpdateAppoinment';
+import Admin from './Components/AdminProfile/AdminPanel';
+import AddPayment from './Components/Add Payment/AddPayment';
 
-import {Route, Routes} from "react-router";
-import NavBar from './Components/Common/NavBar';
+
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      
       <React.Fragment>
         <Routes>
-          <Route path="/" element={<NavBar/>} />
+          <Route path="/" element={<AddAppoinment />} />
+          <Route path="/mainhome" element={<Home />} />
+          <Route path="/addappointment" element={<AddAppoinment />} />
+          <Route path="/addPayments" element={<AddPayment />} />
+          {/* <Route path="/appointments" element={<Appoinments />} /> */}
+          <Route path="/admindashboard/*" element={<Admin />} />
+          {/* <Route path="/paymentdetails" element={<Payments />} /> */}
+          <Route path="/appointments/:id" element={<UpdateAppoinment />} />
         </Routes>
       </React.Fragment>
-
     </div>
   );
 }
