@@ -56,6 +56,88 @@ const handleChange = (e) => {
   // Validate individual fields
   const validateField = (field, value) => {
     let errorMsg = '';
+  
+    switch (field) {
+      case 'doctorId':
+        const doctorIdPattern = /^DR-[A-Z]+-\d{4}-\d{3}$/;
+        if (!value.trim()) {
+          errorMsg = 'Doctor ID is required';
+        } else if (!doctorIdPattern.test(value)) {
+          errorMsg = 'Doctor ID must be in format: DR-[Specialization]-[Year]-[UniqueNumber] (e.g., DR-ENT-2023-001)';
+        }
+        break;
+  
+      case 'doctorPhoneNumber':
+        if (!value.trim()) {
+          errorMsg = 'Phone Number is required';
+        } else if (!/^\d{10}$/.test(value)) {
+          errorMsg = 'Phone Number must be 10 digits';
+        }
+        break;
+  
+      case 'doctorEmail':
+        if (!value.trim()) {
+          errorMsg = 'Email is required';
+        } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+          errorMsg = 'Enter a valid email address';
+        }
+        break;
+  
+      case 'doctorExperience':
+        if (!value.trim()) {
+          errorMsg = 'Experience is required';
+        } else if (isNaN(value) || Number(value) <= 0) {
+          errorMsg = 'Experience must be a positive number';
+        }
+        break;
+  
+      case 'doctorAvailableTimeStart':
+      case 'doctorAvailableTimeEnd':
+        if (!value.trim()) {
+          errorMsg = 'Enter time in 24HRS format (Like 14:00)';
+        }
+        break;
+  
+      case 'doctorConsultationFees':
+        if (!value.trim()) {
+          errorMsg = 'Consultation Fees are required';
+        } else if (isNaN(value)) {
+          errorMsg = 'Fees must be a number';
+        }
+        break;
+  
+      case 'doctorAvailableDays':
+        // Handle case when value is an array
+        if (Array.isArray(value)) {
+          if (value.length === 0) {
+            errorMsg = 'At least one day should be selected';
+          }
+        } else {
+          if (!value.trim()) {
+            errorMsg = 'Days are required';
+          }
+        }
+        break;
+  
+      default:
+        if (typeof value === 'string' && !value.trim()) {
+          errorMsg = `${field.replace(/doctor/, 'Doctor ')} is required`;
+        }
+    }
+  
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: errorMsg || '',
+    }));
+  };
+  
+
+  // Validate form before submission
+  const validateForm = () => {
+  const newErrors = {};
+
+  Object.entries(inputs).forEach(([field, value]) => {
+    let errorMsg = '';
 
     switch (field) {
       case 'doctorId':
@@ -107,36 +189,26 @@ const handleChange = (e) => {
         break;
 
         case 'doctorAvailableDays':
-      // If the value is an array, skip calling `.trim()`
-      if (Array.isArray(value)) {
-        if (value.length === 0) {
-          errorMsg = 'At least one day should be selected';
-        }
-      } else {
-        if (!value.trim()) {
-          errorMsg = 'Days are required';
-        }
-      }
-      break;
+          if (!value || value.trim() === "") {
+            errorMsg = 'At least one day should be selected';
+          } else if (Array.isArray(value) && value.length === 0) {
+            errorMsg = 'At least one day should be selected';
+          }
+          break;        
 
       default:
-        if (!value.trim()) errorMsg = `${field.replace(/doctor/, 'Doctor ')} is required`;
+        if (!value.trim()) {
+          errorMsg = `${field.replace(/doctor/, 'Doctor ')} is required`;
+        }
     }
 
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [field]: errorMsg || '',
-    }));
-  };
+    if (errorMsg) newErrors[field] = errorMsg;
+  });
 
-  // Validate form before submission
-  const validateForm = () => {
-    let newErrors = {};
-    Object.keys(inputs).forEach((key) => validateField(key, inputs[key]));
-    newErrors = Object.fromEntries(Object.entries(errors).filter(([_, value]) => value));
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -182,6 +254,8 @@ const handleChange = (e) => {
         <br /><br /><br />
         <form onSubmit={handleSubmit}>
           {/* Manually create the input fields */}
+          <div className='section'>
+          <label className='sub-head'>Basic Information</label>
           <div className='form-group'>
             <label>Doctor ID</label>
             <input
@@ -201,16 +275,6 @@ const handleChange = (e) => {
               onChange={handleChange}
             />
             {errors.doctorName && <span className='error-text'>{errors.doctorName}</span>}
-          </div>
-          <div className='form-group'>
-            <label>Doctor Specialization</label>
-            <input
-              type='text'
-              name='doctorSpecialization'
-              value={inputs.doctorSpecialization}
-              onChange={handleChange}
-            />
-            {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
           </div>
           <div className='form-group'>
             <label>Doctor Profile Picture (Optional)</label>
@@ -240,6 +304,20 @@ const handleChange = (e) => {
             />
             {errors.doctorEmail && <span className='error-text'>{errors.doctorEmail}</span>}
           </div>
+          </div>
+          
+          <div className='section'>
+          <label className='sub-head'>Professional Information</label>
+          <div className='form-group'>
+            <label>Doctor Specialization</label>
+            <input
+              type='text'
+              name='doctorSpecialization'
+              value={inputs.doctorSpecialization}
+              onChange={handleChange}
+            />
+            {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
+          </div>
           <div className='form-group'>
             <label>Qualifications</label>
             <input
@@ -261,16 +339,6 @@ const handleChange = (e) => {
             {errors.doctorExperience && <span className='error-text'>{errors.doctorExperience}</span>}
           </div>
           <div className='form-group'>
-            <label>Languages Spoken</label>
-            <input
-              type='text'
-              name='doctorLanguagesSpoken'
-              value={inputs.doctorLanguagesSpoken}
-              onChange={handleChange}
-            />
-            {errors.doctorLanguagesSpoken && <span className='error-text'>{errors.doctorLanguagesSpoken}</span>}
-          </div>
-          <div className='form-group'>
             <label>Hospital Affiliation</label>
             <input
               type='text'
@@ -290,6 +358,24 @@ const handleChange = (e) => {
             />
             {errors.doctorLicenseNumber && <span className='error-text'>{errors.doctorLicenseNumber}</span>}
           </div>
+          </div>
+
+          <div className='section'>
+          <label className='sub-head'>Communication & Languages</label>
+          <div className='form-group'>
+            <label>Languages Spoken</label>
+            <input
+              type='text'
+              name='doctorLanguagesSpoken'
+              value={inputs.doctorLanguagesSpoken}
+              onChange={handleChange}
+            />
+            {errors.doctorLanguagesSpoken && <span className='error-text'>{errors.doctorLanguagesSpoken}</span>}
+          </div>
+          </div>
+
+          <div className='section'>
+          <label className='sub-head'>Availability</label>
           <div className='form-group'>
             <label>Available Days</label>
             <input
@@ -303,7 +389,7 @@ const handleChange = (e) => {
           <div className='form-group'>
             <label>Available Time Start</label>
             <input
-              type='text'
+              type='time'
               name='doctorAvailableTimeStart'
               value={inputs.doctorAvailableTimeStart}
               onChange={handleChange}
@@ -313,13 +399,17 @@ const handleChange = (e) => {
           <div className='form-group'>
             <label>Available Time End</label>
             <input
-              type='text'
+              type='time'
               name='doctorAvailableTimeEnd'
               value={inputs.doctorAvailableTimeEnd}
               onChange={handleChange}
             />
             {errors.doctorAvailableTimeEnd && <span className='error-text'>{errors.doctorAvailableTimeEnd}</span>}
           </div>
+          </div>
+
+          <div className='section'>
+          <label className='sub-head'>Consultation Pricing</label>
           <div className='form-group'>
             <label>Consultation Fees</label>
             <input
@@ -330,6 +420,8 @@ const handleChange = (e) => {
             />
             {errors.doctorConsultationFees && <span className='error-text'>{errors.doctorConsultationFees}</span>}
           </div>
+          </div>
+          
 
           <button type='submit' className='btn-submit'>Add Doctor</button>
         </form>
