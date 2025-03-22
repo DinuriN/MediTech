@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import Nav from '../Nav/Nav';
-import './AddAppoinment.css';
+import Nav from '../Nav/Nav'; // Importing navigation component
+import './AddAppoinment.css'; // Importing CSS for styling
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function AddAppoinment() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for programmatic navigation
+
+  // State to manage form inputs
   const [inputs, setInputs] = useState({
     name: '',
     gmail: '',
@@ -17,12 +19,16 @@ function AddAppoinment() {
     appointmentType: '',
     doctorOrScanType: '',
   });
-  
+
+  // State to manage validation errors
   const [errors, setErrors] = useState({
     gmail: '',
     contact: '',
+    age: '',
+    appointmentDate: '',
   });
 
+  // Handles changes to form inputs
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -30,50 +36,61 @@ function AddAppoinment() {
     }));
   };
 
+  // Function to validate input fields
   const validate = () => {
     let valid = true;
     const newErrors = {};
 
-    // Gmail validation (simple regex for email format)
+    // Email validation
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(inputs.gmail)) {
       newErrors.gmail = "Please enter a valid email address.";
       valid = false;
     }
 
-    // Contact validation (only digits, 10 digits)
+    // Contact number validation (should be exactly 10 digits)
     const contactRegex = /^[0-9]{10}$/;
     if (!contactRegex.test(inputs.contact)) {
       newErrors.contact = "Please enter a valid 10-digit contact number.";
       valid = false;
     }
 
+    // Age validation (between 18 and 100)
+    const age = parseInt(inputs.age);
+    if (isNaN(age)) {
+      newErrors.age = "Please enter a valid age.";
+      valid = false;
+    } else if (age < 0) {
+      newErrors.age = "Age cannot be negative. Please enter a positive age.";
+      valid = false;
+    } else if (age < 18 || age > 100) {
+      newErrors.age = "Please enter a valid age between 18 and 100.";
+      valid = false;
+    }
 
-  // Age validation (must be a valid number and not negative)
-  const age = parseInt(inputs.age);
-  if (isNaN(age)) {
-    newErrors.age = "Please enter a valid age.";
-    valid = false;
-  } else if (age < 0) {
-    newErrors.age = "Age cannot be negative. Please enter a positive age.";
-    valid = false;
-  } else if (age < 18 || age > 100) {
-    newErrors.age = "Please enter a valid age between 18 and 100.";
-    valid = false;
-  }
-    setErrors(newErrors);
-    return valid;
+    // Date validation (only allow today and future dates)
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+    if (!inputs.appointmentDate || inputs.appointmentDate < today) {
+      newErrors.appointmentDate = "Please select a valid date (today or future).";
+      valid = false;
+    }
+
+    setErrors(newErrors); // Updating state with validation errors
+    return valid; // Returning whether the form is valid
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) {
-      return; // Stop form submission if validation fails
+      return; 
     }
 
     try {
-      await sendRequest();
+      await sendRequest(); // Send appointment data to the backend
       alert('Appointment added successfully!');
+
+      // Navigate to the payment page while passing form data as state
       navigate('/addPayments', {
         state: {
           name: inputs.name,
@@ -93,13 +110,14 @@ function AddAppoinment() {
     }
   };
 
+  // Function to send the appointment data to the backend
   const sendRequest = async () => {
     await axios.post('http://localhost:5000/appointments', {
       name: inputs.name,
       gmail: inputs.gmail,
       age: inputs.age,
       contact: inputs.contact,
-      appointmentDate: inputs.appointmentDate, // ✅ Ensure correct format
+      appointmentDate: inputs.appointmentDate,
       appointmentTime: inputs.appointmentTime,
       address: inputs.address,
       appointmentType: inputs.appointmentType,
@@ -107,6 +125,7 @@ function AddAppoinment() {
     });
   };
 
+  // Function to render the dropdown based on the selected appointment type
   const renderDoctorOrScanType = () => {
     if (inputs.appointmentType === 'Consultation') {
       return (
@@ -132,7 +151,7 @@ function AddAppoinment() {
 
   return (
     <div>
-      <Nav />
+      <Nav /> {/* Navigation component */}
       <div className="container">
         <h1>Add Appointment</h1>
 
@@ -141,47 +160,23 @@ function AddAppoinment() {
           <input type="text" name="name" onChange={handleChange} value={inputs.name} required />
 
           <label>Email</label>
-          <input
-            type="email"
-            name="gmail"
-            onChange={handleChange}
-            value={inputs.gmail}
-            required
-          />
-          {errors.gmail && <p className="error">{errors.gmail}</p>} {/* Gmail error message */}
+          <input type="email" name="gmail" onChange={handleChange} value={inputs.gmail} required />
+          {errors.gmail && <p className="error">{errors.gmail}</p>} {/* Display email validation error */}
 
           <label>Age</label>
           <input type="number" name="age" onChange={handleChange} value={inputs.age} required />
-          {errors.age && <p className="error">{errors.age}</p>} {/* Age error message */}
-
+          {errors.age && <p className="error">{errors.age}</p>} {/* Display age validation error */}
 
           <label>Contact</label>
-          <input
-            type="text"
-            name="contact"
-            onChange={handleChange}
-            value={inputs.contact}
-            required
-          />
-          {errors.contact && <p className="error">{errors.contact}</p>} {/* Contact error message */}
+          <input type="text" name="contact" onChange={handleChange} value={inputs.contact} required />
+          {errors.contact && <p className="error">{errors.contact}</p>} {/* Display contact validation error */}
 
           <label>Appointment Date</label>
-          <input
-            type="date"  // ✅ Uses date picker
-            name="appointmentDate"
-            onChange={handleChange}
-            value={inputs.appointmentDate}
-            required
-          />
+          <input type="date" name="appointmentDate" onChange={handleChange} value={inputs.appointmentDate} required />
+          {errors.appointmentDate && <p className="error">{errors.appointmentDate}</p>} {/* Display date validation error */}
 
           <label>Appointment Time</label>
-          <input
-            type="time"  // ✅ Uses time picker
-            name="appointmentTime"
-            onChange={handleChange}
-            value={inputs.appointmentTime}
-            required
-          />
+          <input type="time" name="appointmentTime" onChange={handleChange} value={inputs.appointmentTime} required />
 
           <label>Address</label>
           <input type="text" name="address" onChange={handleChange} value={inputs.address} required />
@@ -194,9 +189,9 @@ function AddAppoinment() {
           </select>
 
           <label>Doctor or Scan Type</label>
-          {renderDoctorOrScanType()}
+          {renderDoctorOrScanType()} {/* Render dropdown based on appointment type */}
 
-          <button type="submit">Submit</button>
+          <button type="submit">Submit</button> 
         </form>
       </div>
     </div>

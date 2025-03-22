@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Payment from '../Payment/Payment'; // Import the Payment component
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; // Importing axios for making HTTP requests
+import Payment from '../Payment/Payment';
 
 function Payments() {
-  const [payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState([]); // State to store the list of payments
 
   useEffect(() => {
     const fetchPayments = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/payments');
-        console.log('Fetched payments:', response.data); // Log fetched payments to debug
+        const response = await axios.get('http://localhost:5000/payments'); // Fetching payments from API
+        console.log('Fetched payments:', response.data); 
         setPayments(response.data);
       } catch (error) {
-        console.error('Error fetching payments:', error);
+        console.error('Error fetching payments:', error); 
       }
     };
 
     fetchPayments();
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
   return (
     <div>
-      <h1>Payment Details</h1>
+    
       {payments.length === 0 ? (
         <p>No payment details available</p>
       ) : (
-        payments.map((payment) => <Payment key={payment._id} payment={payment} />)
+        payments.map((payment) => <Payment key={payment._id} payment={payment} />) // Mapping through payments and rendering Payment component
       )}
     </div>
   );
 }
 
-export default Payments;
-
+export default Payments; 

@@ -1,42 +1,28 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import './Navbar.css';
+import { Link } from 'react-router-dom';
 
-function NavBar() {
+function Navbar() {
   return (
-    <div>
-      <ul className='nav'>
-        <li className='nav-li'>
-            <Link to ="/addPatients" className="active home-a">
-            <h1>Book an appointment</h1>
-            </Link>
-        </li>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <ul className="navbar-menu">
+          <li className="navbar-item">
+            <Link to="/mainhome" className="navbar-link">Home</Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/addappointment" className="navbar-link">Add Appoinment</Link>
+          </li>
 
-        <li className='nav-li'>
-            <Link to ="/" className="active home-a">
-            <h1>Online Pharmacy</h1>
+          <li className="navbar-item">
+            <Link to="/admindashboard/" className="navbar-link patients-link">
+              Admin Dashboard
             </Link>
-        </li>
-
-        <li className='nav-li'>
-            <Link to ="/" className="active home-a">
-            <h1>Patient Registration</h1>
-            </Link>
-        </li>
-
-        <li className='nav-li'>
-            <Link to ="/" className="active home-a">
-            <h1>Doctor Profiles</h1>
-            </Link>
-        </li>
-
-        <li className='nav-li'>
-            <Link to ="/" className="active home-a">
-            <h1>Lab Inventory</h1>
-            </Link>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
 
-export default NavBar;
+export default Navbar;

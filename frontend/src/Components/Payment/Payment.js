@@ -1,25 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
+import "./Payment.css"; 
 
-import "./Payment.css"; // Ensure you have a specific CSS file for payment details
-
+// Payment component that receives payment details as a prop
 function Payment({ payment }) {
-  const navigate = useNavigate();
-
+  // If no payment details 
   if (!payment) {
     return <p>No payment details available</p>;
   }
 
+  // Destructuring payment details from the payment object
   const { _id, cardNo, holderName, paymentMethod, expires } = payment;
 
   return (
-    <div className="payment-container">
-     
-
-  
-
-      <table className="payment-table">
+    <div className="payment-container"> 
+      <table className="payment-table"> 
         <tbody>
           <tr>
             <td>Payment ID</td>
@@ -27,19 +22,19 @@ function Payment({ payment }) {
           </tr>
           <tr>
             <td>Card No</td>
-            <td>{cardNo}</td>
+            <td>{cardNo}</td> 
           </tr>
           <tr>
             <td>Holder Name</td>
-            <td>{holderName}</td>
+            <td>{holderName}</td> 
           </tr>
           <tr>
             <td>Payment Method</td>
-            <td>{paymentMethod}</td>
+            <td>{paymentMethod}</td> 
           </tr>
           <tr>
             <td>Expires</td>
-            <td>{expires}</td>
+            <td>{expires}</td> 
           </tr>
         </tbody>
       </table>
@@ -47,4 +42,4 @@ function Payment({ payment }) {
   );
 }
 
-export default Payment;
+export default Payment; 

@@ -1,4 +1,4 @@
-/* Reset CSS */
+/* AddAppointment.css */
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +17,7 @@ body {
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 80px; /* Add spacing below the navbar */
 }
 
 h1 {
@@ -41,8 +42,8 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="number"],
-input[type="date"],  /* Added styling for date input */
-input[type="time"],  /* Added styling for time input */
+input[type="date"],
+input[type="time"],
 select {
   width: 100%;
   padding: 0.8rem;
@@ -52,14 +53,14 @@ select {
   color: #495057;
   background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 1rem; /* Ensures consistent spacing between input fields */
+  margin-bottom: 1rem;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
-input[type="date"]:focus,  /* Focus styles for date input */
-input[type="time"]:focus,  /* Focus styles for time input */
+input[type="date"]:focus,
+input[type="time"]:focus,
 select:focus {
   border-color: #007bff;
   outline: none;
@@ -115,6 +116,12 @@ form button:active {
   transform: scale(0.98);
 }
 
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -124,9 +131,3 @@ form button:active {
     font-size: 1.6rem;
   }
 }
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
