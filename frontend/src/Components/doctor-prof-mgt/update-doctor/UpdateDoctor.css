@@ -14,6 +14,7 @@
   color: rgb(255, 255, 255);
   padding: 10px 15px;
   border: none;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -74,7 +75,7 @@
     outline: none;
   }
   
-  .btn-submit {
+  .btn-submit-1 {
     width: 100%;
     background-color: #0072ff;
     color: white;
@@ -86,7 +87,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .btn-submit:hover {
+  .btn-submit-1:hover {
     background-color: #005bb5;
   }
   
@@ -94,5 +95,41 @@
     color: red;
     text-align: center;
     font-weight: bold;
+  }
+  
+  .form-body {
+    background-color: #ffffff; /* Solid white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sub-head {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #003554;
+    margin: 30px 0 15px 0;
+    border-left: 5px solid #00b4d8;
+    padding-left: 10px;
+  }
+  
+  .section {
+    background-color: #f0f9ff; /* light blue background */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #00b4d8;
+  }
+  
+  .error-text {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+  
+  .floating-error {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 14px;
   }
   
