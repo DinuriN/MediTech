@@ -24,12 +24,12 @@ const getOnlinePharamcyDetails = async(req, res, next)=>{
 //data insert
 const addPharmacyOrder = async(req, res, next)=>{
 
-    const{patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
 
     let onlinePharmacy;
 
     try{
-        onlinePharmacy = new OnlinePharmacy({patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
+        onlinePharmacy = new OnlinePharmacy({orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
         await onlinePharmacy.save();
     }catch (err){
         console.log(err);
@@ -67,13 +67,13 @@ const updatePharmacyOrder = async(req, res, next) =>{
 
     const id = req.params.id;
 
-    const{patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
 
     let onlinePharmacy;
 
     try{
         onlinePharmacy = await OnlinePharmacy.findByIdAndUpdate(id,
-        {patientName: patientName ,patientAge:patientAge ,gender: gender,patientEmail:patientEmail ,patientContact:patientContact ,prescriptionFile:prescriptionFile ,paymentMethod:paymentMethod ,deliveryAddress:deliveryAddress ,uploadedDate:uploadedDate ,comments:comments});
+        {orderId: orderId, patientName: patientName ,patientAge:patientAge ,gender: gender,patientEmail:patientEmail ,patientContact:patientContact ,prescriptionFile:prescriptionFile ,paymentMethod:paymentMethod ,deliveryAddress:deliveryAddress ,uploadedDate:uploadedDate ,comments:comments});
     }catch(err){
         console.log(err);
     }

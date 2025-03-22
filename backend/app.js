@@ -7,9 +7,12 @@ const onlinePharmacyRouter = require("./Routes/online-pharmacy-route");
 
 const app = express();
 
+
 //Middleware
  app.use(express.json());
+ app.use(cors());
  app.use("/onlinePharmacy",onlinePharmacyRouter);
+
 
 
 
