@@ -71,13 +71,16 @@ body {
 .authentication-btn button{
     border: none;
     cursor: pointer;
-    background-color:rgb(168, 211, 235);
-    padding: 15px 30px;
+    background-color:rgb(1, 8, 66);
+    color: white;
+    padding: 10px 30px;
     border-radius: 35px;
+    font-weight: 500;
 }
 
 .authentication-btn button:hover{
-    background-color:rgb(177, 168, 235);
+    background-color:rgb(40, 48, 123);
+    transition: 0.3s ease;
 }
 
 .col-2-row-2-menu-container {
