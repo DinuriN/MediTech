@@ -63,13 +63,13 @@ function AddAppoinment() {
     } else if (age < 0) {
       newErrors.age = "Age cannot be negative. Please enter a positive age.";
       valid = false;
-    } else if (age < 18 || age > 100) {
+    } else if (age < 0 || age > 200) {
       newErrors.age = "Please enter a valid age between 18 and 100.";
       valid = false;
     }
 
     // Date validation (only allow today and future dates)
-    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split("T")[0]; //date in YYYY-MM-DD format
     if (!inputs.appointmentDate || inputs.appointmentDate < today) {
       newErrors.appointmentDate = "Please select a valid date (today or future).";
       valid = false;
