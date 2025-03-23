@@ -42,7 +42,7 @@ function DoctorHomepage() {
       <div className='col-1'>
         <AdminSideNavBar/>
       </div>
-      <div className='col-2'>
+      <div className='col-2-d'>
         <div className="doctor-home-container">
         <h1>Registered Doctors</h1>
         <input

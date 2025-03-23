@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import "./DoctorProfileForViewMore.css"
+import AdminSideNavBar from '../../Common/AdminProfile/AdminSideNavBar'
+import '../../Common/AdminProfile/AdminProfileSample.css'
 
 function DoctorProfileForViewMore() {
   const [doctorDetails, setDoctorDetails] = useState(null);
@@ -69,12 +71,19 @@ function DoctorProfileForViewMore() {
   const formattedEndTime = formatDoctorTime(doctorAvailableTimeEnd);
 
   return (
-    <div className="container">
+    <div className='admin-prof-container'>
+      <div className='col-1'>
+        <AdminSideNavBar/>
+      </div>
+      <div className='col-2-d'>
+      <div className="container">
       <br />
       <hr/>
-      <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
       <hr/> 
       <div className="doctor-profile">
+      <div>
+      <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
+      </div>
       <img
   src={`http://localhost:5000${doctorProfilePicture}`}
   alt={doctorName}
@@ -95,6 +104,9 @@ function DoctorProfileForViewMore() {
         <button className="btn btn-secondary" onClick={() => navigate("/doctorDetails")}>Back</button>
       </div>
     </div>
+      </div>
+    </div>
+    
   );
 }
 

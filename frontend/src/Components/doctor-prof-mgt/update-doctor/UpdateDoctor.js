@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import './UpdateDoctor.css';
+import AdminSideNavBar from '../../Common/AdminProfile/AdminSideNavBar'
+import '../../Common/AdminProfile/AdminProfileSample.css'
 
 function UpdateDoctor() {
   const [inputs, setInputs] = useState({});
@@ -99,6 +101,11 @@ function UpdateDoctor() {
   if (error) return <p className="error-message">{error}</p>;
 
   return (
+    <div className='admin-prof-container'>
+      <div className='col-1'>
+        <AdminSideNavBar/>
+      </div>
+      <div className='col-2-d'>
     <div className="update-body">
       <br /><hr />
       <h1>Update Doctor Details</h1>
@@ -219,6 +226,8 @@ function UpdateDoctor() {
   
           <button type="submit" className="btn-submit-1">Update Doctor</button>
         </form>
+      </div>
+    </div>
       </div>
     </div>
   );

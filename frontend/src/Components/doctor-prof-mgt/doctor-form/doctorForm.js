@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './doctorForm.css';
+import AdminSideNavBar from '../../Common/AdminProfile/AdminSideNavBar'
+import '../../Common/AdminProfile/AdminProfileSample.css'
 
 function DoctorForm() {
   const navigate = useNavigate();
@@ -192,7 +194,11 @@ const handleChange = (e) => {
   
 
   return (
-    <div className='body-form'>
+    <div className='admin-prof-container'>
+      <div className='col-1'>
+        <AdminSideNavBar/>
+      </div>
+      <div className='body-form col-2-d'>
       <div className='doctor-form-header'>
         <hr />
         <h1>Register a New Doctor</h1>
@@ -376,7 +382,9 @@ const handleChange = (e) => {
           <button type='submit' className='btn-submit-1'>Add Doctor</button>
         </form>
       </div>
+    </div>      
     </div>
+    
   );
 }
 

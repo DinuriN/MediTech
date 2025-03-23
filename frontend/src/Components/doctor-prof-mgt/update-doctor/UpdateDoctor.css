@@ -1,6 +1,10 @@
 /* Update Doctor Page */
 .update-body{
     background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background */
+    padding-left: 200px;
+    padding-right: 220px;
+    max-width: 1200px;
+
 }
 
 .update-body h1{

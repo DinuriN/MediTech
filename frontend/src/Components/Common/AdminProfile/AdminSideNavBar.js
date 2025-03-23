@@ -18,7 +18,7 @@ function AdminSideNavBar() {
             <div className='side-bar-list'>
               <ul className='side-bar-list-ul'>
                 <li><a href='#'><img src={AdminProfDashboardIcon}/>     Dashboard</a></li>
-                <li><a href='#'><img src={AdminStaffIcon}/>     Staff</a></li>
+                <li><a href='/doctorDetails'><img src={AdminStaffIcon}/>     Doctor</a></li>
                 <li><a href='#'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
                 <li><a href='#'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
                 <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
