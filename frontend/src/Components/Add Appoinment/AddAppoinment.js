@@ -129,7 +129,7 @@ function AddAppoinment() {
   const renderDoctorOrScanType = () => {
     if (inputs.appointmentType === 'Consultation') {
       return (
-        <select name="doctorOrScanType" onChange={handleChange} value={inputs.doctorOrScanType} required>
+        <select name="doct  orOrScanType" onChange={handleChange} value={inputs.doctorOrScanType} required>
           <option value="" disabled>Select Doctor</option>
           <option value="Dr. Smith (Cardiologist)">Dr. Smith (Cardiologist)</option>
           <option value="Dr. Johnson (Dermatologist)">Dr. Johnson (Dermatologist)</option>
