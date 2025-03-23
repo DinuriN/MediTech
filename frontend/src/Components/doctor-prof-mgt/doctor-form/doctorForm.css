@@ -5,12 +5,12 @@
     align-items: center;
     margin-left: 150px;
     padding-left: 200px;
-    padding-right: 280px;
+    padding-right: 380px;
 
   }
 
   .form-container {
-    max-width: 1200px;
+    max-width: 10000px;
     margin: 50px auto;
     padding: 20px;
     background-color: #ffffff;

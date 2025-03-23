@@ -27,6 +27,7 @@ function DoctorProfileForViewMore() {
   }
 
   const {
+    doctorId,
     doctorName,
     doctorSpecialization,
     doctorProfilePicture,
@@ -76,7 +77,7 @@ function DoctorProfileForViewMore() {
         <AdminSideNavBar/>
       </div>
       <div className='col-2-d'>
-      <div className="container">
+      <div className="container-d">
       <br />
       <hr/>
       <hr/> 
@@ -90,7 +91,8 @@ function DoctorProfileForViewMore() {
   className="img-fluid"
   onError={(e) => e.target.src = "http://localhost:5000/uploads/doc-prof-profile-pictures/default-profile.jpg"} // Fallback image
 />
-        <h3>Specialization: {doctorSpecialization}</h3>
+        <h4>Specialization: {doctorSpecialization}</h4>
+        <p><strong>Doctor ID:</strong> {doctorId}</p>
         <p><strong>Phone Number:</strong> {doctorPhoneNumber}</p>
         <p><strong>Email:</strong> {doctorEmail}</p>
         <p><strong>Qualifications:</strong> {doctorQualifications}</p>
