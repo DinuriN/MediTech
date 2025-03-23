@@ -12,9 +12,8 @@ function OrderViewMore() {
     const fetchOrderBrief = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/onlinePharmacy/${id}`);
-        
-        setOrderBrief(response.data.order); // Ensure correct API response format
-      
+        console.log("API Response:", response.data); // Check what the API returns
+        setOrderBrief(response.data);
       } catch (error) {
         console.error("Error fetching order details:", error);
       }
@@ -44,14 +43,14 @@ function OrderViewMore() {
     <div className="container">
       <br />
       <hr />
-      <h2 className="text-center mb-4">{orderId} - {patientName}'s Order</h2>
+      <h2 className="text-center mb-4">Order Id:- {orderId}</h2>
       <hr />
       <div className="prescription">
         <img
           src={`http://localhost:5000${prescriptionFile}`}
           alt={patientName}
           className="img-fluid"
-          onError={(e) => e.target.src = "http://localhost:5000/uploads/doc-prof-profile-pictures/default-prescription.png"} // Fallback image
+          onError={(e) => e.target.src = "http://localhost:5000/uploads/order-prescription-files/default-prescription.png"} // Fallback image
         />
         <h3>Patient Age: {patientAge}</h3>
         <p><strong>Patient Gender:</strong> {gender}</p>

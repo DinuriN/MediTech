@@ -21,12 +21,14 @@ const PrescriptionfileStorage = multer.diskStorage({
 
   const uploadPrescription = multer({ storage: PrescriptionfileStorage });
 
-  router.post('/uploadPrescriptionFile', uploadPrescription.single('prescriptionFile'), (req, res) => {
+  router.post('/uploadPrescriptionFile', uploadPrescription.single('prescriptionImg'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: 'No prescription file uploaded' });
   }
   res.json({ filePath: `/uploads/order-prescription-files/${req.file.filename}` });
 });
+
+
 
 router.get("/", onlinePharmacyController.getOnlinePharamcyDetails);
 router.post("/", onlinePharmacyController.addPharmacyOrder);

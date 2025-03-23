@@ -2,22 +2,22 @@ const OnlinePharmacy = require("../Models/online-pharmacy-model");
 
 //data dispaly
 const getOnlinePharamcyDetails = async(req, res, next)=>{
-    let onlinePharmacy;
+    let orders;
 
     //get Online Pharmacy details
     try{
-        onlinePharmacy = await OnlinePharmacy.find();
+        orders = await OnlinePharmacy.find();
     }catch(err){
         console.log(err);
     }
 
     //not found
-    if(!onlinePharmacy){
+    if(!orders){
         return res.status(404).json({message: "No details found"});
     }
 
     //display online pharmacy details
-    return res.status(200).json({onlinePharmacy});
+    return res.status(200).json({orders});
 
 };
 
@@ -27,20 +27,20 @@ const addPharmacyOrder = async(req, res, next)=>{
     const{orderId,patientName,patientAge,gender,patientEmail,patientContact,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
 
     const prescriptionFile = req.body.prescriptionFile || ''; // Ensure it's defined
-    let onlinePharmacy;
+    let orders;
 
     try{
-        onlinePharmacy = new OnlinePharmacy({orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
-        await onlinePharmacy.save();
+        orders = new OnlinePharmacy({orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
+        await orders.save();
     }catch (err){
         return res.status(500).json({ error: err.message });
     }
 
     //not insert orders
-    if(!onlinePharmacy){
+    if(!orders){
         return res.status(404).json({message: "Unable to place orders"});
     }
-    return res.status(200).json({onlinePharmacy});
+    return res.status(200).json({orders});
 
 };
 
@@ -49,18 +49,18 @@ const getOrderById = async (req, res,next) =>{
 
     const id = req.params.id;
 
-    let onlinePharmacy;
+    let orders;
 
     try{
-        onlinePharmacy = await OnlinePharmacy.findById(id);
+        orders = await OnlinePharmacy.findById(id);
     }catch (err){
         console.log(err);
     }
 
-    if(!onlinePharmacy){
+    if(!orders){
         return res.status(404).json({message: "Order could not found"});
     }
-    return res.status(200).json({onlinePharmacy});
+    return res.status(200).json({orders});
 }
 
 //Update order details

@@ -95,16 +95,9 @@ function AddPharmacyOrder() {
   
         const orderData = { ...inputs, prescriptionFile: imagePath };
   
-        const response = await axios.post("http://localhost:5000/onlinePharmacy", orderData);
-        console.log("Response from server:", response.data);
-
-        if (response.status === 201 || response.status === 200) { 
-            navigate("/order-details"); // Redirect to home page where orders are displayed
-        } else {
-            console.error("Failed to add order:", response);
-        }
-
-  
+        await axios.post("http://localhost:5000/onlinePharmacy", orderData);
+        navigate('/order-details');
+      
       } catch (error) {
         console.error("Error submitting form:", error);
       }

@@ -4,43 +4,50 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import "./UpdatePharmacyOrder.css";
 
 function UpdatePharmacyOrder() {
-    const [inputs, setInputs] = useState({
-        orderId: "",
-        patientName: "",
-        patientAge: "",
-        gender: "",
-        patientEmail: "",
-        patientContact: "",
-        prescriptionFile: "",
-        paymentMethod: "",
-        deliveryAddress: "",
-        uploadedDate: "",
-        comments: "",
-    });
-
+    const [inputs, setInputs] = useState({});
     const [prescriptionImg, setPrescriptionImg] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const { id } = useParams();
+    //     orderId: "",
+    //     patientName: "",
+    //     patientAge: "",
+    //     gender: "",
+    //     patientEmail: "",
+    //     patientContact: "",
+    //     prescriptionFile: "",
+    //     paymentMethod: "",
+    //     deliveryAddress: "",
+    //     uploadedDate: "",
+    //     comments: "",
+    // });
+
+  
     
     useEffect(() => {
         const fetchOrder = async () => {
-          try {
-            const res = await axios.get(`http://localhost:5000/onlinePharmacy/${id}`);
-            
-            // Check if response contains order data
-            if (res.data) {
-                setInputs(res.data);
-            } else {
-                throw new Error("Order data not found");
+            try {
+                console.log("Fetching order with ID:", id);
+                const res = await axios.get(`http://localhost:5000/onlinePharmacy/${id}`);
+                const orderDta = res.data.order;
+                
+    
+                // Check if API response structure is correct
+                if (res.data) {
+                    if (res.data.order) {
+                        setInputs(res.data.order); // If response is { order: { ... } }
+                    } else {
+                        setInputs(res.data); // If response is { ... } directly
+                    }
+                } else {
+                    throw new Error("Order data not found");
+                }
+            } catch (err) {
+                setError("Failed to fetch order details. Please try again.");
+            } finally {
+                setLoading(false);
             }
-
-          } catch (err) {
-            setError("Failed to fetch order details. Please try again.");
-          } finally {
-            setLoading(false);
-          }
         };
         fetchOrder();
     }, [id]);
@@ -65,7 +72,7 @@ function UpdatePharmacyOrder() {
             // If a new prescription image is selected, upload it first
             if (prescriptionImg) {
                 const formData = new FormData();
-                formData.append("prescriptionFile", prescriptionImg);
+                formData.append("prescriptionImg", prescriptionImg);
                 
                 const uploadRes = await axios.post("http://localhost:5000/onlinePharmacy/uploadPrescriptionFile", formData, {
                     headers: { "Content-Type": "multipart/form-data" },
@@ -104,22 +111,22 @@ function UpdatePharmacyOrder() {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Order ID</label>
-                        <input type="text" name="orderId" value={inputs.orderId} onChange={handleChange} required />
+                        <input type="text" name="orderId" value={inputs.orderId || ''} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group">
                         <label>Patient Name</label>
-                        <input type="text" name="patientName" value={inputs.patientName} onChange={handleChange} required />
+                        <input type="text" name="patientName" value={inputs.patientName || ''} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group">
                         <label>Patient Age</label>
-                        <input type="number" name="patientAge" value={inputs.patientAge} onChange={handleChange} />
+                        <input type="number" name="patientAge" value={inputs.patientAge || ''} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Gender</label>
-                        <select name="gender" value={inputs.gender} onChange={handleChange}>
+                        <select name="gender" value={inputs.gender || ''} onChange={handleChange}>
                             <option value="">Select</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -128,19 +135,24 @@ function UpdatePharmacyOrder() {
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" name="patientEmail" value={inputs.patientEmail} onChange={handleChange} />
+                        <input type="email" name="patientEmail" value={inputs.patientEmail || ''} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Phone Number</label>
-                        <input type="text" name="patientContact" value={inputs.patientContact} onChange={handleChange} />
+                        <input type="text" name="patientContact" value={inputs.patientContact || ''} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Prescription File</label>
                         {inputs.prescriptionFile && (
                             <div>
-                                <img src={`http://localhost:5000${inputs.prescriptionFile}`} alt="Current image" width="100" />
+                                <img 
+                                    src={`http://localhost:5000/uploads/${inputs.prescriptionFile}`} 
+                                    alt="Current image" 
+                                    width="100"
+/>
+
                             </div>
                         )}
                         <input type="file" accept="image/*" onChange={handleFileChange} />
