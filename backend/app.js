@@ -2,6 +2,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require('path'); 
+const multer = require('multer');
+// Add this line to import the 'path' module
 //const registerPatientRouter = require("./Routes/register-patient-route");
 const onlinePharmacyRouter = require("./Routes/online-pharmacy-route");
 
@@ -13,6 +16,8 @@ const app = express();
  app.use(cors());
  app.use("/onlinePharmacy",onlinePharmacyRouter);
 
+ // Serve static files from the 'uploads' folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 

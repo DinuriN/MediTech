@@ -12,7 +12,7 @@ function NavBar() {
         </li>
 
         <li className='nav-li'>
-            <Link to ="/pharmacyhome" className="active home-a">
+            <Link to ="/order-details" className="active home-a">
             <h1>Online Pharmacy</h1>
             </Link>
         </li>

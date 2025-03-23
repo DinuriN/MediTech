@@ -1,0 +1,82 @@
+/* General table row styles */
+.OrderRow {
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .tableData {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Row Background Color */
+  .tableOfDoctors tr:nth-child(odd) {
+    background-color: #e3f2fd !important; /* Light blue background for odd rows */
+  }
+  
+  .tableOfDoctors tr:nth-child(even) {
+    background-color: #ffffff !important; /* White background for even rows */
+  }
+  
+  /* Hover effect for rows */
+  .tableOfDoctors tr:hover {
+    background-color: #f1f1f1; /* Light grey background on hover */
+  }
+  
+  /* Button styles */
+  .actionButtons {
+    text-align: center;
+  }
+  
+  .actionButtons button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* View More Button */
+  .btno-view-more {
+    background-color: #0077b6; /* Blue color */
+    color: white;
+  }
+  
+  .btno-view-more:hover {
+    background-color: #00b4d8; /* Lighter blue on hover */
+  }
+  
+  /* Update Button */
+  .btno-update {
+    background-color: #4caf50; /* Green color */
+    color: white;
+  }
+  
+  .btno-update:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  /* Delete Button (Red) */
+  .btno-delete {
+    background-color: #f44336; /* Red color */
+    color: white;
+  }
+  
+  .btno-delete:hover {
+    background-color: #e53935; /* Darker red on hover */
+  }
+  
+  /* Mobile responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .tableData {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .actionButtons button {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }

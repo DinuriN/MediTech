@@ -24,15 +24,16 @@ const getOnlinePharamcyDetails = async(req, res, next)=>{
 //data insert
 const addPharmacyOrder = async(req, res, next)=>{
 
-    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
 
+    const prescriptionFile = req.body.prescriptionFile || ''; // Ensure it's defined
     let onlinePharmacy;
 
     try{
         onlinePharmacy = new OnlinePharmacy({orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
         await onlinePharmacy.save();
     }catch (err){
-        console.log(err);
+        return res.status(500).json({ error: err.message });
     }
 
     //not insert orders
@@ -67,20 +68,26 @@ const updatePharmacyOrder = async(req, res, next) =>{
 
     const id = req.params.id;
 
-    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
-
-    let onlinePharmacy;
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
 
     try{
-        onlinePharmacy = await OnlinePharmacy.findByIdAndUpdate(id,
-        {orderId: orderId, patientName: patientName ,patientAge:patientAge ,gender: gender,patientEmail:patientEmail ,patientContact:patientContact ,prescriptionFile:prescriptionFile ,paymentMethod:paymentMethod ,deliveryAddress:deliveryAddress ,uploadedDate:uploadedDate ,comments:comments});
-    }catch(err){
-        console.log(err);
-    }
-    if(!onlinePharmacy){
+    let onlinePharmacy = await OnlinePharmacy.findById(id);
+     if(!onlinePharmacy){
         return res.status(404).json({message: "Order could not found"});
     }
-    return res.status(200).json({onlinePharmacy});
+
+    const prescriptionFile = req.body.prescriptionFile || onlinePharmacy.prescriptionFile;
+
+    const updatedorder = await OnlinePharmacy.findByIdAndUpdate(id,
+        {orderId,patientName,patientAge,gender,patientEmail,patientContact,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments},
+        { new: true, runValidators: true }
+    );
+
+    return res.status(200).json({order: updatedorder});
+
+}catch(err){
+    return res.status(500).json({ error: err.message });
+}
 
 };
 

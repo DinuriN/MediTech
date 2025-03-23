@@ -1,132 +1,176 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import "./UpdatePharmacyOrder.css";
 
 function UpdatePharmacyOrder() {
     const [inputs, setInputs] = useState({
+        orderId: "",
         patientName: "",
         patientAge: "",
         gender: "",
         patientEmail: "",
         patientContact: "",
-        prescriptionFile: null,
+        prescriptionFile: "",
         paymentMethod: "",
         deliveryAddress: "",
         uploadedDate: "",
         comments: "",
     });
 
+    const [prescriptionImg, setPrescriptionImg] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const { id } = useParams();
-
+    
     useEffect(() => {
-        const fetchHandler = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5000/onlinePharmacy/${id}`);
-                setInputs(res.data.order);
-            } catch (error) {
-                console.error("Error fetching order data:", error);
+        const fetchOrder = async () => {
+          try {
+            const res = await axios.get(`http://localhost:5000/onlinePharmacy/${id}`);
+            
+            // Check if response contains order data
+            if (res.data) {
+                setInputs(res.data);
+            } else {
+                throw new Error("Order data not found");
             }
+
+          } catch (err) {
+            setError("Failed to fetch order details. Please try again.");
+          } finally {
+            setLoading(false);
+          }
         };
-        fetchHandler();
+        fetchOrder();
     }, [id]);
 
-    const handleChange = (e) => {
-        setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const handleFileChange = (e) => {
+        setPrescriptionImg(e.target.files[0]);
     };
 
-    const handleFileChange = (e) => {
-        setInputs({ ...inputs, prescriptionFile: e.target.files[0] });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setInputs((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await sendRequest();
-        navigate("/order-details");
-    };
-
-    const sendRequest = async () => {
-        const formData = new FormData();
-        formData.append("patientName", inputs.patientName);
-        formData.append("patientAge", inputs.patientAge);
-        formData.append("gender", inputs.gender);
-        formData.append("patientEmail", inputs.patientEmail);
-        formData.append("patientContact", inputs.patientContact);
-        formData.append("prescriptionFile", inputs.prescriptionFile);
-        formData.append("paymentMethod", inputs.paymentMethod);
-        formData.append("deliveryAddress", inputs.deliveryAddress);
-        formData.append("uploadedDate", inputs.uploadedDate);
-        formData.append("comments", inputs.comments);
-
         try {
-            await axios.put(`http://localhost:5000/onlinePharmacy/${id}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
-        } catch (error) {
-            console.error("Error updating order:", error);
+            let updatedOrder = { ...inputs };
+
+            // If a new prescription image is selected, upload it first
+            if (prescriptionImg) {
+                const formData = new FormData();
+                formData.append("prescriptionFile", prescriptionImg);
+                
+                const uploadRes = await axios.post("http://localhost:5000/onlinePharmacy/uploadPrescriptionFile", formData, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                });
+
+                if (uploadRes.status === 200) {
+                    updatedOrder.prescriptionFile = uploadRes.data.filePath;
+                } else {
+                    throw new Error("Image upload failed");
+                }
+            }
+
+            // Send updated order data
+            await axios.put(`http://localhost:5000/onlinePharmacy/${id}`, updatedOrder);
+            navigate("/order-details");
+        } catch (err) {
+            setError("Failed to update order details. Please try again.");
         }
     };
 
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p className="error-message">{error}</p>;
+
     return (
-        <div className="form-container">
-            <div className="form-box">
-                <h1 className="form-title">Update Pharmacy Order</h1>
-                <form onSubmit={handleSubmit} className="form">
+        <div className="update-body">
+            <div className="order-form-header">
+                <hr />
+                <h1>Update Order</h1>
+                <hr />
+            </div>
+            <div className="form-container">
+                <Link to="/order-details">
+                    <button className="btn-back">Back</button>
+                </Link>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Order ID</label>
+                        <input type="text" name="orderId" value={inputs.orderId} onChange={handleChange} required />
+                    </div>
+
                     <div className="form-group">
                         <label>Patient Name</label>
-                        <input type="text" name="patientName" value={inputs.patientName} onChange={handleChange} required maxLength={50} />
+                        <input type="text" name="patientName" value={inputs.patientName} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group">
                         <label>Patient Age</label>
-                        <input type="number" name="patientAge" value={inputs.patientAge} onChange={handleChange} required min={0} max={120} />
+                        <input type="number" name="patientAge" value={inputs.patientAge} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Gender</label>
-                        <select name="gender" value={inputs.gender} onChange={handleChange} required>
+                        <select name="gender" value={inputs.gender} onChange={handleChange}>
                             <option value="">Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" name="patientEmail" value={inputs.patientEmail} onChange={handleChange} required />
+                        <input type="email" name="patientEmail" value={inputs.patientEmail} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
-                        <label>Contact</label>
-                        <input type="text" name="patientContact" value={inputs.patientContact} onChange={handleChange} required />
+                        <label>Phone Number</label>
+                        <input type="text" name="patientContact" value={inputs.patientContact} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Prescription File</label>
-                        <input type="file" name="prescriptionFile" onChange={handleFileChange} />
+                        {inputs.prescriptionFile && (
+                            <div>
+                                <img src={`http://localhost:5000${inputs.prescriptionFile}`} alt="Current image" width="100" />
+                            </div>
+                        )}
+                        <input type="file" accept="image/*" onChange={handleFileChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Payment Method</label>
-                        <select name="paymentMethod" value={inputs.paymentMethod} onChange={handleChange} required>
+                        <select name="paymentMethod" value={inputs.paymentMethod} onChange={handleChange}>
                             <option value="">Select</option>
-                            <option value="cash_on_delivery">Cash on Delivery</option>
-                            <option value="online_payment">Online Payment</option>
+                            <option value="Online">Online Payment</option>
+                            <option value="Delivery">Cash on delivery</option>
                         </select>
                     </div>
 
                     <div className="form-group">
                         <label>Delivery Address</label>
-                        <textarea name="deliveryAddress" value={inputs.deliveryAddress} onChange={handleChange} required maxLength={200} />
+                        <textarea name="deliveryAddress" value={inputs.deliveryAddress} onChange={handleChange} />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Uploaded Date</label>
+                        <input type="date" name="uploadedDate" value={inputs.uploadedDate} onChange={handleChange} />
                     </div>
 
                     <div className="form-group">
                         <label>Comments</label>
-                        <textarea name="comments" value={inputs.comments} onChange={handleChange} maxLength={500} />
+                        <textarea name="comments" value={inputs.comments} onChange={handleChange} />
                     </div>
 
-                    <button type="submit" className="submit-btn">Update Order</button>
+                    <button type="submit" className="btn-submit">Update Order</button>
                 </form>
             </div>
         </div>

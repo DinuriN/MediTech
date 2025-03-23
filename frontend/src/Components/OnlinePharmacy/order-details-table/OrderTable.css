@@ -1,0 +1,67 @@
+.table-res {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f7f7f7; /* Light background for the table container */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+}
+
+.tableOfOrders {
+    width: 100%;
+    border-collapse: collapse; /* Ensures there’s no spacing between cells */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tableOfOrders th, .tableOfOrders td {
+    padding: 14px;
+    text-align: left;
+    font-size: 15px; /* Increased font size for better readability */
+    color: #333;
+    border-right: 1px solid #ddd;
+}
+
+.tableOfOrders td:last-child, .tableOfOrders th:last-child {
+    border-right: none; /* No border on the last column */
+}
+
+.tableOfOrders th {
+    background-color: #0077b6; /* Darker blue for header */
+    color: white;
+    font-weight: 600; /* Slightly lighter bold for a modern feel */
+    text-transform: uppercase; /* Uppercase text for a sharper header look */
+    letter-spacing: 1px; /* Adds space between letters for visual appeal */
+}
+
+.tableOfOrders td {
+    background-color: #ffffff; /* White background for rows */
+    border-bottom: 1px solid #e0e0e0; /* Light gray border for rows */
+}
+
+.tableOfOrders tr:hover {
+    background-color: #f9f9f9; /* Slightly lighter gray hover effect */
+}
+
+.tableOfOrders .headerRow {
+    background: #0077b6; /* Gradient removed for simplicity */
+}
+
+.tableOfOrders td:last-child {
+    text-align: center; /* Center the action column */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .tableOfOrders {
+        font-size: 13px; /* Slightly smaller font size for mobile */
+    }
+
+    .tableOfOrders th, .tableOfOrders td {
+        padding: 10px; /* Adjust padding for mobile view */
+    }
+
+    .table-res {
+        padding: 15px; /* Adequate padding for mobile/tablet */
+        margin: 10px 0;
+    }
+}

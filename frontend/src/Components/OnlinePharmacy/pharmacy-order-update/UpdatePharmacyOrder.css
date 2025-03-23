@@ -1,83 +1,97 @@
-/* General container styling */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
-    padding: 20px;
-  }
-  
-  /* Form box */
-  .form-box {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  /* Form title */
-  .form-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Form inputs */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  .form-group textarea {
-    resize: vertical;
-  }
-  
-  /* Focus effects */
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Submit button */
-  .submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .submit-btn:hover {
-    background-color: #0056b3;
-  }
-  
+/* Update Doctor Page */
+.update-body{
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background */
+}
+
+.update-body h1{
+text-align: center;
+font-size: 2.5rem;
+color: #ffffff;
+}
+
+.back-btn{
+background-color: #009dff;
+color: rgb(255, 255, 255);
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+background-color: #6f9fbd;
+}
+
+.update-doctor-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Heading */
+.update-doctor-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #0072ff;
+  margin-bottom: 30px;
+}
+
+/* Form Layout */
+.doctor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.form-input:focus {
+  background-color: #e0f7fa;
+  border-color: #0072ff;
+  outline: none;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: #0072ff;
+  color: white;
+  padding: 12px 15px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #005bb5;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
