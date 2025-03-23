@@ -10,17 +10,21 @@ function Appointment(props) {
 
   // Function to handle deleting an appointment
   const deleteHandler = async () => {
-    try {
-      // Sending a DELETE request to the backend
-      await axios.delete(`http://localhost:5000/appointments/${_id}`);
-      alert('Appointment deleted successfully!');
-      
-      // Navigating to the admin dashboard 
-      navigate('/admindashboard/appointment'); 
-    } catch (error) {
-      console.error('Error deleting appointment:', error);
-      alert('Failed to delete appointment.');
-    }
+    
+      try {
+        // Sending a DELETE request to the backend
+        await axios.delete(`http://localhost:5000/appointments/${_id}`);
+        
+        // Show success alert
+        alert('Delete is successfully done!');
+
+        // Navigating to the admin dashboard
+        navigate('/admindashboard/appointment');
+      } catch (error) {
+        console.error('Error deleting appointment:', error);
+        alert('Failed to delete appointment.');
+      }
+    
   };
 
   return (
@@ -71,7 +75,7 @@ function Appointment(props) {
         </tbody>
       </table>
 
-      
+      {/* Action Buttons */}
       <div className="actions">
         <Link to={`/appointments/${_id}`} className="update-link">Update</Link>
         <button onClick={deleteHandler} className="delete-button">Delete</button>
