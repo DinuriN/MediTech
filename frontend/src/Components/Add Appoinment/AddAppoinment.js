@@ -151,7 +151,7 @@ function AddAppoinment() {
 
   return (
     <div>
-      <Nav /> {/* Navigation component */}
+      <Nav /> 
       <div className="container">
         <h1>Add Appointment</h1>
 
@@ -161,19 +161,19 @@ function AddAppoinment() {
 
           <label>Email</label>
           <input type="email" name="gmail" onChange={handleChange} value={inputs.gmail} required />
-          {errors.gmail && <p className="error">{errors.gmail}</p>} {/* Display email validation error */}
+          {errors.gmail && <p className="error">{errors.gmail}</p>} 
 
           <label>Age</label>
           <input type="number" name="age" onChange={handleChange} value={inputs.age} required />
-          {errors.age && <p className="error">{errors.age}</p>} {/* Display age validation error */}
+          {errors.age && <p className="error">{errors.age}</p>} 
 
           <label>Contact</label>
           <input type="text" name="contact" onChange={handleChange} value={inputs.contact} required />
-          {errors.contact && <p className="error">{errors.contact}</p>} {/* Display contact validation error */}
+          {errors.contact && <p className="error">{errors.contact}</p>} 
 
           <label>Appointment Date</label>
           <input type="date" name="appointmentDate" onChange={handleChange} value={inputs.appointmentDate} required />
-          {errors.appointmentDate && <p className="error">{errors.appointmentDate}</p>} {/* Display date validation error */}
+          {errors.appointmentDate && <p className="error">{errors.appointmentDate}</p>}
 
           <label>Appointment Time</label>
           <input type="time" name="appointmentTime" onChange={handleChange} value={inputs.appointmentTime} required />
@@ -189,7 +189,7 @@ function AddAppoinment() {
           </select>
 
           <label>Doctor or Scan Type</label>
-          {renderDoctorOrScanType()} {/* Render dropdown based on appointment type */}
+          {renderDoctorOrScanType()} 
 
           <button type="submit">Submit</button> 
         </form>
