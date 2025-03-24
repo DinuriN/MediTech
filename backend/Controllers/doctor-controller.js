@@ -40,7 +40,7 @@ const getAllDoctors = async (req, res, next) => {
 //Data insert
 const addDoctors = async (req, res, next) => {
     const {
-        doctorId, doctorName, doctorSpecialization, doctorPhoneNumber, doctorEmail,
+        doctorId, doctorName, doctorAddress, doctorSpecialization, doctorPhoneNumber, doctorEmail,
         doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
         doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
         doctorConsultationFees
@@ -52,7 +52,7 @@ const addDoctors = async (req, res, next) => {
 
     try {
         doctor = new Doctor({
-            doctorId, doctorName, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
+            doctorId, doctorName, doctorAddress, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
             doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
             doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
             doctorConsultationFees
@@ -96,7 +96,7 @@ const updateDoctor = async (req, res, next) => {
     const id = req.params.id;
 
     const {
-        doctorId, doctorName, doctorSpecialization, doctorPhoneNumber, doctorEmail,
+        doctorId, doctorName, doctorAddress, doctorSpecialization, doctorPhoneNumber, doctorEmail,
         doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
         doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
         doctorConsultationFees
@@ -116,7 +116,7 @@ const updateDoctor = async (req, res, next) => {
         const updatedDoctor = await Doctor.findByIdAndUpdate(
             id,
             {
-                doctorId, doctorName, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
+                doctorId, doctorName, doctorAddress, doctorSpecialization, doctorProfilePicture, doctorPhoneNumber, doctorEmail,
                 doctorQualifications, doctorExperience, doctorLanguagesSpoken, doctorHospitalAffiliation,
                 doctorLicenseNumber, doctorAvailableDays, doctorAvailableTimeStart, doctorAvailableTimeEnd,
                 doctorConsultationFees

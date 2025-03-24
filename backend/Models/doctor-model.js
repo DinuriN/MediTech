@@ -10,6 +10,10 @@ const DoctorSchema = new Schema({
         type: String, //dataType
         required: true, //validate
     },
+    doctorAddress:{
+        type: String,
+        required: false,
+    },
     doctorSpecialization:{
         type: String, //dataType
         required: true, //validate

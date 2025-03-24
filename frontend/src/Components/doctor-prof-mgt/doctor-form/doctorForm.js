@@ -28,6 +28,11 @@ function DoctorForm() {
   const [profilePicture, setProfilePicture] = useState(null);
   const [errors, setErrors] = useState({
     doctorId: 'Doctor ID must be in format: DR-[Specialization]-[Year]-[UniqueNumber] (e.g., DR-ENT-2023-001)',
+    doctorPhoneNumber: 'Phone Number must be 10 digits',
+    doctorEmail: 'Enter a valid email address',
+    doctorExperience: 'Experience must be a positive number',
+    doctorConsultationFees: 'Fees must be a number',
+    doctorExperience: 'Experience must be a positive number'
   });
 
   // Handle change of inputs
@@ -234,14 +239,34 @@ const handleChange = (e) => {
               />
               {errors.doctorName && <span className='error-text'>{errors.doctorName}</span>}
             </div>
+
+            <div className='form-group'>
+              <label>Doctor Address</label>
+              <input
+                type='text'
+                name='doctorAddress'
+                value={inputs.doctorAddress}
+                onChange={handleChange}
+              />
+              {errors.doctorAddress && <span className='error-text'>{errors.doctorAddress}</span>}
+            </div>
             
             <div className='form-group'>
               <label>Doctor Profile Picture (Optional)</label>
+              
+
               <input
                 type='file'
                 accept='image/*'
                 onChange={handleFileChange}
               />
+              {profilePicture && (
+                <img
+                  src={URL.createObjectURL(profilePicture)}
+                  alt='Preview'
+                  width={100}
+                />
+              )}
             </div>
             <div className='form-group'>
               <label>Phone Number</label>

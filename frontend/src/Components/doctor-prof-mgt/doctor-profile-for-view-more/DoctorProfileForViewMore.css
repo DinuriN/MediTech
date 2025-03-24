@@ -1,10 +1,8 @@
 /* General Styling */
-.container-d{
-    background: linear-gradient(to bottom, #a3dde8, #0077b6, #ffffff); /* Gradient background */
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
+.container{
+    background: linear-gradient(to bottom, #00b4d8, #0077b6, #ffffff); /* Gradient background */
+    
+}
 
 body {
     font-family: 'Arial', sans-serif;
@@ -17,7 +15,7 @@ body {
   .container h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: #000000;
+    color: #ffffff;
     text-align: center;
   }
   
@@ -36,8 +34,7 @@ body {
     margin: 3rem auto;
     text-align: center;
     overflow: hidden;
-    margin-left: 100px;
-    margin-right: 400px;
+    margin-left: 150px;
   }
   
   /* Profile Image */

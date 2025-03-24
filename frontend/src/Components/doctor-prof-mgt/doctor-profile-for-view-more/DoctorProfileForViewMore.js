@@ -29,6 +29,7 @@ function DoctorProfileForViewMore() {
   const {
     doctorId,
     doctorName,
+    doctorAddress,
     doctorSpecialization,
     doctorProfilePicture,
     doctorPhoneNumber,
@@ -78,9 +79,7 @@ function DoctorProfileForViewMore() {
       </div>
       <div className='col-2-d'>
       <div className="container-d">
-      <br />
-      <hr/>
-      <hr/> 
+      <br /> 
       <div className="doctor-profile">
       <div>
       <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
@@ -93,6 +92,7 @@ function DoctorProfileForViewMore() {
 />
         <h4>Specialization: {doctorSpecialization}</h4>
         <p><strong>Doctor ID:</strong> {doctorId}</p>
+        <p><strong>Doctor Address:</strong> {doctorAddress}</p>
         <p><strong>Phone Number:</strong> {doctorPhoneNumber}</p>
         <p><strong>Email:</strong> {doctorEmail}</p>
         <p><strong>Qualifications:</strong> {doctorQualifications}</p>

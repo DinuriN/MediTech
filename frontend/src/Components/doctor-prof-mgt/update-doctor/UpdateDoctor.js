@@ -6,9 +6,26 @@ import AdminSideNavBar from '../../Common/AdminProfile/AdminSideNavBar'
 import '../../Common/AdminProfile/AdminProfileSample.css'
 
 function UpdateDoctor() {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    doctorId: '',
+    doctorName: '',
+    doctorSpecialization: '',
+    doctorProfilePicture: '',  // This will store the file path
+    doctorPhoneNumber: '',
+    doctorEmail: '',
+    doctorQualifications: '',
+    doctorExperience: '',
+    doctorLanguagesSpoken: '',
+    doctorHospitalAffiliation: '',
+    doctorLicenseNumber: '',
+    doctorAvailableDays: '',
+    doctorAvailableTimeStart: '',
+    doctorAvailableTimeEnd: '',
+    doctorConsultationFees: '',
+  });
   const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({}); // Initially empty
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -49,53 +66,163 @@ function UpdateDoctor() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Handle the doctorAvailableDays input by splitting the input into an array
+  
     if (name === "doctorAvailableDays") {
-      const daysArray = value
-        .split(",") // Split by commas
-        .map((day) => day.trim()) // Trim any extra spaces
-        .filter((day) => day); // Remove any empty days
-      setInputs((prevState) => ({
-        ...prevState,
-        [name]: daysArray, // Store the array in the state
-      }));
+      const daysArray = value.split(",").map((day) => day.trim()).filter((day) => day);
+      setInputs((prevState) => ({ ...prevState, [name]: daysArray }));
+      validateField(name, daysArray);
     } else {
-      setInputs((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+      setInputs((prevState) => ({ ...prevState, [name]: value }));
+      validateField(name, value); // Validate while typing
     }
   };
+  
+  const validateForm = () => {
+    let newErrors = {};
+  
+    // Validate each input field
+    Object.keys(inputs).forEach((key) => validateField(key, inputs[key]));
+    newErrors = Object.fromEntries(Object.entries(errors).filter(([_, value]) => value));
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const validateField = (field, value) => {
+    let errorMsg = '';
+  
+    // Check if value is a string before calling .trim()
+    if (typeof value === 'string' && value.trim) {
+      value = value.trim(); // Apply trim to a string value
+    }
+  
+    // Doctor ID Validation
+    if (field === 'doctorId') {
+      const doctorIdPattern = /^DR-[A-Z]+-\d{4}-\d{3}$/;
+      if (!value) {
+        errorMsg = 'Doctor ID is required';
+      } else if (!doctorIdPattern.test(value)) {
+        errorMsg = 'Doctor ID must be in format: DR-[Specialization]-[Year]-[UniqueNumber] (e.g., DR-ENT-2023-001)';
+      }
+    }
+  
+    // Phone Number Validation
+    else if (field === 'doctorPhoneNumber') {
+      if (!value) {
+        errorMsg = 'Phone Number is required';
+      } else if (!/^\d{10}$/.test(value)) {
+        errorMsg = 'Phone Number must be 10 digits';
+      }
+    }
+  
+    // Email Validation
+    else if (field === 'doctorEmail') {
+      if (!value) {
+        errorMsg = 'Email is required';
+      } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errorMsg = 'Enter a valid email address';
+      }
+    }
+  
+    // Experience Validation
+    else if (field === 'doctorExperience') {
+      if (!value) {
+        errorMsg = 'Experience is required';
+      } else if (isNaN(value) || Number(value) <= 0) {
+        errorMsg = 'Experience must be a positive number';
+      }
+    }
+  
+    // Time Validation (Start and End)
+    else if (field === 'doctorAvailableTimeStart' || field === 'doctorAvailableTimeEnd') {
+      if (!value) {
+        errorMsg = 'Enter time in 24HRS format (Like 14:00)';
+      }
+    }
+  
+    // Consultation Fees Validation
+    else if (field === 'doctorConsultationFees') {
+      if (!value) {
+        errorMsg = 'Consultation Fees are required';
+      } else if (isNaN(value)) {
+        errorMsg = 'Fees must be a number';
+      }
+    }
+  
+    // Available Days Validation
+    else if (field === 'doctorAvailableDays') {
+      if (Array.isArray(value)) {
+        if (value.length === 0) {
+          errorMsg = 'At least one day should be selected';
+        }
+      } else {
+        if (!value) {
+          errorMsg = 'Days are required';
+        }
+      }
+    }
+  
+    // Default: Required Field Check
+    else if (!value) {
+      errorMsg = `${field.replace(/doctor/, 'Doctor ')} is required`;
+    }
+  
+    // Update Errors State
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: errorMsg || null, // Set error if present, otherwise remove it
+    }));
+  };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       let updatedDoctor = { ...inputs };
-
+  
+      if (!validateForm()) {
+        // Find the first field with an error and focus on it
+        const firstErrorField = Object.keys(errors).find((key) => errors[key]);
+        if (firstErrorField) {
+          const fieldElement = document.querySelector(`[name="${firstErrorField}"]`);
+          if (fieldElement) {
+            fieldElement.focus();
+          }
+        }
+        return; // Prevent submission if there are validation errors
+      }
+  
       // If a new profile picture is selected, upload it first
       if (profilePicture) {
         const formData = new FormData();
         formData.append("profilePicture", profilePicture);
-        
+  
         const uploadRes = await axios.post("http://localhost:5000/doctors/uploadDoctorProfilePic", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
-
+  
         if (uploadRes.status === 200) {
           updatedDoctor.doctorProfilePicture = uploadRes.data.filePath;
         } else {
           throw new Error("Image upload failed");
         }
       }
-
+  
       // Send updated doctor data
-      await axios.put(`http://localhost:5000/doctors/${id}`, updatedDoctor);
-      navigate("/doctorDetails");
+      const res = await axios.put(`http://localhost:5000/doctors/${id}`, updatedDoctor);
+      if (res.status === 200) {
+        navigate("/doctorDetails");
+      } else {
+        throw new Error("Failed to update doctor details");
+      }
+  
     } catch (err) {
+      console.error(err); // Log the error to get more information
       setError("Failed to update doctor details. Please try again.");
     }
   };
+  
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="error-message">{error}</p>;
@@ -124,6 +251,13 @@ function UpdateDoctor() {
             <div className="form-group">
               <label htmlFor="doctorId" className="form-label">Doctor ID</label>
               <input type="text" className="form-input" id="doctorId" name="doctorId" value={inputs.doctorId || ''} onChange={handleChange} required />
+              {errors.doctorId && <span className='error-text'>{errors.doctorId}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="doctorId" className="form-label">Doctor Address</label>
+              <input type="text" className="form-input" id="doctorAddress" name="doctorAddress" value={inputs.doctorAddress || ''} onChange={handleChange} required />
+              {errors.doctorId && <span className='error-text'>{errors.doctorAddress}</span>}
             </div>
   
             <div className="form-group">
@@ -144,11 +278,13 @@ function UpdateDoctor() {
             <div className="form-group">
               <label htmlFor="doctorPhoneNumber" className="form-label">Phone Number</label>
               <input type="text" className="form-input" id="doctorPhoneNumber" name="doctorPhoneNumber" value={inputs.doctorPhoneNumber || ''} onChange={handleChange} required />
+              {errors.doctorPhoneNumber && <span className='error-text'>{errors.doctorPhoneNumber}</span>}
             </div>
   
             <div className="form-group">
               <label htmlFor="doctorEmail" className="form-label">Email</label>
               <input type="email" className="form-input" id="doctorEmail" name="doctorEmail" value={inputs.doctorEmail || ''} onChange={handleChange} required />
+              {errors.doctorEmail && <span className='error-text'>{errors.doctorEmail}</span>}
             </div>
           </div>
   
@@ -161,16 +297,19 @@ function UpdateDoctor() {
             <div className="form-group">
               <label htmlFor="doctorSpecialization" className="form-label">Specialization</label>
               <input type="text" className="form-input" id="doctorSpecialization" name="doctorSpecialization" value={inputs.doctorSpecialization || ''} onChange={handleChange} required />
+              {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
             </div>
   
             <div className="form-group">
               <label htmlFor="doctorQualifications" className="form-label">Qualifications</label>
               <input type="text" className="form-input" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />
+              {errors.doctorQualifications && <span className='error-text'>{errors.doctorQualifications}</span>}
             </div>
   
             <div className="form-group">
               <label htmlFor="doctorExperience" className="form-label">Experience</label>
               <input type="text" className="form-input" id="doctorExperience" name="doctorExperience" value={inputs.doctorExperience || ''} onChange={handleChange} />
+              {errors.doctorExperience && <span className='error-text'>{errors.doctorExperience}</span>}
             </div>
   
             <div className="form-group">
@@ -221,6 +360,7 @@ function UpdateDoctor() {
             <div className="form-group">
               <label htmlFor="doctorConsultationFees" className="form-label">Consultation Fees</label>
               <input type="text" className="form-input" id="doctorConsultationFees" name="doctorConsultationFees" value={inputs.doctorConsultationFees || ''} onChange={handleChange} />
+              {errors.doctorConsultationFees && <span className='error-text'>{errors.doctorConsultationFees}</span>}
             </div>
           </div>
   
