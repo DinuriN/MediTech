@@ -18,6 +18,7 @@ import AddMedicalHistory from './Components/MedicalHistory/AddMedicalHistory';
 import UpdateMedicalHistory from './Components/MedicalHistory/UpdateMedicalHistory';
 import AdminSideNavBar from './Components/Common/AdminProfile/AdminSideNavBar';
 import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSample';
+import SingleVisitDetails from './Components/MedicalHistory/SingleVisitDetails';
 
 function App() {
   const isAuthenticated= !!localStorage.getItem("token");
@@ -45,6 +46,7 @@ function App() {
           <Route path="/updateMedicalHistory/:patientId" element={<UpdateMedicalHistory/>} />
           <Route path="/adminSideNavBar" element={<AdminSideNavBar/>} />
           <Route path="/adminProfileSample" element={<AdminProfiileSample/>} />
+          <Route path="/medicalHistory/:visitId" element={<SingleVisitDetails/>}/>
         </Routes>
       </React.Fragment>
 

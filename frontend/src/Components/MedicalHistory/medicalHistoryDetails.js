@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { use, useEffect, useRef, useState } from "react";
-import { data, Link, useParams } from "react-router-dom";
+import { data, Link, useNavigate, useParams } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import AdminSideNavBar from "../Common/AdminProfile/AdminSideNavBar";
 import "../Common/AdminProfile/AdminProfileSample.css";
@@ -20,6 +20,7 @@ function MedicalHistoryDetails() {
   const [noResults, setNoResults] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
   const [originalMedicalHistory, setOriginalMedicalHistory] = useState([]);
+  const navigate=useNavigate();
 
   useEffect(() => {
     fetchHandler().then((data) => {
@@ -50,20 +51,15 @@ function MedicalHistoryDetails() {
     setMedicalHistory(filteredMedicalRecords);
   };
 
-  const deleteHandler = async (id) => {
+  const deleteHandler = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this record?"
     );
     if (confirmDelete) {
-      await axios
-        .delete(`http://Localhost:5000/medicalHistory/${id}`)
-        .then(() =>
-          setMedicalHistory(
-            medicalHistory.filter((medHistory) => medHistory._id !== id)
-          )
-        );
+      navigate(`/medicalHistory/${id}`);
     }
   };
+  
 
   const copyToClipboard = (copyId) => {
     const input = document.createElement("input");
@@ -173,12 +169,14 @@ function MedicalHistoryDetails() {
                         </Link>
                         {new Date() - new Date(medHistory.appointmentDate) >
                           5 * 365 * 24 * 60 * 60 * 1000 && (
+                            <Link to={`/medicalHistory/${medHistory._id}`}>
                           <button
                             onClick={() => deleteHandler(medHistory._id)}
                             className="btn-patient-delete-btn"
                           >
                             <img src={DeleteIcon} alt="Delete" />
                           </button>
+                          </Link>
                         )}
                       </td>
                     </tr>

@@ -1,0 +1,110 @@
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useReactToPrint } from "react-to-print";
+import "boxicons/css/boxicons.min.css";
+import AdminSideNavBar from "../Common/AdminProfile/AdminSideNavBar";
+import "../Common/AdminProfile/AdminProfileSample.css";
+import "../Patients/PatientDetails.css";
+
+const URL = "http://localhost:5000/medicalHistory";
+
+// ✅ Printable component with forwardRef
+const PrintableVisitReport = React.forwardRef(({ visit }, ref) => {
+  if (!visit) return null;
+
+  return (
+    <div ref={ref}>
+      <h2>Visit Details for visit: {visit._id}</h2>
+      <div className="patientDetails-table">
+        <table className="table-patient-details-tbl">
+          <tbody>
+            <tr><td><strong>Patient ID</strong></td><td>{visit.patientId}</td></tr>
+            <tr><td><strong>Appointment Date</strong></td><td>{new Date(visit.appointmentDate).toLocaleDateString()}</td></tr>
+            <tr><td><strong>Appointment Time</strong></td><td>{visit.appointmentTime}</td></tr>
+            <tr><td><strong>Department</strong></td><td>{visit.department}</td></tr>
+            <tr><td><strong>Doctor</strong></td><td>{visit.doctor}</td></tr>
+            <tr><td><strong>Diagnoses</strong></td><td>{visit.diagnoses}</td></tr>
+            <tr><td><strong>Required Reports</strong></td><td>{visit.requiredReports}</td></tr>
+            <tr><td><strong>Comments</strong></td><td>{visit.comments}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+});
+
+function SingleVisitDetails() {
+  const { visitId } = useParams();
+  const [visit, setVisit] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef, // ✅ new API for v3.x
+    documentTitle: "Visit Details Report",
+    onAfterPrint: () => alert("Report Downloaded Successfully!"),
+  });
+  
+
+  useEffect(() => {
+    axios.get(URL)
+      .then((res) => {
+        const foundVisit = res.data.medicalHistory.find(v => v._id === visitId);
+        setVisit(foundVisit);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to fetch visit details.");
+        setLoading(false);
+      });
+  }, [visitId]);
+
+  if (loading) return <div>Loading visit details...</div>;
+  if (error) return <div>{error}</div>;
+  if (!visit) return <div>No visit found with ID: {visitId}</div>;
+
+  
+  const deleteHandler = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this record?"
+    );
+    if (!confirmDelete) return;
+  
+    try {
+      await axios.delete(`${URL}/${visitId}`);
+      alert("Record deleted successfully!");
+      navigate(`/medicalHistoryDetails/${visit.patientId}`); 
+    } catch (error) {
+      alert("Failed to delete the record. Please try again.");
+    }
+  };
+
+  
+  return (
+    <div className="admin-prof-container">
+      <div className="col-1">
+        <AdminSideNavBar />
+      </div>
+      <div className="col-2">
+        {/* ✅ Printable content rendered in DOM and attached to ref */}
+        <PrintableVisitReport ref={componentRef} visit={visit} />
+
+        <div style={{ marginTop: "20px" }}>
+          <button class="btn-patient-update-btn" onClick={handlePrint}>Download Report</button>
+        </div>
+        
+        <div style={{ marginTop: "20px" }}>
+            <button onClick={deleteHandler} className="btn-patient-delete-btn">Delete Record</button>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+export default SingleVisitDetails;
