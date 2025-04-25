@@ -11,6 +11,10 @@ const medicalHistorySchema = new Schema({
       type: Date,
       required: true,
     },
+    appointmentTime:{
+      type: String,
+      require:true,
+    },
     department: {
       type: String,
       required: true,

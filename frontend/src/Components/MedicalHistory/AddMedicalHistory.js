@@ -11,6 +11,7 @@ function AddMedicalHistory() {
     
     const [formData, setFormData] = useState ({
         appointmentDate: "",
+        appointmentTime:"",
         department: "",
         doctor: "",
         diagnoses: "",
@@ -102,6 +103,22 @@ function AddMedicalHistory() {
               id="appointmentDate"
               name="appointmentDate"
               value={formData.appointmentDate}
+              onChange={handleChange}
+              max={new Date().toISOString().split("T")[0]}
+              required
+            />
+        </div>
+
+        <div className="form-label-input-field">
+            <label htmlFor="appointmentTime" className="form-label">
+            Appointment Time
+            </label>
+            <input
+              type="time"
+              className="form-control"
+              id="appointmentTime"
+              name="appointmentTime"
+              value={formData.appointmentTime}
               onChange={handleChange}
               max={new Date().toISOString().split("T")[0]}
               required

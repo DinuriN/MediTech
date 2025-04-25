@@ -120,6 +120,7 @@ function MedicalHistoryDetails() {
                   <th>Visit ID</th>
                   <th></th>
                   <th>Appointment Date</th>
+                  <th>appointment Time</th>
                   <th>Department</th>
                   <th>Doctor</th>
                   <th>Diagnoses</th>
@@ -155,6 +156,7 @@ function MedicalHistoryDetails() {
                           day: "numeric",
                         })}
                       </td>
+                      <td>{medHistory.appointmentTime}</td>
                       <td>{medHistory.department}</td>
                       <td>{medHistory.doctor}</td>
                       <td>{medHistory.diagnoses}</td>

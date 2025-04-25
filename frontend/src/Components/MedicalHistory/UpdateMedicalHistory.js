@@ -69,6 +69,7 @@ function UpdateMedicalHistory() {
         .put(`http://Localhost:5000/medicalHistory/${patientId}`, {
             patientId: String(inputs.patientId),
             appointmentDate: String(inputs.appointmentDate),
+            appointmentTime:String(inputs.appointmentTime),
             department: String(inputs.department),
             doctor: String(inputs.doctor),
             diagnoses: String(inputs.diagnoses),
@@ -111,6 +112,21 @@ function UpdateMedicalHistory() {
               id="appointmentDate"
               name="appointmentDate"
               value={inputs.appointmentDate}
+              onChange={handleChange}
+              max={new Date().toISOString().split("T")[0]}
+              required
+            />
+        </div>
+        <div className="form-label-input-field">
+            <label htmlFor="appointmentTime" className="form-label">
+              Appointment Time
+            </label>
+            <input
+              type="time"
+              className="form-control"
+              id="appointmentTime"
+              name="appointmentTime"
+              value={inputs.appointmentTime}
               onChange={handleChange}
               max={new Date().toISOString().split("T")[0]}
               required

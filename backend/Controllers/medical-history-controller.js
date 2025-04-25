@@ -20,12 +20,12 @@ const getMedicalHistoryDetails = async(req, res, next)=>{
 
 //data insert
 const addMedicalHistory = async(req, res, next)=>{
-    const{patientId, appointmentDate, department, doctor, diagnoses, requiredReports, comments} = req.body;
+    const{patientId, appointmentDate,appointmentTime, department, doctor, diagnoses, requiredReports, comments} = req.body;
 
     let medicalHistory;
 
     try{
-        medicalHistory = new MedicalHistory({patientId, appointmentDate, department, doctor, diagnoses, requiredReports, comments});
+        medicalHistory = new MedicalHistory({patientId, appointmentDate,appointmentTime, department, doctor, diagnoses, requiredReports, comments});
         await medicalHistory.save();
     }catch(err){
         console.log(err);
@@ -60,12 +60,12 @@ const getmedicalHistoryById = async(req, res, next) => {
 //update medical history details
 const updatemedicalHistory = async(req, res, next) =>{
     const id = req.params.id;
-    const{patientId, appointmentDate, department, doctor, diagnoses, requiredReports, comments} = req.body;
+    const{patientId, appointmentDate,appointmentTime, department, doctor, diagnoses, requiredReports, comments} = req.body;
 
     let medicalHistory;
 
     try{
-        medicalHistory = await MedicalHistory.findByIdAndUpdate(id, {patientId: patientId, appointmentDate: appointmentDate, department: department, doctor: doctor, diagnoses:diagnoses, requiredReports: requiredReports, comments: comments});
+        medicalHistory = await MedicalHistory.findByIdAndUpdate(id, {patientId: patientId, appointmentDate: appointmentDate,appointmentTime:appointmentTime, department: department, doctor: doctor, diagnoses:diagnoses, requiredReports: requiredReports, comments: comments});
         medicalHistory = await medicalHistory.save();
     }catch(err){
         console.log(err);
