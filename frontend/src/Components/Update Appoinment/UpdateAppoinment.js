@@ -12,6 +12,7 @@ function UpdateAppointment() {
     appointmentDate: '',
     appointmentTime: '',
     address: '',
+    guardianName: '', // Added guardianName field
     appointmentType: '',
     doctorOrScanType: '',
   });
@@ -30,6 +31,7 @@ function UpdateAppointment() {
         setInputs({
           ...data,
           appointmentDate: formattedDate,
+          guardianName: data.guardianName || '', // Ensure guardianName is included
           doctorOrScanType: data.doctorOrScanType || '',
         });
       } catch (error) {
@@ -49,6 +51,7 @@ function UpdateAppointment() {
       appointmentDate: Date(inputs.appointmentDate),
       appointmentTime: String(inputs.appointmentTime),
       address: String(inputs.address),
+      guardianName: String(inputs.guardianName), 
       appointmentType: String(inputs.appointmentType),
       doctorOrScanType: String(inputs.doctorOrScanType),
     });
@@ -87,7 +90,7 @@ function UpdateAppointment() {
       <form onSubmit={handleSubmit} className="update-form">
 
         <div className="form-group">
-          <label>Name</label>
+          <label>Patient's Name</label>
           <input type="text" name="name" onChange={handleChange} value={inputs.name || ''} required />
         </div>
 
@@ -119,6 +122,11 @@ function UpdateAppointment() {
         <div className="form-group">
           <label>Address</label>
           <input type="text" name="address" onChange={handleChange} value={inputs.address || ''} required />
+        </div>
+
+        <div className="form-group">
+          <label>Guardian Name</label>
+          <input type="text" name="guardianName" onChange={handleChange} value={inputs.guardianName || ''} required />
         </div>
 
         <div className="form-group">

@@ -1,75 +1,125 @@
-const Payment = require("../models/PaymentModel"); // Import the Payment model
+const Payment = require("../Models/PaymentModel.js");
+const Appointment = require("../Models/ConsultationModel.js");
 
 // Get all payments
 const getAllPayments = async (req, res) => {
     try {
-        const payments = await Payment.find(); // Fetch all payment records from the database
-        res.status(200).json(payments); // Return payments with a 200 status
+        const payments = await Payment.find().populate('appointment');
+        return res.status(200).json({ payments });
     } catch (err) {
-        res.status(500).json({ message: err.message }); // Handle server errors
+        console.error(err);
+        return res.status(500).json({ message: "Error fetching payments" });
     }
 };
 
 // Add a new payment
 const addPayments = async (req, res) => {
-    console.log("Received data:", req.body); // Log received request data for debugging
-
-    const { cardNo, holderName, paymentMethod, expires, cvv } = req.body;
-
-    // Check if all required fields are provided
-    if (!cardNo || !holderName || !paymentMethod || !expires || !cvv) {
-        return res.status(400).json({ message: "All fields are required!" });
-    }
-
     try {
-        // Create a new payment record
-        const payment = new Payment({ cardNo, holderName, paymentMethod, expires, cvv });
-        await payment.save(); // Save payment to the database
-        res.status(201).json({ message: "Payment added successfully", payment });
+        const { cardNo, holderName, paymentMethod, expires, cvv, appointmentId } = req.body;
+
+        // Validate required fields
+        if (!cardNo || !holderName || !paymentMethod || !expires || !cvv || !appointmentId) {
+            return res.status(400).json({ message: "All fields and appointmentId are required" });
+        }
+
+        // Check if appointment exists
+        const appointment = await Appointment.findById(appointmentId);
+        if (!appointment) {
+            return res.status(404).json({ message: "Appointment not found" });
+        }
+
+        // Create payment
+        const payment = new Payment({
+            cardNo,
+            holderName,
+            paymentMethod,
+            expires,
+            cvv,
+            appointment: appointmentId,
+            amount: 2000,
+        });
+        await payment.save();
+
+        // Update appointment
+        appointment.payment = payment._id;
+        appointment.status = 'confirmed';
+        await appointment.save();
+
+        return res.status(201).json({ 
+            success: true,
+            payment,
+            appointment 
+        });
     } catch (err) {
-        console.error("Error saving payment:", err); // Log error
-        res.status(500).json({ message: "Internal server error" }); // Handle server errors
+        console.error('Error creating payment:', err);
+        return res.status(500).json({ 
+            success: false,
+            message: "Error creating payment",
+            error: err.message 
+        });
     }
 };
 
 // Get a payment by ID
 const getByPayId = async (req, res) => {
     try {
-        const payment = await Payment.findById(req.params.id); // Find payment by ID
-        if (!payment) return res.status(404).json({ message: "Payment not found" }); // If not found, return 404
-        res.status(200).json(payment); // Return the found payment
+        const payment = await Payment.findById(req.params.paymentId).populate('appointment');
+        if (!payment) {
+            return res.status(404).json({ message: "Payment not found" });
+        }
+        return res.status(200).json({ payment });
     } catch (err) {
-        res.status(500).json({ message: err.message }); // Handle server errors
+        console.error(err);
+        return res.status(500).json({ message: "Error fetching payment" });
     }
 };
 
-// Update a payment by ID
+// Update a payment
 const updatePayment = async (req, res) => {
     try {
-        const updatedPayment = await Payment.findByIdAndUpdate(req.params.id, req.body, { new: true }); // Update payment details
-        if (!updatedPayment) return res.status(404).json({ message: "Payment not found" }); // If not found, return 404
-        res.status(200).json(updatedPayment); // Return updated payment details
+        const updatedPayment = await Payment.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        ).populate('appointment');
+        if (!updatedPayment) {
+            return res.status(404).json({ message: "Payment not found" });
+        }
+        return res.status(200).json({ payment: updatedPayment });
     } catch (err) {
-        res.status(400).json({ message: err.message }); // Handle update errors
+        console.error(err);
+        return res.status(500).json({ message: "Error updating payment" });
     }
 };
 
-// Delete a payment by ID
+// Delete a payment
 const deletePayment = async (req, res) => {
     try {
-        const payment = await Payment.findByIdAndDelete(req.params.id); // Find and delete the payment by ID
-        if (!payment) return res.status(404).json({ message: "Payment not found" }); // If not found, return 404
-        res.status(200).json({ message: "Payment deleted" }); // Return success message
+        const payment = await Payment.findById(req.params.id);
+        if (!payment) {
+            return res.status(404).json({ message: "Payment not found" });
+        }
+
+        // Update associated appointment
+        const appointment = await Appointment.findById(payment.appointment);
+        if (appointment) {
+            appointment.payment = null;
+            appointment.status = 'pending';
+            await appointment.save();
+        }
+
+        await Payment.findByIdAndDelete(req.params.id);
+        return res.status(200).json({ message: "Payment deleted successfully" });
     } catch (err) {
-        res.status(500).json({ message: err.message }); // Handle server errors
+        console.error(err);
+        return res.status(500).json({ message: "Error deleting payment" });
     }
 };
 
-// Export all functions for use in routes
 module.exports = {
     getAllPayments,
     addPayments,
     getByPayId,
     updatePayment,
-    deletePayment,
+    deletePayment
 };

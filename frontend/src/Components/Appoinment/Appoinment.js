@@ -5,7 +5,7 @@ import './Appoinment.css';
 
 function Appointment(props) {
   // Destructuring props to extract appointment details
-  const { _id, name, gmail, age, contact, appointmentDate, appointmentTime, address, appointmentType, doctorOrScanType } = props.appointment;
+  const { _id, name, gmail, age, contact, appointmentDate, appointmentTime, address,guardianName, appointmentType, doctorOrScanType } = props.appointment;
   const navigate = useNavigate(); // Hook for navigation
 
   // Function to handle deleting an appointment
@@ -65,8 +65,8 @@ function Appointment(props) {
             <td>{address}</td>
           </tr>
           <tr>
-            <td><strong>Appointment Type:</strong></td>
-            <td>{appointmentType}</td>
+            <td><strong>Guardian Name Type:</strong></td>
+            <td>{guardianName}</td>
           </tr>
           <tr>
             <td><strong>Doctor/Scan Type:</strong></td>

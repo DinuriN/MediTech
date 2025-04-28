@@ -27,7 +27,7 @@ app.use("/appointments", consultationRoutes);
 app.use("/payments", paymentRoutes);
 
 // Connect to MongoDB database
-mongoose.connect("mongodb+srv://admin:hOPTUkwQGtUKIVaz@cluster0.cg58q.mongodb.net/")
+mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")
 .then(() => console.log("Connected to MongoDB")) // Log success message if connected
 .then(() => {
     app.listen(5000); // Start server on port 5000

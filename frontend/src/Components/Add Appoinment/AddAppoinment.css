@@ -1,4 +1,4 @@
-/* AddAppointment.css */
+/* AddAppoinment.css */
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ body {
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 80px; /* Add spacing below the navbar */
+  margin-top: 80px; /* Adjust spacing under the navbar */
 }
 
 h1 {
@@ -56,16 +56,12 @@ select {
   margin-bottom: 1rem;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus,
+input:focus,
 select:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 select {
@@ -116,12 +112,61 @@ form button:active {
   transform: scale(0.98);
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
+.fee-info {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
 }
 
+.fee-info p {
+  color: #2c3e50;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.fee-info p::before {
+  content: "₹";
+  color: #3498db;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Error styling */
+.error {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  animation: fadeIn 0.4s ease-in;
+  padding: 8px;
+  border-left: 4px solid #ff0000;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
+}
+
+/* Smooth fade-in animation for errors */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
