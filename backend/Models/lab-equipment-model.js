@@ -19,7 +19,7 @@ const labEquipmentSchema = new Schema({
         required:true,
     },
     EquipmentSerialNum:{
-        type:Number,
+        type:String,
         required:true,
     },
     EquipmentLocation:{

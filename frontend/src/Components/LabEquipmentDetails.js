@@ -23,6 +23,10 @@ function LabEquipmentDetails() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredEquipments, setFilteredEquipments] = useState([]);
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
   useEffect(() => {
     fetchHandler().then((data) => {
       setLabEquipments(data.labEquipments);
@@ -42,16 +46,31 @@ function LabEquipmentDetails() {
         equipment.EquipmentId.toLowerCase().includes(query) 
     );
     setFilteredEquipments(filtered);
+    setCurrentPage(1); // Reset to first page on search
   };
 
+  // Pagination calculations
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredEquipments.slice(indexOfFirstItem, indexOfLastItem);
 
-//chat bot
-const navigate = useNavigate();
+  const totalPages = Math.ceil(filteredEquipments.length / itemsPerPage);
 
-const handleTroubleshootClick = (equipment) => {
-  navigate('/chatbot', { state: { equipment } });
-};
+  // Handlers for pagination buttons
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  //chat bot
+  const navigate = useNavigate();
 
 
   const deleteHandler = async (id) => {
@@ -63,6 +82,10 @@ const handleTroubleshootClick = (equipment) => {
           const updatedEquipments = labEquipments.filter((equipment) => equipment._id !== id);
           setLabEquipments(updatedEquipments);
           setFilteredEquipments(updatedEquipments);
+          // Adjust current page if needed
+          if (indexOfFirstItem >= updatedEquipments.length && currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+          }
         });
     }
   };
@@ -71,18 +94,16 @@ const handleTroubleshootClick = (equipment) => {
     <div className="lab-equipment-container">
       <h1 className="text-center mb-4">Lab Equipment Details</h1>
 
-
       <div className="top-action-bar">
-  <button 
-    className="btn-red"
-    onClick={() => navigate('/chatbot')} >
-    AI Troubleshooting Assistant
-  </button>
-  <Link to="/addLabEquipment" className="btn-blue">
-    <i className="bi bi-plus-circle"></i> Add New Equipment
-  </Link>
-</div>
-
+        <button 
+          className="btn-red"
+          onClick={() => navigate('/chatbot')} >
+          AI Troubleshooting Assistant
+        </button>
+        <Link to="/addLabEquipment" className="btn-blue">
+          <i className="bi bi-plus-circle"></i> Add New Equipment
+        </Link>
+      </div>
 
       {/* Search Bar */}
       <div className="mb-4">
@@ -114,7 +135,7 @@ const handleTroubleshootClick = (equipment) => {
             </tr>
           </thead>
           <tbody>
-            {filteredEquipments.map((equipment) => (
+            {currentItems.map((equipment) => (
               <tr key={equipment._id}>
                 <td>{equipment.EquipmentId}</td>
                 <td>{equipment.EquipmentName}</td>
@@ -128,20 +149,38 @@ const handleTroubleshootClick = (equipment) => {
                 <td>{equipment.status}</td>
                 <td>
                   <Link to={`/updateLabEquipment/${equipment._id}`} className="btn btn-warning btn-sm me-2">
-                    <i className="bi bi-pencil"></i> Update
+                    <i className="bi bi-pencil"></i> 
                   </Link>
                   <button
                     onClick={() => deleteHandler(equipment._id)}
                     className="btn btn-danger btn-sm"
                   >
-                    <i className="bi bi-trash"></i> Delete
+                    <i className="bi bi-trash"></i> 
                   </button>
-                  
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="d-flex justify-content-center align-items-center mt-3 gap-3">
+        <button
+          className="btn btn-secondary"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button
+          className="btn btn-secondary"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages || totalPages === 0}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

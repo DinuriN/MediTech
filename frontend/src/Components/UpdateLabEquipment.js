@@ -56,7 +56,7 @@ function UpdateLabEquipment() {
         EquipmentName: String(inputs.EquipmentName),
         EquipmentCategory: String(inputs.EquipmentCategory),
         EquipmentBrand: String(inputs.EquipmentBrand),
-        EquipmentSerialNum: Number(inputs.EquipmentSerialNum),
+        EquipmentSerialNum: String(inputs.EquipmentSerialNum),
         EquipmentLocation: String(inputs.EquipmentLocation),
         EquipmentCost: Number(inputs.EquipmentCost),
         EquipmentLastMaintenance: inputs.EquipmentLastMaintenance || null,
@@ -129,11 +129,11 @@ function UpdateLabEquipment() {
             >
               <option value="Analytical Instruments">Analytical Instruments</option>
               <option value="Diagnostic Equipment">Diagnostic Equipment</option>
-              <option value="Sample Processing Equipment">Sample Processing Equipment</option>
-              <option value="Storage and Preservation Equipment">Storage and Preservation Equipment</option>
-              <option value="General Laboratory Equipment">General Laboratory Equipment</option>
-              <option value="Cleaning and Safety Equipment">Cleaning and Safety Equipment</option>
-              <option value="Support and Utility Equipment">Support and Utility Equipment</option>
+              <option value="Sample Processing Equipment">Sample Processing</option>
+              <option value="Storage and Preservation Equipment">Storage & Preservation</option>
+              <option value="General Laboratory Equipment">General Laboratory</option>
+              <option value="Cleaning and Safety Equipment">Cleaning and Safety</option>
+              <option value="Support and Utility Equipment">Support and Utility</option>
             </select>
           </div>
 
@@ -171,21 +171,31 @@ function UpdateLabEquipment() {
             />
           </div>
 
-          {/* Equipment Location */}
-          <div className="col-md-6 mb-3">
-            <label htmlFor="EquipmentLocation" className="form-label">
-              <i className="bi bi-geo-alt"></i> Equipment Location:
-            </label>
-            <input
-              type="text"
-              id="EquipmentLocation"
-              name="EquipmentLocation"
-              className="form-control"
-              onChange={handleChange}
-              value={inputs.EquipmentLocation}
-              required
-            />
-          </div>
+
+        {/* Equipment Location */}
+<div className="col-md-6 mb-3">
+<label htmlFor="EquipmentLocation" className="form-label">
+  <i className="bi bi-geo-alt"></i> Equipment Location:
+</label>
+<select
+  id="EquipmentLocation"
+  name="EquipmentLocation"
+  className="form-control"
+  onChange={handleChange}
+  value={inputs.EquipmentLocation}
+  required
+>
+  <option value="">Select Location</option>
+  <option value="Lab A">Lab A</option>
+  <option value="Lab B">Lab B</option>
+  <option value="Lab C">Lab C</option>
+  <option value="Lab D">Lab D</option>
+</select>
+</div>
+
+          
+
+
         </div>
 
         <div className="row">
