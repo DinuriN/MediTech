@@ -122,11 +122,11 @@ function AddLabEquipment() {
 > <option value="">Select the Category</option>
   <option value="Analytical Instruments" selected>Analytical Instruments</option>
   <option value="Diagnostic Equipment">Diagnostic Equipment</option>
-  <option value="Sample Processing Equipment">Sample Processing Equipment</option>
-  <option value="Storage and Preservation Equipment">Storage and Preservation Equipment</option>
-  <option value="General Laboratory Equipment">General Laboratory Equipment</option>
-  <option value="Cleaning and Safety Equipment">Cleaning and Safety Equipment</option>
-  <option value="Support and Utility Equipment">Support and Utility Equipment</option>
+  <option value="Sample Processing Equipment">Sample Processing </option>
+  <option value="Storage and Preservation Equipment">Storage and Preservation</option>
+  <option value="General Laboratory Equipment">General</option>
+  <option value="Cleaning and Safety Equipment">Cleaning and Safety</option>
+  <option value="Support and Utility Equipment">Support and Utility</option>
 </select>
 </div>
 

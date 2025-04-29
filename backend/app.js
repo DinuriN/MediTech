@@ -1,14 +1,20 @@
 //TyslDJir7WM2Up5u
+require('dotenv').config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const routerLabEqipment = require("./Routes/lab-equipment-route");
 const cors = require("cors");
 const app = express();
+const chatbotRoutes = require('./Routes/chatbot-route');
+
 
 //Middleware
 app.use(express.json());
 app.use(cors());
 app.use("/labEquipments", routerLabEqipment);
+app.use('/api/chatbot', chatbotRoutes);
+
 
 //Connecting mongodb
 mongoose.connect("mongodb+srv://admin:TyslDJir7WM2Up5u@meditech-cluster.jf2kb.mongodb.net/")

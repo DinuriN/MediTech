@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./LabEquipmentDetails.css"; // Custom CSS for modern styling
+import { useNavigate } from 'react-router-dom';
 
 const URL = "http://localhost:5000/labEquipments";
 
@@ -43,6 +44,16 @@ function LabEquipmentDetails() {
     setFilteredEquipments(filtered);
   };
 
+
+//chat bot
+const navigate = useNavigate();
+
+const handleTroubleshootClick = (equipment) => {
+  navigate('/chatbot', { state: { equipment } });
+};
+
+
+
   const deleteHandler = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this equipment?");
     if (confirmDelete) {
@@ -60,12 +71,18 @@ function LabEquipmentDetails() {
     <div className="lab-equipment-container">
       <h1 className="text-center mb-4">Lab Equipment Details</h1>
 
-      {/* Navigation Button to Add Lab Equipment */}
-      <div className="text-end mb-4">
-        <Link to="/addLabEquipment" className="btn btn-primary">
-          <i className="bi bi-plus-circle"></i> Add New Equipment
-        </Link>
-      </div>
+
+      <div className="top-action-bar">
+  <button 
+    className="btn-red"
+    onClick={() => navigate('/chatbot')} >
+    AI Troubleshooting Assistant
+  </button>
+  <Link to="/addLabEquipment" className="btn-blue">
+    <i className="bi bi-plus-circle"></i> Add New Equipment
+  </Link>
+</div>
+
 
       {/* Search Bar */}
       <div className="mb-4">
@@ -119,6 +136,7 @@ function LabEquipmentDetails() {
                   >
                     <i className="bi bi-trash"></i> Delete
                   </button>
+                  
                 </td>
               </tr>
             ))}
