@@ -43,13 +43,15 @@ function AddLabEquipment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+  
+  
     const isDuplicate = await checkDuplicateId(inputs.EquipmentId);
     if (isDuplicate) {
       setErrorMessage("Equipment ID already exists. Please use a different ID.");
       return;
     }
-
+  
     try {
       await axios.post("http://localhost:5000/labEquipments", inputs);
       navigate("/labEquipmentDetails");
@@ -58,7 +60,6 @@ function AddLabEquipment() {
       setErrorMessage("An error occurred while adding the equipment.");
     }
   };
-
   return (
     <div className="add-lab-equipment-container">
       <h1 className="text-center mb-4">Add Lab Equipment</h1>
@@ -118,8 +119,8 @@ function AddLabEquipment() {
   onChange={handleChange}
   value={inputs.EquipmentCategory}
   required
->
-  <option value="Analytical Instruments">Analytical Instruments</option>
+> <option value="">Select the Category</option>
+  <option value="Analytical Instruments" selected>Analytical Instruments</option>
   <option value="Diagnostic Equipment">Diagnostic Equipment</option>
   <option value="Sample Processing Equipment">Sample Processing Equipment</option>
   <option value="Storage and Preservation Equipment">Storage and Preservation Equipment</option>
@@ -243,8 +244,8 @@ function AddLabEquipment() {
   onChange={handleChange}
   value={inputs.status}
   required
->
-  <option value="Available">Available</option>
+> <option value="">Select Status</option>
+  <option value="Available" selected>Available</option>
   <option value="Not Available">Not Available</option>
   <option value="Under Maintained">Under Maintained</option>
 </select>
