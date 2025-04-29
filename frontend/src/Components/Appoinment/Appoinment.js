@@ -65,8 +65,13 @@ function Appointment(props) {
             <td>{address}</td>
           </tr>
           <tr>
-            <td><strong>Guardian Name Type:</strong></td>
+            <td><strong>Guardian Name:</strong></td>
             <td>{guardianName}</td>
+          </tr>
+
+          <tr>
+            <td><strong>AppointmentType</strong></td>
+            <td>{appointmentType}</td>
           </tr>
           <tr>
             <td><strong>Doctor/Scan Type:</strong></td>
