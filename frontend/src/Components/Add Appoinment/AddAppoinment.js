@@ -68,6 +68,7 @@ function AddAppoinment() {
 
       if (inputs.appointmentDate === today) {
         if (
+          
           inputHour < todayDate.getHours() ||
           (inputHour === todayDate.getHours() && inputMinute <= todayDate.getMinutes())
         ) {
