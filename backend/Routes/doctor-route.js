@@ -34,6 +34,56 @@ router.post('/uploadDoctorProfilePic', uploadDocProf.single('profilePicture'), (
   res.json({ filePath: `/uploads/doc-prof-profile-pictures/${req.file.filename}` });
 });
 
+const { matchDoctorsBySymptoms } = require('../Controllers/symptom-mapping');
+
+router.post('/match-doctors', async (req, res) => {
+  try {
+    const { symptoms, severity, duration, age, gender } = req.body;
+
+    // Validate required fields
+    if (!Array.isArray(symptoms) || symptoms.length === 0) {
+      return res.status(400).json({ error: "At least one symptom is required" });
+    }
+    if (!['mild', 'moderate', 'severe'].includes(severity)) {
+      return res.status(400).json({ error: "Invalid severity value" });
+    }
+
+    // Convert age to number
+    const patientAge = parseInt(age) || 0;
+    
+    const doctors = await matchDoctors(
+      symptoms,
+      severity,
+      duration,
+      patientAge,
+      gender
+    );
+
+    res.json(doctors);
+    
+  } catch (error) {
+    console.error('Doctor matching error:', error);
+    res.status(500).json({ 
+      error: "Failed to find matching doctors",
+      details: error.message 
+    });
+  }
+});
+
+// In your Express routes file
+router.post('/search', async (req, res) => {
+  try {
+    const { specialty } = req.body;
+    const doctors = await Doctor.find({ 
+      doctorSpecialization: specialty 
+    });
+    res.json(doctors);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Doctor routes
 router.get("/", DoctorController.getAllDoctors);
 router.post("/", DoctorController.addDoctors);

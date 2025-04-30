@@ -96,4 +96,18 @@ body {
       padding: 1rem;
     }
   }
+
+  .btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    gap: 12px;           /* Space between buttons */
+    margin-top: 24px;
+  }
+  
+  .btn-group-vertical button {
+    width: 220px;        /* Make buttons the same width (optional) */
+    display: block;
+  }
+  
   

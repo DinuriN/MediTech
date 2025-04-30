@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import "./DoctorProfileForViewMore.css"
 import AdminSideNavBar from '../../Common/AdminProfile/AdminSideNavBar'
 import '../../Common/AdminProfile/AdminProfileSample.css'
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable'; // import as a function
 
 function DoctorProfileForViewMore() {
   const [doctorDetails, setDoctorDetails] = useState(null);
@@ -72,6 +74,62 @@ function DoctorProfileForViewMore() {
   const formattedStartTime = formatDoctorTime(doctorAvailableTimeStart);
   const formattedEndTime = formatDoctorTime(doctorAvailableTimeEnd);
 
+
+  const handleGeneratePDF = async () => {
+    const doc = new jsPDF();
+  
+    // Load and convert the image
+    let imageUrl = `http://localhost:5000${doctorProfilePicture}`;
+    let imageData;
+  
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        imageData = reader.result;
+  
+        // Add Title
+        doc.setFontSize(18);
+        doc.text(`${doctorName}'s Profile`, 14, 20);
+  
+        // Add the profile picture
+        doc.addImage(imageData, 'JPEG', 150, 10, 40, 40); // (image, type, x, y, width, height)
+  
+        // Add the table
+        doc.setFontSize(12);
+        autoTable(doc, {
+          startY: 60, // Make space for the image
+          head: [['Field', 'Value']],
+          body: [
+            ['Doctor ID', doctorId || 'N/A'],
+            ['Name', doctorName || 'N/A'],
+            ['Specialization', doctorSpecialization || 'N/A'],
+            ['Address', doctorAddress || 'N/A'],
+            ['Phone Number', doctorPhoneNumber || 'N/A'],
+            ['Email', doctorEmail || 'N/A'],
+            ['Qualifications', formatCommaSeparatedValues(doctorQualifications)],
+            ['Experience', doctorExperience ? `${doctorExperience} years` : 'N/A'],
+            ['Languages Spoken', formattedLanguagesSpoken],
+            ['Hospital Affiliation', doctorHospitalAffiliation || 'N/A'],
+            ['License Number', doctorLicenseNumber || 'N/A'],
+            ['Available Days', formattedAvailableDays],
+            ['Available Time', `${formattedStartTime} - ${formattedEndTime}`],
+            ['Consultation Fees', doctorConsultationFees ? `LKR ${doctorConsultationFees} /=` : 'N/A'],
+          ]
+        });
+  
+        doc.save(`${doctorName}_profile.pdf`);
+      };
+  
+      reader.readAsDataURL(blob);
+    } catch (error) {
+      console.error('Error loading profile picture:', error);
+    }
+  };
+  
+
   return (
     <div className='admin-prof-container'>
       <div className='col-1'>
@@ -103,7 +161,11 @@ function DoctorProfileForViewMore() {
         <p><strong>Available Days:</strong> {formattedAvailableDays}</p>
         <p><strong>Available Time:</strong> {formattedStartTime} - {formattedEndTime}</p>
         <p><strong>Consultation Fees:</strong> LKR {doctorConsultationFees} /=</p>
-        <button className="btn btn-secondary" onClick={() => navigate("/doctorDetails")}>Back</button>
+        <div className="btn-group-vertical">
+          <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF Report</button>
+          <button className="btn btn-secondary" onClick={() => navigate("/doctorDetails")}>Back</button>
+        </div>
+
       </div>
     </div>
       </div>

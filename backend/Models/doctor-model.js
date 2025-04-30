@@ -14,9 +14,9 @@ const DoctorSchema = new Schema({
         type: String,
         required: false,
     },
-    doctorSpecialization:{
-        type: String, //dataType
-        required: true, //validate
+    doctorSpecialization: {
+        type: String,
+        required: true
     },
     doctorProfilePicture:{
         type: String, //dataType

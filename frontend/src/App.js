@@ -10,6 +10,7 @@ import TimetableAllDoctors from "./Components/doctor-prof-timetable-all-doctors/
 import NavBar from './Components/Common/NavBar';
 import AdminSideNavBar from './Components/Common/AdminProfile/AdminSideNavBar';
 import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSample';
+import DoctorSuggestForm from './Components/doctor-suggest-form/SymptomForm'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/registerADoctor" element={<DoctorForm/>}/>
           <Route path="/adminSideNavBar" element={<AdminSideNavBar/>} />
           <Route path="/adminProfileSample" element={<AdminProfiileSample/>} />
+          <Route path="/doctorSuggestForm" element={<DoctorSuggestForm/>} />
 
         </Routes>
       </React.Fragment>

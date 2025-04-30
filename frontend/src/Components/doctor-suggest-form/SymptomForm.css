@@ -1,0 +1,64 @@
+.recommendation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.symptom-form-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.specialty-result, .doctor-results {
+  animation: fadeIn 0.6s ease-in-out;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.loading-message, .error-message {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ff4d4f;
+}
+
+.error-message {
+  color: #ff4d4f;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+img.doctor-profile-pic {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
