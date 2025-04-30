@@ -53,7 +53,7 @@
   background: #f7fbff;
   transition: border-color 0.3s, box-shadow 0.3s;
   outline: none;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   display: block;
 }
 
@@ -69,7 +69,9 @@
   background: #f4f8fb;
 }
 
-.table-responsive {
+.table-responsive.lab-table-scroll-wrapper {
+  max-height: 350px; /* Reduced height */
+  overflow-y: auto;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(52,152,219,0.08);
@@ -85,7 +87,7 @@
   color: white;
 }
 
-.table thead th {
+.lab-equipment-table thead th {
   position: sticky;
   top: 0;
   background: #2c3e50;
@@ -97,11 +99,6 @@
   vertical-align: middle !important;
   font-size: 15px;
   white-space: nowrap;
-}
-
-.table-body-scroll {
-  max-height: 350px; /* Reduced height */
-  overflow-y: auto;
 }
 
 .table-hover tbody tr:hover {
@@ -171,6 +168,49 @@
   margin-right: 5px;
 }
 
+.download-btn-container {
+  margin-top: 10px;
+  text-align: right;
+  margin-right: 15px;
+  margin-bottom: 100px;
+}
+
+/* Modern style for the search field dropdown */
+.search-bar-container .form-select {
+  background: #f7fbff;
+  border: 1.5px solid #b6d0e2;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #2c3e50;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  appearance: none; /* Removes default arrow in most browsers */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  height: fit-content;
+}
+
+.search-bar-container .form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+  background: #fff;
+}
+
+.search-bar-container {
+  position: relative;
+}
+
+.search-bar-container .form-select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M4 6l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
 @media (max-width: 1200px) {
   .main-content, .lab-equipment-table-container {
     padding: 16px;
@@ -199,14 +239,7 @@
   .lab-equipment-header, .lab-equipment-table-container {
     padding: 8px;
   }
-  .table-body-scroll {
+  .table-responsive.lab-table-scroll-wrapper {
     max-height: 200px;
   }
-}
-
-.download-btn-container {
-  margin-top: 16px;
-  text-align: right;
-  margin-right: 15px;
-  margin-bottom: 10px;
 }
