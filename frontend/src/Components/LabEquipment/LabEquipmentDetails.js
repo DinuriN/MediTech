@@ -87,7 +87,7 @@ function LabEquipmentDetails() {
             <table className="table table-hover table-striped lab-equipment-table">
               <thead className="table-dark">
                 <tr>
-                  <th>Equipment ID</th>
+                  <th>ID</th>
                   <th>Name</th>
                   <th>Category</th>
                   <th>Brand</th>

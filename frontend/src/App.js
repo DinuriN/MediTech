@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LabEquipmentDetails from './Components/LabEquipmentDetails';
-import UpdateLabEquipment from './Components/UpdateLabEquipment';
-import AddLabEquipment from './Components/AddLabEquipment'; // Import the AddLabEquipment component
-import ChatBot from './Components/ChatBot';
+import LabEquipmentDetails from './Components/LabEquipment/LabEquipmentDetails';
+import UpdateLabEquipment from './Components/LabEquipment/UpdateLabEquipment';
+import AddLabEquipment from './Components/LabEquipment/AddLabEquipment';
+import ChatBot from './Components/LabEquipment/ChatBot';
+
 function App() {
   return (
     <Router>

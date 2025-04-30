@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./AdminSideNavBar.css";
-import AdminProfDashboardIcon from "./AdminProfImages/admin-prof-dashboard-icon.png"
-import AdminStaffIcon from "./AdminProfImages/admin-prof-stafficon.png"
-import AdminProfpatientsIcon from "./AdminProfImages/admin-prof-patient-icon.png"
-import AdminProfAppointmentIcon from "./AdminProfImages/admin-prof-appointment-icon.png"
-import AdminProfInventoryIcon from "./AdminProfImages/admin-prof-laboratory-icon.png"
-import AdminProfDepartmentsIcon from "./AdminProfImages/admin-prof-department-icon.png"
-import LogOutForUsers from "./LoginForUsers/LogoutFUsers";
+import AdminProfDashboardIcon from "../AdminProfImages/admin-prof-dashboard-icon.png";
+import AdminStaffIcon from "../AdminProfImages/admin-prof-stafficon.png";
+import AdminProfpatientsIcon from "../AdminProfImages/admin-prof-patient-icon.png";
+import AdminProfAppointmentIcon from "../AdminProfImages/admin-prof-appointment-icon.png";
+import AdminProfInventoryIcon from "../AdminProfImages/admin-prof-laboratory-icon.png";
+import AdminProfDepartmentsIcon from "../AdminProfImages/admin-prof-department-icon.png";
+
+import LogOutForUsers from "../LoginForUsers/LogoutFUsers";
 
 
 
