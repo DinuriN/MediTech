@@ -113,3 +113,50 @@ body {
     text-decoration: none;
     color: rgb(29, 20, 125);
 }
+
+/* Dropdown style */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu-home-page {
+    display: none; /* initially hidden */
+    position: absolute;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Ensures both the hover on the dropdown or menu keeps it visible */
+.dropdown:hover .dropdown-menu-home-page {
+    display: block;
+    opacity: 1;
+}
+
+/* Allows the menu to stay visible if hovered over */
+.dropdown-menu-home-page:hover {
+    display: block;
+    opacity: 1;
+}
+
+.dropdown-menu-home-page li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-menu-home-page li:hover {
+    background-color: #f7f7f7;
+}
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+  

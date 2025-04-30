@@ -48,7 +48,13 @@ function Header() {
             <div className="col-2-row-2-menu-container">
               <ul className="col-2-row-2-menu-ul">
                 <li className="col-2-row-2-menu-li"><a href="/">Home</a></li>
-                <li className="col-2-row-2-menu-li"><a href="#">Services</a></li>
+                <li className="col-2-row-2-menu-li dropdown">
+                  <a href="#">Services <i className='bx bx-chevron-down'></i></a>
+                  <ul className="dropdown-menu-home-page">
+                    <li><Link to="/doctorsTimetable">Available Doctors' Timetable</Link></li>
+                    <li><Link to="/doctorSuggestForm">Doctor Recommendation Using AI</Link></li>
+                  </ul>
+                </li>
                 <li className="col-2-row-2-menu-li"><a href="#">About Us</a></li>
               </ul>
             </div>
