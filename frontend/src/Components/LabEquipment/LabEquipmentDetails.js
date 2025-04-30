@@ -5,6 +5,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./LabEquipmentDetails.css";
 import AdminSideNavBar from './AdminSideNavBar';
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+
 
 const URL = "http://localhost:5000/labEquipments";
 
@@ -55,6 +58,52 @@ function LabEquipmentDetails() {
     }
   };
 
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+  
+    // Company Details and Report Name
+    doc.setFontSize(16);
+    doc.text("Your Company Name", 14, 15);
+    doc.setFontSize(12);
+    doc.text("123 Main Street, City, Country", 14, 22);
+    doc.text("Phone: +1 234 567 890", 14, 28);
+    doc.setFontSize(14);
+    doc.text("Lab Equipment Details Report", 14, 40);
+  
+    // Prepare table data
+    const tableColumn = [
+      "ID", "Name", "Category", "Brand", "Serial Number", "Location",
+      "Cost", "Last Maintenance", "Next Maintenance", "Status"
+    ];
+    const tableRows = filteredEquipments.map(equipment => [
+      equipment.EquipmentId,
+      equipment.EquipmentName,
+      equipment.EquipmentCategory,
+      equipment.EquipmentBrand,
+      equipment.EquipmentSerialNum,
+      equipment.EquipmentLocation,
+      equipment.EquipmentCost,
+      formatDate(equipment.EquipmentLastMaintenance),
+      formatDate(equipment.EquipmentNextMaintenance),
+      equipment.status
+    ]);
+  
+    // Add table using autoTable()
+    autoTable(doc, {  // <-- Changed here
+      head: [tableColumn],
+      body: tableRows,
+      startY: 48,
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [44, 62, 80] }
+    });
+  
+    // Save PDF
+    doc.save("Lab_Equipment_Details.pdf");
+  };
+  
+
+
   return (
     <div className="admin-prof-container">
       <div className="side-navbar">
@@ -74,6 +123,7 @@ function LabEquipmentDetails() {
               <i className="bi bi-plus-circle"></i> Add New Equipment
             </Link>
           </div>
+          
           <input
             type="text"
             className="search-bar"
@@ -145,8 +195,16 @@ function LabEquipmentDetails() {
                 </tbody>
               </table>
             </div>
+           
+
           </div>
         </div>
+        <div className="download-btn-container">
+        <button className="btn btn-success" onClick={handleDownloadPDF}>
+          <i className="bi bi-download"></i> Download Lab Equipment Details (PDF)
+        </button>
+      </div>
+        
       </div>
     </div>
   );
