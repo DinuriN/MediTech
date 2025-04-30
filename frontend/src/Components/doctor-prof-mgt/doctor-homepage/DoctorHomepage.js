@@ -30,7 +30,7 @@ function DoctorHomepage() {
     fetchHandler().then((data) => {
       const filteredDoctors = data.doctors.filter((doctor) =>
         doctor.doctorName.toLowerCase().includes(e.target.value.toLowerCase()) || 
-        doctor.doctorId.toLowerCase().includes(e.target.value.toLowerCase())  // Search by doctorName and doctorId
+        doctor.doctorId.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setDoctors(filteredDoctors);
       setNoResults(filteredDoctors.length === 0);
@@ -43,29 +43,27 @@ function DoctorHomepage() {
         <AdminSideNavBar/>
       </div>
       <div className='col-2-d'>
-        <div className="doctor-home-container">
-        <h1>Registered Doctors</h1>
-        <input
-          onChange={handleSearch}
-          type="text"
-          name="search"
-          value={searchQuery}
-          placeholder="Search by Name or Doctor ID"
-        />
-        <div className='but-2-m'>
-          <Link to="/doctorsTimetable">
-            <button className='time-table-button'>View Timetable</button>
-          </Link>
-          <Link to="/registerADoctor">
-            <button>Add doctor</button>
-          </Link>
+        <div className="doctor-home-container-unique">
+          <h1>Registered Doctors</h1>
+          <input
+            onChange={handleSearch}
+            type="text"
+            name="search"
+            value={searchQuery}
+            placeholder="Search by Name or Doctor ID"
+          />
+          <div className='but-2-m-unique'>
+            <Link to="/doctorsTimetable">
+              <button className='time-table-button'>View Timetable</button>
+            </Link>
+            <Link to="/registerADoctor">
+              <button>Add doctor</button>
+            </Link>
+          </div>
         </div>
-       
-      </div>
-      
-      <hr />
-      {/* Pass filtered doctors data to DoctorInTable */}
-      <DoctorInTable doctors={doctors} noResults={noResults} />
+        <hr />
+        {/* Pass filtered doctors data to DoctorInTable */}
+        <DoctorInTable doctors={doctors} noResults={noResults} />
       </div>
     </div>
   );

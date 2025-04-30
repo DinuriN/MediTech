@@ -1,134 +1,155 @@
 /* Doctor Form Container */
-.body-form{
-    background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background */
-    display: block;
-    align-items: center;
-    margin-left: 150px;
-    padding-left: 200px;
-    padding-right: 380px;
+.body-form-unique {
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  display: block;
+  align-items: center;
+  margin-left: 150px;
+  padding-left: 200px;
+  padding-right: 380px;
+}
 
-  }
+.form-container-unique {
+  max-width: 5000px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
 
-  .form-container {
-    max-width: 10000px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: block;
-  }
-  
-  /* Header Section */
-  .doctor-form-header {
-    text-align: center;
-    margin-bottom: 30px;
-    background-color: #0077b6;
-  }
-  
-  .doctor-form-header h1 {
-    font-size: 2.5rem;
-    color: #ffffff;
-  }
-  
-  hr {
-    height: 5px;
-    background-color: rgb(0, 0, 0);
-    border: none;
-  }
-  
-  /* Form Title */
-  .form-title {
-    font-size: 2rem;
-    text-align: center;
-    color: #000000;
-    margin-bottom: 20px;
-  }
-  
-  /* Form Labels */
-  .form-group label {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #1898d8;
-  }
-  
-  /* Input Fields */
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #daf9ff;
-    transition: background-color 0.3s ease;
-  }
-  
-  .form-group input:focus {
-    background-color: #90f2ff;
-    border-color: #0072ff;
-    outline: none;
-  }
-  
-  /* Form Group */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Form Row and Columns */
-  .form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-  }
-  
-  .form-column {
-    flex: 1;
-  }
-  
-  /* Buttons */
-  .btn-back {
-    background-color: #009dff;
-    color: rgb(255, 255, 255);
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-back:hover {
-    background-color: #6f9fbd;
-  }
-  
-  .btn-submit {
-    width: 100%;
-    background-color: #009dff;
-    color: white;
-    padding: 12px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-submit:hover {
-    background-color: #6f9fbd;
-  }
-  
-  /* Text muted */
-  .text-muted {
-    color: #777;
-  }
-  
-  /* Form Body Background */
-  .form-body {
-    background-color: #ffffff; /* Solid white background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group span{
-    color: #ff0000;
-  }
+.doc-form-section-unique {
+  background-color: #f0f9ff;         /* Light blue background */
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #00b4d8;    /* Accent border */
+}
+
+.doc-form-subhead-unique {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #003554;
+  margin: 0 0 15px 0;
+  border-left: 5px solid #00b4d8;
+  padding-left: 10px;
+  background: none;
+  /* Optional: add transition for a subtle effect */
+  transition: color 0.2s;
+}
+
+
+/* Header Section */
+.doctor-form-header-unique {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: #0077b6;
+}
+
+.doctor-form-header-unique h1 {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+hr {
+  height: 5px;
+  background-color: rgb(0, 0, 0);
+  border: none;
+}
+
+/* Form Title */
+.form-title-unique {
+  font-size: 2rem;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Form Labels */
+.form-group-unique label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1898d8;
+}
+
+/* Input Fields */
+.form-group-unique input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #daf9ff;
+  transition: background-color 0.3s ease;
+}
+
+.form-group-unique input:focus {
+  background-color: #90f2ff;
+  border-color: #0072ff;
+  outline: none;
+}
+
+/* Form Group */
+.form-group-unique {
+  margin-bottom: 20px;
+}
+
+/* Form Row and Columns */
+.form-row-unique {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form-column-unique {
+  flex: 1;
+}
+
+/* Buttons */
+.btn-back-unique {
+  background-color: #009dff;
+  color: rgb(255, 255, 255);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back-unique:hover {
+  background-color: #6f9fbd;
+}
+
+.btn-submit-unique {
+  width: 100%;
+  background-color: #009dff;
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit-unique:hover {
+  background-color: #6f9fbd;
+}
+
+/* Text muted */
+.text-muted-unique {
+  color: #777;
+}
+
+/* Form Body Background */
+.form-body-unique {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group-unique span {
+  color: #ff0000;
+}

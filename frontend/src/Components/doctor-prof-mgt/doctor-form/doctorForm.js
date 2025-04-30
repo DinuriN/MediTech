@@ -203,214 +203,206 @@ const handleChange = (e) => {
       <div className='col-1'>
         <AdminSideNavBar/>
       </div>
-      <div className='body-form col-2-d'>
-      <div className='doctor-form-header'>
-        <hr />
-        <h1>Register a New Doctor</h1>
-        <hr />
-      </div>
-      <div className='form-container'>
-        <Link to='/doctorDetails'>
-          <button className='btn-back'>Back</button>
-        </Link>
-        <br /><br /><br />
-        <form onSubmit={handleSubmit}>
-          {/* Manually create the input fields */}
-
-          <div className='section'>
-            <label className='sub-head'>Basic Information</label>
-            <div className='form-group'>
-              <label>Doctor ID</label>
-              <input
-                type='text'
-                name='doctorId'
-                value={inputs.doctorId}
-                onChange={handleChange}
-              />
-              {errors.doctorId && <span className='error-text'>{errors.doctorId}</span>}
-            </div>
-            <div className='form-group'>
-              <label>Doctor Name</label>
-              <input
-                type='text'
-                name='doctorName'
-                value={inputs.doctorName}
-                onChange={handleChange}
-              />
-              {errors.doctorName && <span className='error-text'>{errors.doctorName}</span>}
-            </div>
-
-            <div className='form-group'>
-              <label>Doctor Address</label>
-              <input
-                type='text'
-                name='doctorAddress'
-                value={inputs.doctorAddress}
-                onChange={handleChange}
-              />
-              {errors.doctorAddress && <span className='error-text'>{errors.doctorAddress}</span>}
-            </div>
-            
-            <div className='form-group'>
-              <label>Doctor Profile Picture (Optional)</label>
-              
-
-              <input
-                type='file'
-                accept='image/*'
-                onChange={handleFileChange}
-              />
-              {profilePicture && (
-                <img
-                  src={URL.createObjectURL(profilePicture)}
-                  alt='Preview'
-                  width={100}
+      <div className='body-form-unique col-2-d'>
+        <div className='doctor-form-header-unique'>
+          <hr />
+          <h1>Register a New Doctor</h1>
+          <hr />
+        </div>
+        <div className='form-container-unique'>
+          <Link to='/doctorDetails'>
+            <button className='btn-back-unique'>Back</button>
+          </Link>
+          <br /><br /><br />
+          <form onSubmit={handleSubmit}>
+            {/* Manually create the input fields */}
+            <div className='doc-form-section-unique'>
+              <label className='doc-form-subhead-unique'>Basic Information</label>
+              <div className='form-group-unique'>
+                <label>Doctor ID</label>
+                <input
+                  type='text'
+                  name='doctorId'
+                  value={inputs.doctorId}
+                  onChange={handleChange}
                 />
-              )}
+                {errors.doctorId && <span className='error-text'>{errors.doctorId}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Doctor Name</label>
+                <input
+                  type='text'
+                  name='doctorName'
+                  value={inputs.doctorName}
+                  onChange={handleChange}
+                />
+                {errors.doctorName && <span className='error-text'>{errors.doctorName}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Doctor Address</label>
+                <input
+                  type='text'
+                  name='doctorAddress'
+                  value={inputs.doctorAddress}
+                  onChange={handleChange}
+                />
+                {errors.doctorAddress && <span className='error-text'>{errors.doctorAddress}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Doctor Profile Picture (Optional)</label>
+                <input
+                  type='file'
+                  accept='image/*'
+                  onChange={handleFileChange}
+                />
+                {profilePicture && (
+                  <img
+                    src={URL.createObjectURL(profilePicture)}
+                    alt='Preview'
+                    width={100}
+                  />
+                )}
+              </div>
+              <div className='form-group-unique'>
+                <label>Phone Number</label>
+                <input
+                  type='text'
+                  name='doctorPhoneNumber'
+                  value={inputs.doctorPhoneNumber}
+                  onChange={handleChange}
+                />
+                {errors.doctorPhoneNumber && <span className='error-text'>{errors.doctorPhoneNumber}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Email</label>
+                <input
+                  type='text'
+                  name='doctorEmail'
+                  value={inputs.doctorEmail}
+                  onChange={handleChange}
+                />
+                {errors.doctorEmail && <span className='error-text'>{errors.doctorEmail}</span>}
+              </div>
             </div>
-            <div className='form-group'>
-              <label>Phone Number</label>
-              <input
-                type='text'
-                name='doctorPhoneNumber'
-                value={inputs.doctorPhoneNumber}
-                onChange={handleChange}
-              />
-              {errors.doctorPhoneNumber && <span className='error-text'>{errors.doctorPhoneNumber}</span>}
+            <div className='doc-form-section-unique'>
+              <label className='doc-form-subhead-unique'>Professional Information</label>
+              <div className='form-group-unique'>
+                <label>Doctor Specialization</label>
+                <input
+                  type='text'
+                  name='doctorSpecialization'
+                  value={inputs.doctorSpecialization}
+                  onChange={handleChange}
+                />
+                {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Qualifications</label>
+                <input
+                  type='text'
+                  name='doctorQualifications'
+                  value={inputs.doctorQualifications}
+                  onChange={handleChange}
+                />
+                {errors.doctorQualifications && <span className='error-text'>{errors.doctorQualifications}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Experience</label>
+                <input
+                  type='text'
+                  name='doctorExperience'
+                  value={inputs.doctorExperience}
+                  onChange={handleChange}
+                />
+                {errors.doctorExperience && <span className='error-text'>{errors.doctorExperience}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Hospital Affiliation</label>
+                <input
+                  type='text'
+                  name='doctorHospitalAffiliation'
+                  value={inputs.doctorHospitalAffiliation}
+                  onChange={handleChange}
+                />
+                {errors.doctorHospitalAffiliation && <span className='error-text'>{errors.doctorHospitalAffiliation}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>License Number</label>
+                <input
+                  type='text'
+                  name='doctorLicenseNumber'
+                  value={inputs.doctorLicenseNumber}
+                  onChange={handleChange}
+                />
+                {errors.doctorLicenseNumber && <span className='error-text'>{errors.doctorLicenseNumber}</span>}
+              </div>
             </div>
-            <div className='form-group'>
-              <label>Email</label>
-              <input
-                type='text'
-                name='doctorEmail'
-                value={inputs.doctorEmail}
-                onChange={handleChange}
-              />
-              {errors.doctorEmail && <span className='error-text'>{errors.doctorEmail}</span>}
+            <div className='doc-form-section-unique'>
+              <label className='doc-form-subhead-unique'>Communication & Languages</label>
+              <div className='form-group-unique'>
+                <label>Languages Spoken (Seperate from a comma)</label>
+                <input
+                  type='text'
+                  name='doctorLanguagesSpoken'
+                  value={inputs.doctorLanguagesSpoken}
+                  onChange={handleChange}
+                />
+                {errors.doctorLanguagesSpoken && <span className='error-text'>{errors.doctorLanguagesSpoken}</span>}
+              </div>
             </div>
-          </div>
-
-          <div className='section'>
-            <label className='sub-head'>Professional Information</label>
-            <div className='form-group'>
-              <label>Doctor Specialization</label>
-              <input
-                type='text'
-                name='doctorSpecialization'
-                value={inputs.doctorSpecialization}
-                onChange={handleChange}
-              />
-              {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
+            <div className='doc-form-section-unique'>
+              <label className='doc-form-subhead-unique'>Availability</label>
+              <div className='form-group-unique'>
+                <label>Available Days (Seperate from a comma)</label>
+                <input
+                  type='text'
+                  name='doctorAvailableDays'
+                  value={inputs.doctorAvailableDays}
+                  onChange={handleChange}
+                />
+                {errors.doctorAvailableDays && <span className='error-text'>{errors.doctorAvailableDays}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Available Time Start</label>
+                <input
+                  type='time'
+                  name='doctorAvailableTimeStart'
+                  value={inputs.doctorAvailableTimeStart}
+                  onChange={handleChange}
+                />
+                {errors.doctorAvailableTimeStart && <span className='error-text'>{errors.doctorAvailableTimeStart}</span>}
+              </div>
+              <div className='form-group-unique'>
+                <label>Available Time End</label>
+                <input
+                  type='time'
+                  name='doctorAvailableTimeEnd'
+                  value={inputs.doctorAvailableTimeEnd}
+                  onChange={handleChange}
+                />
+                {errors.doctorAvailableTimeEnd && <span className='error-text'>{errors.doctorAvailableTimeEnd}</span>}
+              </div>
             </div>
-            <div className='form-group'>
-              <label>Qualifications</label>
-              <input
-                type='text'
-                name='doctorQualifications'
-                value={inputs.doctorQualifications}
-                onChange={handleChange}
-              />
-              {errors.doctorQualifications && <span className='error-text'>{errors.doctorQualifications}</span>}
+            <div className='doc-form-section-unique'>
+              <label className='doc-form-subhead-unique'>Pricing</label>
+              <div className='form-group-unique'>
+                <label>Consultation Fees</label>
+                <input
+                  type='text'
+                  name='doctorConsultationFees'
+                  value={inputs.doctorConsultationFees}
+                  onChange={handleChange}
+                />
+                {errors.doctorConsultationFees && <span className='error-text'>{errors.doctorConsultationFees}</span>}
+              </div>
             </div>
-            <div className='form-group'>
-              <label>Experience</label>
-              <input
-                type='text'
-                name='doctorExperience'
-                value={inputs.doctorExperience}
-                onChange={handleChange}
-              />
-              {errors.doctorExperience && <span className='error-text'>{errors.doctorExperience}</span>}
-            </div>
-            <div className='form-group'>
-              <label>Hospital Affiliation</label>
-              <input
-                type='text'
-                name='doctorHospitalAffiliation'
-                value={inputs.doctorHospitalAffiliation}
-                onChange={handleChange}
-              />
-              {errors.doctorHospitalAffiliation && <span className='error-text'>{errors.doctorHospitalAffiliation}</span>}
-            </div>
-            <div className='form-group'>
-              <label>License Number</label>
-              <input
-                type='text'
-                name='doctorLicenseNumber'
-                value={inputs.doctorLicenseNumber}
-                onChange={handleChange}
-              />
-              {errors.doctorLicenseNumber && <span className='error-text'>{errors.doctorLicenseNumber}</span>}
-            </div>
-          </div>
-
-          <div className='section'>
-            <label className='sub-head'>Communication & Languages</label><div className='form-group'>
-            <label>Languages Spoken (Seperate from a comma)</label>
-            <input
-              type='text'
-              name='doctorLanguagesSpoken'
-              value={inputs.doctorLanguagesSpoken}
-              onChange={handleChange}
-            />
-              {errors.doctorLanguagesSpoken && <span className='error-text'>{errors.doctorLanguagesSpoken}</span>}
-            </div>
-          </div>
-
-          <div className='section'>
-            <label className='sub-head'>Availability</label><div className='form-group'>
-            <label>Available Days (Seperate from a comma)</label>
-            <input
-              type='text'
-              name='doctorAvailableDays'
-              value={inputs.doctorAvailableDays}
-              onChange={handleChange}
-              />
-              {errors.doctorAvailableDays && <span className='error-text'>{errors.doctorAvailableDays}</span>}
-            </div>
-            <div className='form-group'>
-              <label>Available Time Start</label>
-              <input
-                type='time'
-                name='doctorAvailableTimeStart'
-                value={inputs.doctorAvailableTimeStart}
-                onChange={handleChange}
-              />
-              {errors.doctorAvailableTimeStart && <span className='error-text'>{errors.doctorAvailableTimeStart}</span>}
-            </div>
-            <div className='form-group'>
-              <label>Available Time End</label>
-              <input
-                type='time'
-                name='doctorAvailableTimeEnd'
-                value={inputs.doctorAvailableTimeEnd}
-                onChange={handleChange}
-              />
-              {errors.doctorAvailableTimeEnd && <span className='error-text'>{errors.doctorAvailableTimeEnd}</span>}
-            </div>
-          </div>
-
-          <div className='section'>
-            <label className='sub-head'>Pricing</label>
-            <div className='form-group'>
-            <label>Consultation Fees</label>
-            <input
-              type='text'
-              name='doctorConsultationFees'
-              value={inputs.doctorConsultationFees}
-              onChange={handleChange}
-              />
-              {errors.doctorConsultationFees && <span className='error-text'>{errors.doctorConsultationFees}</span>}
-            </div>
-          </div>
-
-          <button type='submit' className='btn-submit-1'>Add Doctor</button>
-        </form>
+            <button type='submit' className='btn-submit-unique'>Add Doctor</button>
+          </form>
+        </div>
       </div>
-    </div>      
     </div>
-    
   );
+  
 }
 
 export default DoctorForm;

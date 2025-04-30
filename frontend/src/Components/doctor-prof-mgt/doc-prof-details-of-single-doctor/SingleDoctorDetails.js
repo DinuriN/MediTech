@@ -58,24 +58,24 @@ function Doctor({ doctor, index }) {
           
 
   return (
-    <tr className="doctorRow">
-      <td className='tableData'>{index + 1}</td>
-      <td className='tableData'>{doctorId}</td>
-      <td className='tableData'>{doctorName}</td>
-      <td className='tableData'>{doctorSpecialization}</td>
-      <td className='tableData'>{doctorPhoneNumber}</td>
-      <td className='tableData'>{formattedDays}</td>
-      <td className='tableData'>{formattedStartTime}</td>
-      <td className='tableData'>{formattedEndTime}</td>
-      <td className='tableData'>LKR {doctorConsultationFees} /=</td>
-      <td className='actionButtons'>
+    <tr className="doctorRowUnique">
+      <td className='tableDataUnique'>{index + 1}</td>
+      <td className='tableDataUnique'>{doctorId}</td>
+      <td className='tableDataUnique'>{doctorName}</td>
+      <td className='tableDataUnique'>{doctorSpecialization}</td>
+      <td className='tableDataUnique'>{doctorPhoneNumber}</td>
+      <td className='tableDataUnique'>{formattedDays}</td>
+      <td className='tableDataUnique'>{formattedStartTime}</td>
+      <td className='tableDataUnique'>{formattedEndTime}</td>
+      <td className='tableDataUnique'>LKR {doctorConsultationFees} /=</td>
+      <td className='actionButtonsUnique'>
         <Link to={`/doctorProfile/${_id}`}>
-        <button className="btno-view-more">View More</button>
+        <button className="btno-view-moreUnique">View More</button>
         </Link>
         <Link to={`/doctordetails/${_id}`}>
-        <button className="btno-update">Update</button>
+        <button className="btno-updateUnique">Update</button>
         </Link>
-        <button onClick={deleteHandler} className="btno-delete">Delete</button>
+        <button onClick={deleteHandler} className="btno-deleteUnique">Delete</button>
       </td>
     </tr>
   )

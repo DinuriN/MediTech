@@ -233,141 +233,117 @@ function UpdateDoctor() {
         <AdminSideNavBar/>
       </div>
       <div className='col-2-d'>
-    <div className="update-body">
-      <br /><hr />
-      <h1>Update Doctor Details</h1>
-      <hr />
-      <div className="update-doctor-container">
-        <Link to="/doctorDetails">
-          <button className="back-btn">Back</button>
-        </Link>
-        <br /><br /><br />
-        <form onSubmit={handleSubmit} className="doctor-form">
-  
-          {/* Basic Information Section */}
-          <div className="section">
-            <lable className="sub-head">Basic Information</lable>
-  
-            <div className="form-group">
-              <label htmlFor="doctorId" className="form-label">Doctor ID</label>
-              <input type="text" className="form-input" id="doctorId" name="doctorId" value={inputs.doctorId || ''} onChange={handleChange} required />
-              {errors.doctorId && <span className='error-text'>{errors.doctorId}</span>}
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="doctorId" className="form-label">Doctor Address</label>
-              <input type="text" className="form-input" id="doctorAddress" name="doctorAddress" value={inputs.doctorAddress || ''} onChange={handleChange} required />
-              {errors.doctorId && <span className='error-text'>{errors.doctorAddress}</span>}
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorName" className="form-label">Name</label>
-              <input type="text" className="form-input" id="doctorName" name="doctorName" value={inputs.doctorName || ''} onChange={handleChange} required />
-            </div>
-
-            <div className="form-group">
-              <label>Doctor Profile Picture</label>
-              {inputs.doctorProfilePicture && (
-                <div>
-                  <img src={`http://localhost:5000${inputs.doctorProfilePicture}`} alt="Current Profile" width="100" />
+        <div className="update-body-upd">
+          <br /><hr />
+          <h1>Update Doctor Details</h1>
+          <hr />
+          <div className="update-doctor-container-upd">
+            <Link to="/doctorDetails">
+              <button className="back-btn-upd">Back</button>
+            </Link>
+            <br /><br /><br />
+            <form onSubmit={handleSubmit} className="doctor-form-upd">
+              {/* Basic Information Section */}
+              <div className="section-upd">
+                <label className="sub-head-upd">Basic Information</label>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorId" className="form-label-upd">Doctor ID</label>
+                  <input type="text" className="form-input-upd" id="doctorId" name="doctorId" value={inputs.doctorId || ''} onChange={handleChange} required />
+                  {errors.doctorId && <span className='error-text-upd'>{errors.doctorId}</span>}
                 </div>
-              )}
-              <input type="file" accept="image/*" onChange={handleFileChange} />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="doctorPhoneNumber" className="form-label">Phone Number</label>
-              <input type="text" className="form-input" id="doctorPhoneNumber" name="doctorPhoneNumber" value={inputs.doctorPhoneNumber || ''} onChange={handleChange} required />
-              {errors.doctorPhoneNumber && <span className='error-text'>{errors.doctorPhoneNumber}</span>}
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorEmail" className="form-label">Email</label>
-              <input type="email" className="form-input" id="doctorEmail" name="doctorEmail" value={inputs.doctorEmail || ''} onChange={handleChange} required />
-              {errors.doctorEmail && <span className='error-text'>{errors.doctorEmail}</span>}
-            </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorId" className="form-label-upd">Doctor Address</label>
+                  <input type="text" className="form-input-upd" id="doctorAddress" name="doctorAddress" value={inputs.doctorAddress || ''} onChange={handleChange} required />
+                  {errors.doctorAddress && <span className='error-text-upd'>{errors.doctorAddress}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorName" className="form-label-upd">Name</label>
+                  <input type="text" className="form-input-upd" id="doctorName" name="doctorName" value={inputs.doctorName || ''} onChange={handleChange} required />
+                </div>
+                <div className="form-group-upd">
+                  <label>Doctor Profile Picture</label>
+                  {inputs.doctorProfilePicture && (
+                    <div>
+                      <img src={`http://localhost:5000${inputs.doctorProfilePicture}`} alt="Current Profile" width="100" />
+                    </div>
+                  )}
+                  <input type="file" accept="image/*" onChange={handleFileChange} />
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorPhoneNumber" className="form-label-upd">Phone Number</label>
+                  <input type="text" className="form-input-upd" id="doctorPhoneNumber" name="doctorPhoneNumber" value={inputs.doctorPhoneNumber || ''} onChange={handleChange} required />
+                  {errors.doctorPhoneNumber && <span className='error-text-upd'>{errors.doctorPhoneNumber}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorEmail" className="form-label-upd">Email</label>
+                  <input type="email" className="form-input-upd" id="doctorEmail" name="doctorEmail" value={inputs.doctorEmail || ''} onChange={handleChange} required />
+                  {errors.doctorEmail && <span className='error-text-upd'>{errors.doctorEmail}</span>}
+                </div>
+              </div>
+              {/* Professional Information Section */}
+              <div className="section-upd">
+                <label className="sub-head-upd">Professional Information</label>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorSpecialization" className="form-label-upd">Specialization</label>
+                  <input type="text" className="form-input-upd" id="doctorSpecialization" name="doctorSpecialization" value={inputs.doctorSpecialization || ''} onChange={handleChange} required />
+                  {errors.doctorSpecialization && <span className='error-text-upd'>{errors.doctorSpecialization}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorQualifications" className="form-label-upd">Qualifications</label>
+                  <input type="text" className="form-input-upd" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />
+                  {errors.doctorQualifications && <span className='error-text-upd'>{errors.doctorQualifications}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorExperience" className="form-label-upd">Experience</label>
+                  <input type="text" className="form-input-upd" id="doctorExperience" name="doctorExperience" value={inputs.doctorExperience || ''} onChange={handleChange} />
+                  {errors.doctorExperience && <span className='error-text-upd'>{errors.doctorExperience}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorHospitalAffiliation" className="form-label-upd">Hospital Affiliation</label>
+                  <input type="text" className="form-input-upd" id="doctorHospitalAffiliation" name="doctorHospitalAffiliation" value={inputs.doctorHospitalAffiliation || ''} onChange={handleChange} />
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorLicenseNumber" className="form-label-upd">License Number</label>
+                  <input type="text" className="form-input-upd" id="doctorLicenseNumber" name="doctorLicenseNumber" value={inputs.doctorLicenseNumber || ''} onChange={handleChange} />
+                </div>
+              </div>
+              <div className="section-upd">
+                <label className="sub-head-upd">Communication & Languages</label>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorLanguagesSpoken" className="form-label-upd">Languages Spoken</label>
+                  <input type="text" className="form-input-upd" id="doctorLanguagesSpoken" name="doctorLanguagesSpoken" value={inputs.doctorLanguagesSpoken || ''} onChange={handleChange} />
+                </div>
+              </div>
+              {/* Availability Section */}
+              <div className="section-upd">
+                <label className="sub-head-upd">Availability</label>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorAvailableDays" className="form-label-upd">Available Days</label>
+                  <input type="text" className="form-input-upd" id="doctorAvailableDays" name="doctorAvailableDays" value={inputs.doctorAvailableDays?.join(", ") || ''} onChange={handleChange} />
+                  <small>Enter days separated by commas (e.g., Monday, Tuesday, Wednesday)</small>
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorAvailableTimeStart" className="form-label-upd">Available Time Start</label>
+                  <input type="time" className="form-input-upd" id="doctorAvailableTimeStart" name="doctorAvailableTimeStart" value={inputs.doctorAvailableTimeStart || ''} onChange={handleChange} />
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorAvailableTimeEnd" className="form-label-upd">Available Time End</label>
+                  <input type="time" className="form-input-upd" id="doctorAvailableTimeEnd" name="doctorAvailableTimeEnd" value={inputs.doctorAvailableTimeEnd || ''} onChange={handleChange} />
+                </div>
+              </div>
+              {/* Pricing Section */}
+              <div className="section-upd">
+                <label className="sub-head-upd">Pricing</label>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorConsultationFees" className="form-label-upd">Consultation Fees</label>
+                  <input type="text" className="form-input-upd" id="doctorConsultationFees" name="doctorConsultationFees" value={inputs.doctorConsultationFees || ''} onChange={handleChange} />
+                  {errors.doctorConsultationFees && <span className='error-text-upd'>{errors.doctorConsultationFees}</span>}
+                </div>
+              </div>
+              <button type="submit" className="btn-submit-1-upd">Update Doctor</button>
+            </form>
           </div>
-  
-        
-  
-          {/* Professional Information Section */}
-          <div className="section">
-            <lable className="sub-head">Professional Information</lable>
-
-            <div className="form-group">
-              <label htmlFor="doctorSpecialization" className="form-label">Specialization</label>
-              <input type="text" className="form-input" id="doctorSpecialization" name="doctorSpecialization" value={inputs.doctorSpecialization || ''} onChange={handleChange} required />
-              {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorQualifications" className="form-label">Qualifications</label>
-              <input type="text" className="form-input" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />
-              {errors.doctorQualifications && <span className='error-text'>{errors.doctorQualifications}</span>}
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorExperience" className="form-label">Experience</label>
-              <input type="text" className="form-input" id="doctorExperience" name="doctorExperience" value={inputs.doctorExperience || ''} onChange={handleChange} />
-              {errors.doctorExperience && <span className='error-text'>{errors.doctorExperience}</span>}
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorHospitalAffiliation" className="form-label">Hospital Affiliation</label>
-              <input type="text" className="form-input" id="doctorHospitalAffiliation" name="doctorHospitalAffiliation" value={inputs.doctorHospitalAffiliation || ''} onChange={handleChange} />
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorLicenseNumber" className="form-label">License Number</label>
-              <input type="text" className="form-input" id="doctorLicenseNumber" name="doctorLicenseNumber" value={inputs.doctorLicenseNumber || ''} onChange={handleChange} />
-            </div>
-          </div>
-
-          
-          <div className="section">
-            <lable className="sub-head">Communication & Languages</lable>
-            <div className="form-group">
-              <label htmlFor="doctorLanguagesSpoken" className="form-label">Languages Spoken</label>
-              <input type="text" className="form-input" id="doctorLanguagesSpoken" name="doctorLanguagesSpoken" value={inputs.doctorLanguagesSpoken || ''} onChange={handleChange} />
-            </div>            
-          </div>
-  
-          {/* Availability Section */}
-          <div className="section">
-            <lable className="sub-head">Availability</lable>
-  
-            <div className="form-group">
-              <label htmlFor="doctorAvailableDays" className="form-label">Available Days</label>
-              <input type="text" className="form-input" id="doctorAvailableDays" name="doctorAvailableDays" value={inputs.doctorAvailableDays?.join(", ") || ''} onChange={handleChange} />
-              <small>Enter days separated by commas (e.g., Monday, Tuesday, Wednesday)</small>
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorAvailableTimeStart" className="form-label">Available Time Start</label>
-              <input type="time" className="form-input" id="doctorAvailableTimeStart" name="doctorAvailableTimeStart" value={inputs.doctorAvailableTimeStart || ''} onChange={handleChange} />
-            </div>
-  
-            <div className="form-group">
-              <label htmlFor="doctorAvailableTimeEnd" className="form-label">Available Time End</label>
-              <input type="time" className="form-input" id="doctorAvailableTimeEnd" name="doctorAvailableTimeEnd" value={inputs.doctorAvailableTimeEnd || ''} onChange={handleChange} />
-            </div>
-          </div>
-  
-          {/* Pricing Section */}
-          <div className="section">
-            <lable className="sub-head">Pricing</lable>
-  
-            <div className="form-group">
-              <label htmlFor="doctorConsultationFees" className="form-label">Consultation Fees</label>
-              <input type="text" className="form-input" id="doctorConsultationFees" name="doctorConsultationFees" value={inputs.doctorConsultationFees || ''} onChange={handleChange} />
-              {errors.doctorConsultationFees && <span className='error-text'>{errors.doctorConsultationFees}</span>}
-            </div>
-          </div>
-  
-          <button type="submit" className="btn-submit-1">Update Doctor</button>
-        </form>
-      </div>
-    </div>
+        </div>
       </div>
     </div>
   );

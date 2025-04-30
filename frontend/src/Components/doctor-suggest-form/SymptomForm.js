@@ -147,91 +147,91 @@ const DoctorRecommendation = () => {
 };
 
   return (
-    <div className="recommendation-container">
-      <h2>Symptom-Based Doctor Finder</h2>
-      <div className="symptom-form-card">
-  <SymptomForm onSubmit={handleSubmit} />
+    <div className="doctor-reco-container">
+  <h2>Symptom-Based Doctor Finder</h2>
+  <div className="doctor-reco-form-card">
+    <SymptomForm onSubmit={handleSubmit} />
+  </div>
+
+  {isLoading && <div className="doctor-reco-loading-message">Finding suitable specialty...</div>}
+  {error && <div className="doctor-reco-error-message">Error: {error}</div>}
+
+  <Modal
+    title="Doctor Recommendation"
+    open={isModalVisible}
+    onCancel={() => setIsModalVisible(false)}
+    footer={null}
+    width={800}
+  >
+    {specialtyResult?.predicted_specialty && (
+      <div className="doctor-reco-specialty-result">
+        <h3>Recommended Specialty:{" "}
+          <span style={{ color: "#1890ff" }}>
+            {specialtyResult.predicted_specialty}
+          </span>
+        </h3>
+        <div>
+          <strong>Confidence:</strong> {(specialtyResult.confidence * 100).toFixed(1)}%
+        </div>
+        <div style={{ marginTop: 8 }}>
+          <strong>All Probabilities:</strong>
+          <ul>
+            {Object.entries(specialtyResult.probabilities || {}).map(([spec, prob]) => (
+              <li key={spec}>
+                {spec}: {(prob * 100).toFixed(1)}%
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    {doctors.length > 0 ? (
+      <div className="doctor-reco-doctor-results" style={{ marginTop: '1.5rem' }}>
+        <h3>Available Doctors:</h3>
+        <table border={1} style={{ width: '100%', marginTop: '1rem' }}>
+          <thead>
+            <tr>
+              <th>Profile</th>
+              <th>Name</th>
+              <th>Specialization</th>
+              <th>Experience</th>
+              <th>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {doctors.map((doc, idx) => (
+              <tr key={doc._id || idx}>
+                <td>
+                  {doc.doctorProfilePicture ? (
+                    <img
+                      className="doctor-reco-doctor-profile-pic"
+                      src={`http://localhost:5000${doc.doctorProfilePicture}`}
+                      alt={doc.doctorName}
+                    />
+                  ) : (
+                    <img
+                      className="doctor-reco-doctor-profile-pic"
+                      src={`http://localhost:5000/uploads/doc-prof-profile-pictures/default-profile.jpg`}
+                      alt={doc.doctorName}
+                    />
+                  )}
+                </td>
+                <td>{doc.doctorName}</td>
+                <td>{doc.doctorSpecialization || doc.specialty}</td>
+                <td>{doc.doctorExperience} years</td>
+                <td>{doc.doctorPhoneNumber}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p style={{ marginTop: '1rem' }}>No doctors found for this specialty.</p>
+    )}
+  </Modal>
 </div>
 
-      {isLoading && <div className="loading-message">Finding suitable specialty...</div>}
-      {error && <div className="error-message">Error: {error}</div>}
-
-      <Modal
-  title="Doctor Recommendation"
-  open={isModalVisible}
-  onCancel={() => setIsModalVisible(false)}
-  footer={null}
-  width={800}
->
-  {specialtyResult?.predicted_specialty && (
-    <div className="specialty-result">
-      <h3>Recommended Specialty:{" "}
-        <span style={{ color: "#1890ff" }}>
-          {specialtyResult.predicted_specialty}
-        </span>
-      </h3>
-      <div>
-        <strong>Confidence:</strong> {(specialtyResult.confidence * 100).toFixed(1)}%
-      </div>
-      <div style={{ marginTop: 8 }}>
-        <strong>All Probabilities:</strong>
-        <ul>
-          {Object.entries(specialtyResult.probabilities || {}).map(([spec, prob]) => (
-            <li key={spec}>
-              {spec}: {(prob * 100).toFixed(1)}%
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )}
-
-  {doctors.length > 0 ? (
-    <div className="doctor-results" style={{ marginTop: '1.5rem' }}>
-      <h3>Available Doctors:</h3>
-      <table border={1} style={{ width: '100%', marginTop: '1rem' }}>
-        <thead>
-          <tr>
-            <th>Profile</th>
-            <th>Name</th>
-            <th>Specialization</th>
-            <th>Experience</th>
-            <th>Contact</th>
-          </tr>
-        </thead>
-        <tbody>
-          {doctors.map((doc, idx) => (
-            <tr key={doc._id || idx}>
-              <td>
-                {doc.doctorProfilePicture ? (
-                  <img
-                    className="doctor-profile-pic"
-                    src={`http://localhost:5000${doc.doctorProfilePicture}`}
-                    alt={doc.doctorName}
-                  />
-                ) : (
-                    <img
-                    className="doctor-profile-pic"
-                    src={`"http://localhost:5000/uploads/doc-prof-profile-pictures/default-profile.jpg"`}
-                    alt={doc.doctorName}
-                  />
-                )}
-              </td>
-              <td>{doc.doctorName}</td>
-              <td>{doc.doctorSpecialization || doc.specialty}</td>
-              <td>{doc.doctorExperience} years</td>
-              <td>{doc.doctorPhoneNumber}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ) : (
-    <p style={{ marginTop: '1rem' }}>No doctors found for this specialty.</p>
-  )}
-</Modal>
-
-    </div>
   );
 };
 

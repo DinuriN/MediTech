@@ -1,114 +1,102 @@
-/* Blue Gradient Background for the Page */
 body {
-    background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .topic {
-    text-align: center; /* Centers the text inside */
-    margin: 20px auto; /* Centers the div horizontally */
-    padding: 10px;
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.topic h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
+.doctor-topic {
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-
-  /* Styling for the timetable container */
-  .timetable-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-  }
-  
-  /* Filter section */
-  .filters {
-    width: 350px;
-    margin-right: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  
-  /* Table styling */
-  .doctor-timetable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  /* Header styling */
-  .doctor-timetable th,
-  .doctor-timetable td {
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    font-size: 1em;
-  }
-  
-  .doctor-timetable th {
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  
-  .doctor-timetable td {
-    background-color: #fafafa;
-  }
-  
-  /* Row-wise alternating colors */
-  .doctor-timetable tr:nth-child(even) {
-    background-color: #e0f7fa; /* Light blue for even rows */
-  }
-  
-  .doctor-timetable tr:nth-child(odd) {
-    background-color: #e3f2fd; /* Lighter blue for odd rows */
-  }
-  
-  .doctor-timetable tr:hover {
-    background-color: #b3e5fc; /* Light blue hover effect */
-  }
-  
-  /* Available slot styling */
-  .available {
-    background-color: #d1f0d1; /* Light green for available */
-    color: #006400; /* Dark green text */
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  /* Not available slot styling */
-  .not-available {
-    background-color: #f8d7da; /* Light red for unavailable */
-    color: #721c24; /* Dark red text */
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .filters {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Adds spacing between the elements */
-    margin-bottom: 20px;
-    justify-content: center; /* Centers the filters horizontally */
+.doctor-topic h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
 }
 
-.filters input,
-.filters select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+.doctor-timetable-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.doctor-filters {
+  width: 350px;
+  margin-right: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.doctor-filters input,
+.doctor-filters select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.doctor-timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.doctor-timetable-table th,
+.doctor-timetable-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.doctor-timetable-table th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.doctor-timetable-table td {
+  background-color: #fafafa;
+}
+
+.doctor-timetable-table tr:nth-child(even) {
+  background-color: #e0f7fa;
+}
+
+.doctor-timetable-table tr:nth-child(odd) {
+  background-color: #e3f2fd;
+}
+
+.doctor-timetable-table tr:hover {
+  background-color: #b3e5fc;
+}
+
+.doctor-available-slot {
+  background-color: #d1f0d1;
+  color: #006400;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.doctor-not-available-slot {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
 }

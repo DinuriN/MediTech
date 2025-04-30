@@ -1,8 +1,6 @@
-/* doctorHomepage.css */
-
 /* Doctor Homepage Container */
-.doctor-home-container {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background */
+.doctor-home-container-unique {
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   display: flex;
   align-items: center;
   gap: 20px;
@@ -14,26 +12,26 @@
   margin: 20px 0;
 }
 
-.but-2-m {
+.but-2-m-unique {
   display: flex;
-  gap: 10px; /* Adds 10px space between buttons */
+  gap: 10px;
 }
 
-.doctor-home-container h1 {
+.doctor-home-container-unique h1 {
   color: white;
   margin: 0;
 }
 
 /* Input field styling */
-.doctor-home-container input {
+.doctor-home-container-unique input {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  width: 280px; /* Set width to prevent too much stretching */
+  width: 280px;
 }
 
 /* Button styling */
-.doctor-home-container button {
+.doctor-home-container-unique button {
   padding: 10px 20px;
   background-color: #0077b6;
   color: white;
@@ -43,36 +41,36 @@
   transition: background-color 0.3s ease;
 }
 
-.doctor-home-container button:hover {
+.doctor-home-container-unique button:hover {
   background-color: #00b4d8;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .doctor-home-container {
+  .doctor-home-container-unique {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .doctor-home-container h1,
-  .doctor-home-container input,
-  .doctor-home-container button {
+  .doctor-home-container-unique h1,
+  .doctor-home-container-unique input,
+  .doctor-home-container-unique button {
     flex: none;
     width: 100%;
     margin-bottom: 10px;
   }
 
-  .doctor-home-container input {
-    max-width: 300px; /* Ensure input doesn't get too wide on mobile */
+  .doctor-home-container-unique input {
+    max-width: 300px;
   }
 
-  .doctor-home-container button {
-    max-width: 150px; /* Button size adjustment */
+  .doctor-home-container-unique button {
+    max-width: 150px;
   }
 }
 
 /* Search Suggestions Styling */
-.search-suggestions {
+.search-suggestions-unique {
   position: absolute;
   background-color: white;
   border: 1px solid #ddd;
@@ -82,11 +80,11 @@
   z-index: 1000;
 }
 
-.suggestion-item {
+.suggestion-item-unique {
   padding: 8px;
   cursor: pointer;
 }
 
-.suggestion-item:hover {
+.suggestion-item-unique:hover {
   background-color: #f0f0f0;
 }

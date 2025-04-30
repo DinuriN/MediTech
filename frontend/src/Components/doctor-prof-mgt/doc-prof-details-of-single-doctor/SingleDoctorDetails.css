@@ -1,9 +1,9 @@
 /* General table row styles */
-.doctorRow {
+.doctorRowUnique {
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.tableData {
+.tableDataUnique {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -24,11 +24,11 @@
 }
 
 /* Button styles */
-.actionButtons {
+.actionButtonsUnique {
   text-align: center;
 }
 
-.actionButtons button {
+.actionButtonsUnique button {
   margin: 5px;
   padding: 8px 16px;
   border: none;
@@ -39,43 +39,43 @@
 }
 
 /* View More Button */
-.btno-view-more {
+.btno-view-moreUnique {
   background-color: #0077b6; /* Blue color */
   color: white;
 }
 
-.btno-view-more:hover {
+.btno-view-moreUnique:hover {
   background-color: #00b4d8; /* Lighter blue on hover */
 }
 
 /* Update Button */
-.btno-update {
+.btno-updateUnique {
   background-color: #4caf50; /* Green color */
   color: white;
 }
 
-.btno-update:hover {
+.btno-updateUnique:hover {
   background-color: #45a049; /* Darker green on hover */
 }
 
 /* Delete Button (Red) */
-.btno-delete {
+.btno-deleteUnique {
   background-color: #f44336; /* Red color */
   color: white;
 }
 
-.btno-delete:hover {
+.btno-deleteUnique:hover {
   background-color: #e53935; /* Darker red on hover */
 }
 
 /* Mobile responsiveness for smaller screens */
 @media (max-width: 768px) {
-  .tableData {
+  .tableDataUnique {
     padding: 8px;
     font-size: 12px;
   }
 
-  .actionButtons button {
+  .actionButtonsUnique button {
     font-size: 12px;
     padding: 6px 12px;
   }

@@ -9,14 +9,14 @@ import autoTable from 'jspdf-autotable'; // import as a function
 
 function DoctorProfileForViewMore() {
   const [doctorDetails, setDoctorDetails] = useState(null);
-  const { id } = useParams();  // Keeping the variable name `id` as per your preference
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDoctorDetails = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/doctors/${id}`);
-        setDoctorDetails(response.data.doctor); // Keeping the variable name `doctorDetails`
+        setDoctorDetails(response.data.doctor);
       } catch (error) {
         console.error("Error fetching doctor details:", error);
       }
@@ -25,7 +25,7 @@ function DoctorProfileForViewMore() {
   }, [id]);
 
   if (!doctorDetails) {
-    return <div>Loading...</div>;  // Show loading while data is being fetched
+    return <div>Loading...</div>;
   }
 
   const {
@@ -51,17 +51,14 @@ function DoctorProfileForViewMore() {
     if (Array.isArray(value)) {
       return value.join(", ");
     } else if (typeof value === "string") {
-      // Split by capital letters to format correctly (works for camelCase strings)
       return value.split(/(?=[A-Z])/).join(", ");
     } else {
       return "N/A";
     }
   };
-  
-  // Format doctorAvailableDays and doctorLanguagesSpoken
+
   const formattedAvailableDays = formatCommaSeparatedValues(doctorAvailableDays);
   const formattedLanguagesSpoken = formatCommaSeparatedValues(doctorLanguagesSpoken);
-  
 
   const formatDoctorTime = (time) => {
     const [hour, minute] = time.split(":");
@@ -74,33 +71,28 @@ function DoctorProfileForViewMore() {
   const formattedStartTime = formatDoctorTime(doctorAvailableTimeStart);
   const formattedEndTime = formatDoctorTime(doctorAvailableTimeEnd);
 
-
   const handleGeneratePDF = async () => {
     const doc = new jsPDF();
-  
-    // Load and convert the image
+
     let imageUrl = `http://localhost:5000${doctorProfilePicture}`;
     let imageData;
-  
+
     try {
       const response = await fetch(imageUrl);
       const blob = await response.blob();
       const reader = new FileReader();
-  
+
       reader.onloadend = () => {
         imageData = reader.result;
-  
-        // Add Title
+
         doc.setFontSize(18);
         doc.text(`${doctorName}'s Profile`, 14, 20);
-  
-        // Add the profile picture
-        doc.addImage(imageData, 'JPEG', 150, 10, 40, 40); // (image, type, x, y, width, height)
-  
-        // Add the table
+
+        doc.addImage(imageData, 'JPEG', 150, 10, 40, 40);
+
         doc.setFontSize(12);
         autoTable(doc, {
-          startY: 60, // Make space for the image
+          startY: 60,
           head: [['Field', 'Value']],
           body: [
             ['Doctor ID', doctorId || 'N/A'],
@@ -119,16 +111,15 @@ function DoctorProfileForViewMore() {
             ['Consultation Fees', doctorConsultationFees ? `LKR ${doctorConsultationFees} /=` : 'N/A'],
           ]
         });
-  
+
         doc.save(`${doctorName}_profile.pdf`);
       };
-  
+
       reader.readAsDataURL(blob);
     } catch (error) {
       console.error('Error loading profile picture:', error);
     }
   };
-  
 
   return (
     <div className='admin-prof-container'>
@@ -136,41 +127,39 @@ function DoctorProfileForViewMore() {
         <AdminSideNavBar/>
       </div>
       <div className='col-2-d'>
-      <div className="container-d">
-      <br /> 
-      <div className="doctor-profile">
-      <div>
-      <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
-      </div>
-      <img
-  src={`http://localhost:5000${doctorProfilePicture}`}
-  alt={doctorName}
-  className="img-fluid"
-  onError={(e) => e.target.src = "http://localhost:5000/uploads/doc-prof-profile-pictures/default-profile.jpg"} // Fallback image
-/>
-        <h4>Specialization: {doctorSpecialization}</h4>
-        <p><strong>Doctor ID:</strong> {doctorId}</p>
-        <p><strong>Doctor Address:</strong> {doctorAddress}</p>
-        <p><strong>Phone Number:</strong> {doctorPhoneNumber}</p>
-        <p><strong>Email:</strong> {doctorEmail}</p>
-        <p><strong>Qualifications:</strong> {doctorQualifications}</p>
-        <p><strong>Experience:</strong> {doctorExperience} years</p>
-        <p><strong>Languages Spoken:</strong> {formattedLanguagesSpoken}</p>
-        <p><strong>Hospital Affiliation:</strong> {doctorHospitalAffiliation}</p>
-        <p><strong>License Number:</strong> {doctorLicenseNumber}</p>
-        <p><strong>Available Days:</strong> {formattedAvailableDays}</p>
-        <p><strong>Available Time:</strong> {formattedStartTime} - {formattedEndTime}</p>
-        <p><strong>Consultation Fees:</strong> LKR {doctorConsultationFees} /=</p>
-        <div className="btn-group-vertical">
-          <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF Report</button>
-          <button className="btn btn-secondary" onClick={() => navigate("/doctorDetails")}>Back</button>
+        <div className="container-dpfvm">
+          <br />
+          <div className="doctor-profile-dpfvm">
+            <div>
+              <h2 className="text-center mb-4">{doctorName}'s Profile</h2>
+            </div>
+            <img
+              src={`http://localhost:5000${doctorProfilePicture}`}
+              alt={doctorName}
+              className="img-fluid"
+              onError={(e) => e.target.src = "http://localhost:5000/uploads/doc-prof-profile-pictures/default-profile.jpg"}
+            />
+            <h4>Specialization: {doctorSpecialization}</h4>
+            <p><strong>Doctor ID:</strong> {doctorId}</p>
+            <p><strong>Doctor Address:</strong> {doctorAddress}</p>
+            <p><strong>Phone Number:</strong> {doctorPhoneNumber}</p>
+            <p><strong>Email:</strong> {doctorEmail}</p>
+            <p><strong>Qualifications:</strong> {doctorQualifications}</p>
+            <p><strong>Experience:</strong> {doctorExperience} years</p>
+            <p><strong>Languages Spoken:</strong> {formattedLanguagesSpoken}</p>
+            <p><strong>Hospital Affiliation:</strong> {doctorHospitalAffiliation}</p>
+            <p><strong>License Number:</strong> {doctorLicenseNumber}</p>
+            <p><strong>Available Days:</strong> {formattedAvailableDays}</p>
+            <p><strong>Available Time:</strong> {formattedStartTime} - {formattedEndTime}</p>
+            <p><strong>Consultation Fees:</strong> LKR {doctorConsultationFees} /=</p>
+            <div className="btn-group-vertical-dpfvm">
+              <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF Report</button>
+              <button className="btn-secondary-dpfvm" onClick={() => navigate("/doctorDetails")}>Back</button>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
-      </div>
-    </div>
-    
   );
 }
 

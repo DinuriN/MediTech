@@ -1,4 +1,4 @@
-.recommendation-container {
+.doctor-reco-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.symptom-form-card {
+.doctor-reco-form-card {
   background: white;
   padding: 2rem;
   border-radius: 10px;
@@ -20,7 +20,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.specialty-result, .doctor-results {
+.doctor-reco-specialty-result, .doctor-reco-doctor-results {
   animation: fadeIn 0.6s ease-in-out;
   background: #f9f9f9;
   padding: 1.5rem;
@@ -30,13 +30,13 @@ h2 {
   max-width: 800px;
 }
 
-.loading-message, .error-message {
+.doctor-reco-loading-message, .doctor-reco-error-message {
   margin-top: 1rem;
   font-size: 1rem;
   color: #ff4d4f;
 }
 
-.error-message {
+.doctor-reco-error-message {
   color: #ff4d4f;
 }
 
@@ -49,7 +49,7 @@ th, td {
   text-align: center;
 }
 
-img.doctor-profile-pic {
+img.doctor-reco-doctor-profile-pic {
   width: 60px;
   height: 60px;
   object-fit: cover;

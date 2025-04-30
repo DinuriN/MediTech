@@ -5,10 +5,10 @@ import SingleDoctorDetails from '../doc-prof-details-of-single-doctor/SingleDoct
 function DoctorInTable({ doctors }) {  // Accept 'doctors' as a prop
   return (
     <div>
-      <div className="table-res">
-        <table className="tableOfDoctors">
-          <thead className="tableHeading">
-            <tr className='headerRow'>
+      <div className="table-resUnique">
+        <table className="tableOfDoctorsUnique">
+          <thead className="tableHeadingUnique">
+            <tr className='headerRowUnique'>
               <th>#</th>
               <th>Doctor ID</th>
               <th>Name</th>
