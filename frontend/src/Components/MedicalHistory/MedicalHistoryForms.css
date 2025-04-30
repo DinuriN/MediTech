@@ -30,6 +30,7 @@
 }
 
 .btn-add-record-btn-green{
+    color: black;
     border-style: solid;
     border-radius: 30px;
     padding: 5px 15px;
@@ -38,7 +39,7 @@
     border-color: rgb(7, 61, 7);
     background-color: rgb(212, 245, 212);
     margin-top: 5vh;
-    margin-left: 63vh;
+    margin-left: 0vh;
 }
 
 .btn-add-record-btn-green:hover{
@@ -48,6 +49,7 @@
 }
 
 .btn-add-record-btn-blue{
+    color: black;
     border-style: solid;
     background-color: rgb(227, 239, 250);
     border-color: rgb(2, 2, 62);

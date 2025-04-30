@@ -27,9 +27,9 @@ function AdminSideNavBar() {
                 <li><a href='#'><img src={AdminProfDashboardIcon}/>     Dashboard</a></li>
                 <li><a href='#'><img src={AdminStaffIcon}/>     Staff</a></li>
                 <li><a href='/patientDetails'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
-                <li><a href='#'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
+                <li><a href='/appointmentDetails'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
                 <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
-                <li><a href='#'><img src={AdminProfDepartmentsIcon}/>     Departments</a></li>
+                <li><a href='/paymentDetails'><img src={AdminProfDepartmentsIcon}/>     Payments</a></li>
                 
               </ul>
               {/* Logout Button - Only visible if logged in */}

@@ -1,0 +1,46 @@
+.update-container {
+    max-width: 600px; /* Maximum width of the form */
+    margin: 30px auto; /* Adds space around the form container, centered horizontally */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better appearance */
+  }
+  
+  .update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adds space between form fields */
+  }
+  
+  .form-group {
+    margin-bottom: 10px; /* Optional: adds space between each form field */
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button.submit-btn:hover {
+    background-color: #0056b3;
+  }

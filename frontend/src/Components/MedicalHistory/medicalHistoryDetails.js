@@ -38,18 +38,25 @@ function MedicalHistoryDetails() {
   }, [patientId]);
 
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-
-    const filteredMedicalRecords = originalMedicalHistory.filter(
-      (medHistory) =>
-        medHistory._id.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        medHistory.appointmentDate
-          .toLowerCase()
-          .includes(e.target.value.toLowerCase())
-    );
-
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+  
+    const filteredMedicalRecords = originalMedicalHistory.filter((medHistory) => {
+      // Convert all fields to strings and check if any field includes the search query
+      return Object.values(medHistory).some((value) => {
+        if (typeof value === "string" || typeof value === "number") {
+          return value.toString().toLowerCase().includes(query);
+        } else if (value instanceof Date) {
+          return value.toLocaleDateString("en-US").toLowerCase().includes(query);
+        }
+        return false;
+      });
+    });
+  
     setMedicalHistory(filteredMedicalRecords);
+    setNoResults(filteredMedicalRecords.length === 0);
   };
+  
 
   const deleteHandler = (id) => {
     const confirmDelete = window.confirm(
@@ -82,7 +89,7 @@ function MedicalHistoryDetails() {
           <AdminSideNavBar />
         </div>
         <div className="col-2">
-          <h2>Medical History of Patient {patientId}</h2>
+          <h2>Medical History of Patient </h2>
           <hr />
 
           <div className="search-and-btn-med-recs">

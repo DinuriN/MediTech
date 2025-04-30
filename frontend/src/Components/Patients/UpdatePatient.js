@@ -69,7 +69,7 @@ function UpdatePatient() {
                 name="patientId"
                 className="form-control"
                 onChange={handleChange}
-              value={inputs._id}
+              value={inputs.patientId}
                 required
                 disabled
               />

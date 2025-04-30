@@ -20,6 +20,12 @@ import AdminSideNavBar from './Components/Common/AdminProfile/AdminSideNavBar';
 import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSample';
 import SingleVisitDetails from './Components/MedicalHistory/SingleVisitDetails';
 
+import AddAppoinment from './Components/Add Appoinment/AddAppoinment';
+import AddPayment from './Components/Add Payment/AddPayment';
+import AppointmentDetails from './Components/Appoinment Detail/Appoinments';
+import PaymentDetails from './Components/Payment Detail/Payments';
+import UpdateAppoinment from './Components/Update Appoinment/UpdateAppoinment'
+
 function App() {
   const isAuthenticated= !!localStorage.getItem("token");
 
@@ -47,6 +53,14 @@ function App() {
           <Route path="/adminSideNavBar" element={<AdminSideNavBar/>} />
           <Route path="/adminProfileSample" element={<AdminProfiileSample/>} />
           <Route path="/medicalHistory/:visitId" element={<SingleVisitDetails/>}/>
+
+          <Route path="/addappointment" element={<AddAppoinment/>}/>
+          <Route path="/addPayments" element={<AddPayment />} />
+          <Route path="/appointmentDetails" element={<AppointmentDetails />} />
+          <Route path="/paymentDetails" element={<PaymentDetails />} />
+          <Route path="/appointments/:id" element={<UpdateAppoinment />} />
+
+          
         </Routes>
       </React.Fragment>
 

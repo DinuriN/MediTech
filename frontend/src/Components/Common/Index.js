@@ -8,6 +8,7 @@ import doctorIconIndex from "../Common/common-images/doctors-icon-index.png"
 import labReportIconIndex from "../Common/common-images/lab-report-icon.index.png"
 import paymentPortalIconIndex from "../Common/common-images/payment-portal-icon-index.png"
 import patientFeedbacklIconIndex from "../Common/common-images/patient-feedback-icon-index.png"
+import { Link } from "react-router-dom";
 
 
 
@@ -21,9 +22,12 @@ function Index() {
           <img src={meditechBanner} alt="meditech-banner-image" />
         </div>
 
+<Link to={"/addappointment"}>
         <div className="doctor-appointment-button">
             <button><i class='bx bx-calendar-plus'></i>  Appointment</button>
+            
         </div>
+        </Link>
 
         <div className="bg-img-content-1">
             <h1>WE ARE MEDITECH</h1>

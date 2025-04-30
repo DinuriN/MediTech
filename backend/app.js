@@ -5,6 +5,8 @@ const cors = require("cors");
 const registerPatientRouter = require("./Routes/register-patient-route");
 const registerStaffRouter = require("./Routes/register-staff-route");
 const authRoutes=require("./Routes/login-auth");
+const consultationRoutes = require("./Routes/ConsultationRout.js");
+const paymentRoutes = require("./Routes/PaymentRout.js");
 
 const medicalHistoryRouter=require("./Routes/medical-history-router");
 
@@ -18,6 +20,8 @@ app.use("/patients", registerPatientRouter);
 app.use("/meditechStaff", registerStaffRouter);
 app.use("/api/auth", authRoutes);
 app.use("/medicalHistory", medicalHistoryRouter)
+app.use("/appointments", consultationRoutes);
+app.use("/payments", paymentRoutes);
 
 
 

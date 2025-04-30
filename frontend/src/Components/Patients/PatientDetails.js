@@ -99,7 +99,7 @@ function PatientDetails() {
             {patients &&
               patients.map((patient) => (
                 <tr key={patient._id}>
-                  <td>{patient._id}</td>
+                  <td>{patient.patientId}</td>
                   <td>{patient.name}</td>
                   <td>{patient.email}</td>
                   <td>{patient.contactNo}</td>
