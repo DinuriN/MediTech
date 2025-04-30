@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../Common/AdminProfile/AdminProfileSample.css";
 import "../Patients/PatientDetails.css";
 import AdminSideNavBar from '../Common/AdminProfile/AdminSideNavBar';
-import DeleteIcon from "./delete-icon-dinuri.png"
+import DeleteIcon from "./delete-icon-dinuri.png";
+import RecordIcon from "./ic_medical_records.png";
 
 
 const URL = "http://localhost:5000/patients";
@@ -88,6 +89,7 @@ function PatientDetails() {
             <thead class="table-patient-details-tbl-thead">
             <tr>
               <th>ID</th>
+              <th>PaientID-primary</th>
               <th>Name</th>
               <th>Email</th>
               <th>Contact No</th>
@@ -99,13 +101,14 @@ function PatientDetails() {
             {patients &&
               patients.map((patient) => (
                 <tr key={patient._id}>
+                  <td>{patient._id}</td>
                   <td>{patient.patientId}</td>
                   <td>{patient.name}</td>
                   <td>{patient.email}</td>
                   <td>{patient.contactNo}</td>
                   <td>{patient.address}</td>
                   <td>
-                  <Link to={`/medicalHistoryDetails/${patient._id}`}><button class="btn-medical-record-view" >Medical Records</button></Link>
+                  <Link to={`/medicalHistoryDetails/${patient._id}`}><button class="btn-medical-record-view" ><img src={RecordIcon}/></button></Link>
                     
                     <Link
                       to={`/updatePatient/${patient._id}`}

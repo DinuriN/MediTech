@@ -1,65 +1,73 @@
-.form-label-input-field{
+.col-2 form{
+    margin-left: 100px;
+}
+
+.form-label-input-field {
     display: flex;
-    margin: 3vh;
+    margin-bottom: 2vh;
+    max-width: 700px;
 }
 
 .form-label {
+    font-weight: 600;
+    margin-bottom: 0.5vh;
+    font-size: 1rem;
+    color: #333;
     white-space: nowrap; 
     display: inline-block; 
     min-width: 200px; 
-    font-weight: 500;
 }
 
-.form-control{
-    width: 50vh;
-    border-radius: 8vh;
+.form-control {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border 0.2s;
 }
 
-.btn-microphone-med-history{
-    font-size: larger;
+.form-control:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-microphone-med-history {
+    font-size: 1.2rem;
+    margin-top: 0.5vh;
     margin-left: 1vh;
-    border-style: hidden;
-    border-radius: 30px;
-    padding: 0 8px;
-    background-color: rgb(209, 209, 209);
+    width: fit-content;
+    align-self: flex-start;
+    border: none;
+    border-radius: 60px;
+    padding: 5px 12px;
+    background-color: #d1d1d1;
+    cursor: pointer;
 }
 
-.btn-microphone-med-history:hover{
-    background-color: rgb(165, 164, 164);
+.btn-microphone-med-history:hover {
+    background-color: #a5a4a4;
     transition: 0.3s ease;
 }
 
-.btn-add-record-btn-green{
+.btn-add-record-btn-green {
     color: black;
-    border-style: solid;
-    border-radius: 30px;
-    padding: 5px 15px;
-    font-size: 2vh;
-    font-weight: 600;
-    border-color: rgb(7, 61, 7);
     background-color: rgb(212, 245, 212);
-    margin-top: 5vh;
-    margin-left: 0vh;
-}
-
-.btn-add-record-btn-green:hover{
-    border-color: rgb(5, 44, 5);
-    background-color: rgb(181, 219, 181);
-    transition: 0.3s ease;
-}
-
-.btn-add-record-btn-blue{
-    color: black;
-    border-style: solid;
-    background-color: rgb(227, 239, 250);
-    border-color: rgb(2, 2, 62);
+    border: 2px solid rgb(7, 61, 7);
     border-radius: 30px;
-    padding: 5px 15px;
+    padding: 10px 25px;
+    font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
+    margin-top: 1vh;
+    width: 150px;
 }
 
-.btn-add-record-btn-blue:hover{ 
-    background-color: rgb(185, 202, 218);
-    border-color: rgb(3, 3, 44);
-    transition: 0.3s ease;
+.btn-add-record-btn-green:hover {
+    background-color: rgb(181, 219, 181);
+    border-color: rgb(5, 44, 5);
 }
+
+

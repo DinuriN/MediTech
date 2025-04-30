@@ -104,7 +104,6 @@
 
 
 .btn-medical-record-view{
-    color: black;
     border-style: solid;
     font-weight:500;
     cursor: pointer;
@@ -112,6 +111,11 @@
     border-radius: 12vh;
     border-color: #255F38;
     background-color:#D5E5D5; 
+}
+
+.btn-medical-record-view img{
+    width: 2vh;
+    padding-bottom: 2px;
 }
 
 .btn-medical-record-view:hover{
@@ -159,7 +163,7 @@
     padding-bottom: 2px;
 }
 
-/*medical records file*/
+
 .search-and-btn-med-recs{
     display: flex;
     gap: 10vh;
