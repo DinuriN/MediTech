@@ -118,7 +118,7 @@ const DoctorRecommendation = () => {
               age: values.age,
               gender: values.gender,
               severity: values.severity, // Added
-              duration_days: parseInt(values.duration) // Added + renamed
+              duration_days: parseInt(values.duration_days)
             })
       });
 

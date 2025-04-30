@@ -1,8 +1,17 @@
-body {
+.doctor-timetable-page {
   background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  min-height: 100vh; /* so it fills full page height */
+}
+
+.doc-prof-container {
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* so it fills full page height */
 }
 
 .doctor-topic {

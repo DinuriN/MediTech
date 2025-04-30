@@ -38,6 +38,8 @@ function DoctorHomepage() {
   };
 
   return (
+    <div className='doc-prof-container'>
+
     <div className='admin-prof-container'>
       <div className='col-1'>
         <AdminSideNavBar/>
@@ -65,6 +67,7 @@ function DoctorHomepage() {
         {/* Pass filtered doctors data to DoctorInTable */}
         <DoctorInTable doctors={doctors} noResults={noResults} />
       </div>
+    </div>
     </div>
   );
 }

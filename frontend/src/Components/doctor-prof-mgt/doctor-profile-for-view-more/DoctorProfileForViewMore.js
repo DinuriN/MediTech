@@ -122,6 +122,7 @@ function DoctorProfileForViewMore() {
   };
 
   return (
+    <div className='doc-prof-container'>
     <div className='admin-prof-container'>
       <div className='col-1'>
         <AdminSideNavBar/>
@@ -159,6 +160,7 @@ function DoctorProfileForViewMore() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -72,6 +72,9 @@ function TimetableAllDoctors() {
   };
 
   return (
+    <div className='doc-prof-container'>
+    <div className="doctor-timetable-page">
+
     <div className='doctor-top-header'>
       <div className='doctor-topic'>
         <h1>Doctor's Weekly Timetable</h1>
@@ -129,6 +132,8 @@ function TimetableAllDoctors() {
           </tbody>
         </table>
       </div>
+    </div>
+    </div>
     </div>
   );
 }

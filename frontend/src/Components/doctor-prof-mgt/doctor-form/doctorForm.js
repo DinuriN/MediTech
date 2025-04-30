@@ -199,6 +199,8 @@ const handleChange = (e) => {
   
 
   return (
+    <div className='doc-prof-container'>
+
     <div className='admin-prof-container'>
       <div className='col-1'>
         <AdminSideNavBar/>
@@ -400,6 +402,7 @@ const handleChange = (e) => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
   

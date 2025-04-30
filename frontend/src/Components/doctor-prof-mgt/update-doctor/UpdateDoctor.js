@@ -228,6 +228,7 @@ function UpdateDoctor() {
   if (error) return <p className="error-message">{error}</p>;
 
   return (
+    <div className='doc-prof-container'>
     <div className='admin-prof-container'>
       <div className='col-1'>
         <AdminSideNavBar/>
@@ -345,6 +346,7 @@ function UpdateDoctor() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
   
