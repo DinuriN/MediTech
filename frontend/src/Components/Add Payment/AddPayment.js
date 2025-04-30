@@ -203,7 +203,7 @@ function AddPayment() {
             <h2>Payment Successful!</h2>
             <p>Your payment has been processed successfully.</p>
             <button onClick={downloadReceipt} className="pay-button">Download Receipt</button>
-            <button onClick={() => navigate("/addappointment")} className="pay-button">Back to Appointments</button>
+            <button onClick={() => navigate("/")} className="pay-button">Back to Appointments</button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="payment-form">
