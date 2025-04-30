@@ -50,6 +50,7 @@ function DoctorHomepage() {
           <input
             onChange={handleSearch}
             type="text"
+            className='search-doc-prof'
             name="search"
             value={searchQuery}
             placeholder="Search by Name or Doctor ID"

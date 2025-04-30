@@ -2,7 +2,6 @@
   margin: 20px;
   padding: 10px;
   border-radius: 10px;
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff); /* Gradient background for the table */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -27,8 +26,8 @@
 }
 
 .tableOfDoctorsUnique th {
-  background-color: #0077b6; /* Darker blue background for headers */
-  color: white;
+  background-color: #a8d5ba; /* Darker blue background for headers */
+  color: #021e0b;
   font-weight: bold;
   border-bottom: 2px solid #ffffff;
 }

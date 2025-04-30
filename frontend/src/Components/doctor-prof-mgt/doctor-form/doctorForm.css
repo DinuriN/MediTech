@@ -1,6 +1,6 @@
 /* Doctor Form Container */
 .body-form-unique {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  background: linear-gradient(to right, #a8d5ba, #70c1b3, #ffffff);
   display: block;
   align-items: center;
   margin-left: 150px;
@@ -8,7 +8,6 @@
   padding-right: 380px;
 }
 .doc-prof-container {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -26,22 +25,22 @@
 }
 
 .doc-form-section-unique {
-  background-color: #f0f9ff;         /* Light blue background */
+  background-color: #cfdfdc;         /* Light blue background */
   padding: 20px 30px;
   border-radius: 10px;
   margin-bottom: 30px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  border-left: 5px solid #00b4d8;    /* Accent border */
+  border-left: 5px solid #a8d5ba;    /* Accent border */
 }
 
 .doc-form-subhead-unique {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #003554;
+  color: #021e0b;
   margin: 0 0 15px 0;
-  border-left: 5px solid #00b4d8;
+  border-left: 5px solid #72b18b;
   padding-left: 10px;
-  background: none;
+  background: #cfdfdc;
   /* Optional: add transition for a subtle effect */
   transition: color 0.2s;
 }
@@ -51,7 +50,7 @@
 .doctor-form-header-unique {
   text-align: center;
   margin-bottom: 30px;
-  background-color: #0077b6;
+  background-color: #a8d5ba;
 }
 
 .doctor-form-header-unique h1 {
@@ -77,7 +76,7 @@ hr {
 .form-group-unique label {
   font-size: 1rem;
   font-weight: bold;
-  color: #1898d8;
+  color: #021e0b;
 }
 
 /* Input Fields */
@@ -92,8 +91,8 @@ hr {
 }
 
 .form-group-unique input:focus {
-  background-color: #90f2ff;
-  border-color: #0072ff;
+  background-color: #9cdcd2;
+  border-color: #000000;
   outline: none;
 }
 
@@ -115,8 +114,8 @@ hr {
 
 /* Buttons */
 .btn-back-unique {
-  background-color: #009dff;
-  color: rgb(255, 255, 255);
+  background-color: #a8d5ba;
+  color: #021e0b;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -125,13 +124,13 @@ hr {
 }
 
 .btn-back-unique:hover {
-  background-color: #6f9fbd;
+  background-color: #70c1b3;
 }
 
 .btn-submit-unique {
   width: 100%;
-  background-color: #009dff;
-  color: white;
+  background-color: #a8d5ba;
+  color: #021e0b;
   padding: 12px 15px;
   border: none;
   border-radius: 5px;
@@ -141,7 +140,7 @@ hr {
 }
 
 .btn-submit-unique:hover {
-  background-color: #6f9fbd;
+  background-color: #70c1b3;
 }
 
 /* Text muted */

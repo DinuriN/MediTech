@@ -1,6 +1,5 @@
 /* Doctor Homepage Container */
 .doctor-home-container-unique {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   display: flex;
   align-items: center;
   gap: 20px;
@@ -13,7 +12,6 @@
 }
 
 .doc-prof-container {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -24,14 +22,13 @@
   padding-left: 85px; /* Adjust this value to match your navbar's height */
 }
 
-
 .but-2-m-unique {
   display: flex;
   gap: 10px;
 }
 
 .doctor-home-container-unique h1 {
-  color: white;
+  color: #021e0b;
   margin: 0;
 }
 
@@ -43,19 +40,23 @@
   width: 280px;
 }
 
+.search-doc-prof{
+  background-color: #a8d5ba;
+}
+
 /* Button styling */
 .doctor-home-container-unique button {
   padding: 10px 20px;
-  background-color: #0077b6;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  background-color: #70c1b3;
+  color: #021e0b;
+  border: 1px solid #021e0b;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .doctor-home-container-unique button:hover {
-  background-color: #00b4d8;
+  background-color: #a8d5ba;
 }
 
 /* Mobile responsiveness */
@@ -85,8 +86,8 @@
 /* Search Suggestions Styling */
 .search-suggestions-unique {
   position: absolute;
-  background-color: white;
-  border: 1px solid #ddd;
+  background-color: #a8d5ba;
+  border: 1px solid #021e0b;
   max-height: 200px;
   overflow-y: auto;
   width: 100%;

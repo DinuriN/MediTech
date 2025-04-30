@@ -1,13 +1,12 @@
 /* Update Doctor Page */
 .update-body-upd {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  background: linear-gradient(to right, #a8d5ba, #70c1b3, #ffffff);
   padding-left: 200px;
   padding-right: 220px;
   max-width: 1200px;
 }
 
 .doc-prof-container {
-  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -17,12 +16,12 @@
 .update-body-upd h1{
 text-align: center;
 font-size: 2.5rem;
-color: #ffffff;
+color: #021e0b;
 }
 
 .back-btn-upd {
-background-color: #009dff;
-color: rgb(255, 255, 255);
+background-color: #a8d5ba;
+color: #021e0b;
 padding: 10px 15px;
 border: none;
 font-weight: bold;
@@ -32,7 +31,7 @@ transition: background-color 0.3s ease;
 }
 
 .back-btn-upd:hover {
-background-color: #6f9fbd;
+background-color: #70c1b3;
 }
 
 .update-doctor-container-upd {
@@ -66,7 +65,7 @@ margin-bottom: 20px;
 .form-label-upd {
 font-size: 1rem;
 font-weight: bold;
-color: #333;
+color: #021e0b;
 }
 
 .form-input-upd {
@@ -75,21 +74,21 @@ padding: 10px;
 margin-top: 8px;
 border-radius: 5px;
 border: 1px solid #ccc;
-background-color: #f9f9f9;
+background-color: #daebe4;
 font-size: 1rem;
 transition: background-color 0.3s ease;
 }
 
 .form-input-upd:focus {
 background-color: #e0f7fa;
-border-color: #0072ff;
+border-color: #021e0b;
 outline: none;
 }
 
 .btn-submit-1-upd {
 width: 100%;
-background-color: #0072ff;
-color: white;
+background-color: #a8d5ba;
+color: #021e0b;
 padding: 12px 15px;
 font-size: 1.1rem;
 border: none;
@@ -99,7 +98,7 @@ transition: background-color 0.3s ease;
 }
 
 .btn-submit-1-upd:hover {
-background-color: #005bb5;
+background-color: #70c1b3;
 }
 
 .error-message-upd {
@@ -118,19 +117,19 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 .sub-head-upd {
 font-size: 1.4rem;
 font-weight: 600;
-color: #003554;
+color: #021e0b;
 margin: 30px 0 15px 0;
-border-left: 5px solid #00b4d8;
+border-left: 5px solid #a8d5ba;
 padding-left: 10px;
 }
 
 .section-upd {
-background-color: #f0f9ff;
+background-color: #d2e9e5;
 padding: 20px;
 border-radius: 10px;
 margin-bottom: 30px;
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-border-left: 5px solid #00b4d8;
+border-left: 5px solid #a8d5ba;
 }
 
 .error-text-upd {

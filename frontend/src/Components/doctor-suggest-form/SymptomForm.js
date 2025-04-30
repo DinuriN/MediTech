@@ -88,7 +88,7 @@ const SymptomForm = ({ onSubmit }) => {
         </Select>
       </Form.Item>
 
-      <Button type="primary" htmlType="submit">
+      <Button className="btn-sub-rec-doc-form" htmlType="submit">
         Find Suitable Doctors
       </Button>
     </Form>
@@ -147,6 +147,7 @@ const DoctorRecommendation = () => {
 };
 
   return (
+    <div className='doc-form-rec'>
     <div className="doctor-reco-container">
   <h2>Symptom-Based Doctor Finder</h2>
   <div className="doctor-reco-form-card">
@@ -231,7 +232,7 @@ const DoctorRecommendation = () => {
     )}
   </Modal>
 </div>
-
+</div>
   );
 };
 

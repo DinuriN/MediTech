@@ -154,7 +154,7 @@ function DoctorProfileForViewMore() {
             <p><strong>Available Time:</strong> {formattedStartTime} - {formattedEndTime}</p>
             <p><strong>Consultation Fees:</strong> LKR {doctorConsultationFees} /=</p>
             <div className="btn-group-vertical-dpfvm">
-              <button className="btn btn-primary" onClick={handleGeneratePDF}>Generate PDF Report</button>
+              <button className="gen-pdf-btn" onClick={handleGeneratePDF}>Generate PDF Report</button>
               <button className="btn-secondary-dpfvm" onClick={() => navigate("/doctorDetails")}>Back</button>
             </div>
           </div>

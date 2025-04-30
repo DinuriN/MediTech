@@ -1,3 +1,17 @@
+.doc-form-rec{
+  background: linear-gradient(to right, #a8d5ba, #70c1b3, #ffffff);
+}
+
+.btn-sub-rec-doc-form{
+  background-color: #a8d5ba;
+  color: #021e0b;
+}
+
+.btn-sub-rec-doc-form:hover{
+  background-color: #70c1b3;
+  color: #021e0b;
+}
+
 .doctor-reco-container {
   display: flex;
   flex-direction: column;
