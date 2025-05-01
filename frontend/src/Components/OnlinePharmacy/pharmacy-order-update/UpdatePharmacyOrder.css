@@ -1,0 +1,88 @@
+.body-form {
+  background-color: #f0f8ff; /* Soft light blue background */
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center vertically */
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+.order-form-header {
+  text-align: center;
+  color: #0277bd; /* Deep blue */
+  width: 100%;
+  position: absolute;
+  top: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  margin-top: 130px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering Trick */
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+label {
+  font-weight: 600;
+  color: #01579b;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 7px;
+  margin-top: 4px;
+  border: 1px solid #81d4fa;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #039be5;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(3, 155, 229, 0.3);
+}
+
+.btn-submit {
+  background-color: #0288d1;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #02669b;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}

@@ -6,6 +6,9 @@ import AdminSideNavBar from "../Common/AdminProfile/AdminSideNavBar";
 import "../Common/AdminProfile/AdminProfileSample.css";
 import "../Patients/PatientDetails.css";
 import DeleteIcon from "../Patients/delete-icon-dinuri.png";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
 
 const URL = "http://Localhost:5000/medicalHistory";
 
@@ -81,6 +84,8 @@ function MedicalHistoryDetails() {
       setCopiedId(false);
     }, 1000);
   };
+
+
 
   return (
     <div>
@@ -174,17 +179,10 @@ function MedicalHistoryDetails() {
                             <i class="bx bx-edit"></i>
                           </button>
                         </Link>
-                        {new Date() - new Date(medHistory.appointmentDate) >
-                          5 * 365 * 24 * 60 * 60 * 1000 && (
-                            <Link to={`/medicalHistory/${medHistory._id}`}>
-                          <button
-                            onClick={() => deleteHandler(medHistory._id)}
-                            className="btn-patient-delete-btn"
-                          >
-                            <img src={DeleteIcon} alt="Delete" />
-                          </button>
-                          </Link>
-                        )}
+                        <Link to={`/medicalHistory/${medHistory._id}`}>
+                        <button class="btn-patient-update-btn" ><i class='bx bx-detail'></i></button></Link>
+                        
+                        
                       </td>
                     </tr>
                   ))

@@ -1,0 +1,96 @@
+.order-home-container {
+    background: #ffffff; /* Solid white background */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    flex: 1;
+    overflow-x: auto;
+}
+
+.sidebar {
+    margin-top: -190px;
+    position: relative;
+    margin-left: -20px;
+    
+  }
+
+
+
+.but-2-m {
+    display: flex;
+    gap: 12px;
+    
+}
+
+.order-home-container h1 {
+    color: #333; /* Dark gray for contrast */
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.order-home-container input {
+    padding: 10px;
+    border-radius: 6px;
+    border: none; /* Removed border */
+    width: 280px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.order-home-container input:focus {
+    box-shadow: 0px 0px 6px rgba(89, 127, 85, 0.4);
+    outline: none;
+}
+
+.order-home-container button {
+    padding: 10px 20px;
+    background-color: #5f8474;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.order-home-container button:hover {
+    background-color: #1f3028;
+    transform: scale(1.05);
+}
+
+/* Search Suggestions */
+.search-suggestions {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    color: #333; /* Dark text for better visibility */
+    font-size: 14px;
+}
+
+.suggestion-item:hover {
+    background-color: #5f8474; /* Highlight with a subtle blue */
+    color: white; /* Change text color to white on hover */
+    font-weight: bold;
+}
+
+

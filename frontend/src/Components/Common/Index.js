@@ -8,6 +8,8 @@ import doctorIconIndex from "../Common/common-images/doctors-icon-index.png"
 import labReportIconIndex from "../Common/common-images/lab-report-icon.index.png"
 import paymentPortalIconIndex from "../Common/common-images/payment-portal-icon-index.png"
 import patientFeedbacklIconIndex from "../Common/common-images/patient-feedback-icon-index.png"
+import pharmacyIconIndex from "../Common/common-images/pharmacy-icon-index.png";
+
 import { Link } from "react-router-dom";
 
 
@@ -79,7 +81,22 @@ function Index() {
                 <p>Maecenas sollicitudin imperdiet elit a malesuada</p>
                 </div>
             </div>
+
+            <Link to="/addPharmacyOrder" className="index-col-2-box">
+              <div className="index-col-2-box-icon">
+                 <img src={pharmacyIconIndex} alt="pharmacy-icon"/>
+                 </div>
+                    <div className="index-col-2-box-text">
+                    <h2>Online Pharmacy</h2>
+                    <p>Order and refill your prescriptions easily online</p>
+                  </div>
+                  </Link>
+                
+                
         </div>
+
+          
+        
       </div>
 
       <div className="footer-container-home">

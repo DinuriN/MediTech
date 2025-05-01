@@ -101,6 +101,8 @@ body{
     padding: 4vh;
     border-radius: 5vh;
     background-color:rgb(215, 222, 239);
+    color: inherit;               /* Inherit text color */
+    text-decoration: none;
 }
 
 .index-col-2-box-icon img{
@@ -138,3 +140,7 @@ display: none;
     z-index: 20; 
   }
 
+  .index-col-2-box h2,
+.index-col-2-box p {
+  color: inherit;
+}

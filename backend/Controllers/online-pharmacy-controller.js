@@ -1,0 +1,116 @@
+const OnlinePharmacy = require("../Models/online-pharmacy-model");
+
+//data dispaly
+const getOnlinePharamcyDetails = async(req, res, next)=>{
+    let orders;
+
+    //get Online Pharmacy details
+    try{
+        orders = await OnlinePharmacy.find();
+    }catch(err){
+        console.log(err);
+    }
+
+    //not found
+    if(!orders){
+        return res.status(404).json({message: "No details found"});
+    }
+
+    //display online pharmacy details
+    return res.status(200).json({orders});
+
+};
+
+//data insert
+const addPharmacyOrder = async(req, res, next)=>{
+
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,dateofbirth,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
+
+    const prescriptionFile = req.body.prescriptionFile || ''; // Ensure it's defined
+    let orders;
+
+    try{
+        orders = new OnlinePharmacy({orderId,patientName,patientAge,gender,patientEmail,patientContact,dateofbirth,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments});
+        await orders.save();
+    }catch (err){
+        return res.status(500).json({ error: err.message });
+    }
+
+    //not insert orders
+    if(!orders){
+        return res.status(404).json({message: "Unable to place orders"});
+    }
+    return res.status(200).json({orders});
+
+};
+
+//Get by Id
+const getOrderById = async (req, res,next) =>{
+
+    const id = req.params.id;
+
+    let order;
+
+    try{
+        order = await OnlinePharmacy.findById(id);
+    }catch (err){
+        console.log(err);
+    }
+
+    if(!order){
+        return res.status(404).json({message: "Order could not found"});
+    }
+    return res.status(200).json({order});
+}
+
+//Update order details
+const updatePharmacyOrder = async(req, res, next) =>{
+
+    const id = req.params.id;
+
+    const{orderId,patientName,patientAge,gender,patientEmail,patientContact,dateofbirth,paymentMethod,deliveryAddress,uploadedDate,comments} = req.body;
+
+    try{
+    let onlinePharmacy = await OnlinePharmacy.findById(id);
+     if(!onlinePharmacy){
+        return res.status(404).json({message: "Order could not found"});
+    }
+
+    const prescriptionFile = req.body.prescriptionFile || onlinePharmacy.prescriptionFile;
+
+    const updatedorder = await OnlinePharmacy.findByIdAndUpdate(id,
+        {orderId,patientName,patientAge,gender,patientEmail,patientContact,dateofbirth,prescriptionFile,paymentMethod,deliveryAddress,uploadedDate,comments},
+        { new: true, runValidators: true }
+    );
+
+    return res.status(200).json({order: updatedorder});
+
+}catch(err){
+    return res.status(500).json({ error: err.message });
+}
+
+};
+
+//Delete user details
+const deletePharmacyOrder = async(req, res, next) =>{
+
+    const id = req.params.id;
+
+    let orders;
+
+    try{
+        orders = await OnlinePharmacy.findByIdAndDelete(id)
+    }catch(err){
+        console.log(err);
+    }
+    if(!orders){
+        return res.status(404).json({message: "Unable to delete order details"});
+    }
+    return res.status(200).json({orders});
+}
+
+exports.getOnlinePharamcyDetails = getOnlinePharamcyDetails;
+exports.addPharmacyOrder = addPharmacyOrder;
+exports.getOrderById = getOrderById;
+exports.updatePharmacyOrder = updatePharmacyOrder;
+exports.deletePharmacyOrder = deletePharmacyOrder;

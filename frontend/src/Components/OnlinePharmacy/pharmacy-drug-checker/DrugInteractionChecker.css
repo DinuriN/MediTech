@@ -1,0 +1,73 @@
+/* DrugInteractionChecker.css */
+
+.interaction-checker {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px 40px;
+  background: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.interaction-checker h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.interaction-result {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ecf0f1;
+  border-left: 6px solid #3498db;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+.interaction-result h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
