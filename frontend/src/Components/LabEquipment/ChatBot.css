@@ -1,4 +1,4 @@
-html, body {
+.page-wrapper {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -114,6 +114,7 @@ html, body {
   }
   
   .chat-input input {
+    /* width: 1000px; */
     flex: 1;
     padding: 14px 22px;
     border: 1.5px solid #b6d0e2;
@@ -130,6 +131,7 @@ html, body {
   }
   
   .chat-input button {
+    width: 200px;
     margin-left: 16px;
     padding: 14px 32px;
     background-color: #0077cc;

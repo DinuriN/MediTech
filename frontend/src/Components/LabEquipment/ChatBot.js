@@ -83,7 +83,8 @@ const ChatBot = () => {
   };
   
   return (
-    <div className="chatbot-container">
+    <div className="page-wrapper">
+      <div className="chatbot-container">
       <div className="chatbot-header">
         <button onClick={() => navigate(-1)} className="back-button">
           ← Back
@@ -122,6 +123,7 @@ const ChatBot = () => {
         >
           Send
         </button>
+      </div>
       </div>
     </div>
   );
