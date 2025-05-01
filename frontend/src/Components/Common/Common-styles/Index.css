@@ -32,6 +32,7 @@ body{
   }
 
   .doctor-appointment-button button {
+    width:fit-content;
     padding: 1.203vh;
     margin: 3.008vh 7.22vh;
     border-radius: 3.61vh;
