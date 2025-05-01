@@ -16,6 +16,8 @@ const consultationRoutes = require("./Routes/ConsultationRout.js");
 const paymentRoutes = require("./Routes/PaymentRout.js");
 const medicalHistoryRouter=require("./Routes/medical-history-router");
 const onlinePharmacyRouter = require("./Routes/online-pharmacy-route");
+const routerLabEqipment = require("./Routes/lab-equipment-route");
+const chatbotRoutes = require('./Routes/chatbot-route');
 
 dotenv.config();
 const app = express();
@@ -36,6 +38,9 @@ app.use("/medicalHistory", medicalHistoryRouter)
 app.use("/appointments", consultationRoutes);
 app.use("/payments", paymentRoutes);
 app.use("/onlinePharmacy",onlinePharmacyRouter);
+app.use("/labEquipments", routerLabEqipment);
+
+app.use('/api/chatbot', chatbotRoutes);
 
 
 

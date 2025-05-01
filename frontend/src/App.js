@@ -37,7 +37,12 @@ import AddAppoinment from './Components/Add Appoinment/AddAppoinment';
 import AddPayment from './Components/Add Payment/AddPayment';
 import AppointmentDetails from './Components/Appoinment Detail/Appoinments';
 import PaymentDetails from './Components/Payment Detail/Payments';
-import UpdateAppoinment from './Components/Update Appoinment/UpdateAppoinment'
+import UpdateAppoinment from './Components/Update Appoinment/UpdateAppoinment';
+
+import LabEquipmentDetails from './Components/LabEquipment/LabEquipmentDetails';
+import UpdateLabEquipment from './Components/LabEquipment/UpdateLabEquipment';
+import AddLabEquipment from './Components/LabEquipment/AddLabEquipment';
+import ChatBot from './Components/LabEquipment/ChatBot';
 
 function App() {
   const isAuthenticated= !!localStorage.getItem("token");
@@ -89,6 +94,11 @@ function App() {
           <Route path="/appointmentDetails" element={<AppointmentDetails />} />
           <Route path="/paymentDetails" element={<PaymentDetails />} />
           <Route path="/appointments/:id" element={<UpdateAppoinment />} />
+
+          <Route path="/labEquipmentDetails" element={<LabEquipmentDetails />} />
+          <Route path="/updateLabEquipment/:id" element={<UpdateLabEquipment />} />
+          <Route path="/addLabEquipment" element={<AddLabEquipment />} />
+          <Route path="/chatbot" element={<ChatBot />} />
 
           
         </Routes>

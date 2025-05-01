@@ -29,7 +29,7 @@ function AdminSideNavBar() {
                 <li><a href='/doctorDetails'><img src={AdminStaffIcon}/>     Staff</a></li>
                 <li><a href='/patientDetails'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
                 <li><a href='/appointmentDetails'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
-                <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
+                <li><a href='/labEquipmentDetails'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
                 <li><a href='/order-details'><img src={AdminProfOnlinePharmacyIcon}/>  OnlinePharmacy</a></li>
                 <li><a href='/paymentDetails'><img src={AdminProfDepartmentsIcon}/>     Payments</a></li>
                 

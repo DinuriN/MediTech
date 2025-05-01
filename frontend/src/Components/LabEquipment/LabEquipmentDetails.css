@@ -1,0 +1,245 @@
+.admin-prof-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f8fb;
+  }
+  
+  .side-navbar {
+    width: 220px;
+    box-shadow: 2px 0 8px rgba(44, 62, 80, 0.07);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .lab-equipment-header {
+    padding: 32px 32px 16px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  
+  .lab-equipment-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+  
+  .top-action-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    border-radius: 30px;
+    padding: 12px 24px;
+    border: 1.5px solid #b6d0e2;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
+    font-size: 16px;
+    background: #f7fbff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    margin-bottom: 7px;
+    display: block;
+  }
+  
+  .search-bar:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    background: #fff;
+  }
+  
+  .lab-equipment-table-container {
+    flex: 1;
+    padding: 24px 32px;
+    background: #f4f8fb;
+  }
+  
+  .table-responsive.lab-table-scroll-wrapper {
+    max-height: 350px; /* Reduced height */
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.08);
+    padding: 0;
+  }
+  
+  .lab-equipment-table {
+    margin-bottom: 0;
+  }
+  
+  .table-dark {
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .lab-equipment-table thead th {
+    position: sticky;
+    top: 0;
+    background: #2c3e50;
+    color: #fff;
+    z-index: 2;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle !important;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.08);
+  }
+  
+  .btn-red, .btn-blue {
+    border: none;
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.10);
+  }
+  
+  .btn-red {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .btn-red:hover {
+    background-color: #c0392b;
+  }
+  
+  .btn-blue {
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .btn-blue:hover {
+    background-color: #217dbb;
+  }
+  
+  .btn-warning, .btn-danger {
+    border-radius: 25px;
+    padding: 5px 15px;
+    font-size: 15px;
+  }
+  
+  .btn-warning {
+    background-color: #f1c40f;
+    border: none;
+    color: #fff;
+  }
+  
+  .btn-warning:hover {
+    background-color: #f39c12;
+  }
+  
+  .btn-danger {
+    background-color: #e74c3c;
+    border: none;
+    color: #fff;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c0392b;
+  }
+  
+  .bi {
+    margin-right: 5px;
+  }
+  
+  .download-btn-container {
+    margin-top: 10px;
+    text-align: right;
+    margin-right: 15px;
+    margin-bottom: 100px;
+  }
+  
+  /* Modern style for the search field dropdown */
+  .search-bar-container .form-select {
+    background: #f7fbff;
+    border: 1.5px solid #b6d0e2;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #2c3e50;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.10);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    appearance: none; /* Removes default arrow in most browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    height: fit-content;
+  }
+  
+  .search-bar-container .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+    background: #fff;
+  }
+  
+  .search-bar-container {
+    position: relative;
+  }
+  
+  .search-bar-container .form-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M4 6l4 4 4-4'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+  
+  @media (max-width: 1200px) {
+    .main-content, .lab-equipment-table-container {
+      padding: 16px;
+    }
+    .lab-equipment-header {
+      padding: 24px 16px 12px 16px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .admin-prof-container {
+      flex-direction: column;
+    }
+    .side-navbar {
+      min-width: 100%;
+      height: auto;
+      position: relative;
+      box-shadow: none;
+    }
+    .main-content {
+      min-width: 0;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .lab-equipment-header, .lab-equipment-table-container {
+      padding: 8px;
+    }
+    .table-responsive.lab-table-scroll-wrapper {
+      max-height: 200px;
+    }
+  }
