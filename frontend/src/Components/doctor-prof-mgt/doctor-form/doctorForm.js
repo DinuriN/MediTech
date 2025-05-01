@@ -19,7 +19,7 @@ function DoctorForm() {
     doctorLanguagesSpoken: '',
     doctorHospitalAffiliation: '',
     doctorLicenseNumber: '',
-    doctorAvailableDays: '',
+    doctorAvailableDays: [],
     doctorAvailableTimeStart: '',
     doctorAvailableTimeEnd: '',
     doctorConsultationFees: '',
@@ -289,15 +289,32 @@ const handleChange = (e) => {
             <div className='doc-form-section-unique'>
               <label className='doc-form-subhead-unique'>Professional Information</label>
               <div className='form-group-unique'>
-                <label>Doctor Specialization</label>
-                <input
-                  type='text'
-                  name='doctorSpecialization'
-                  value={inputs.doctorSpecialization}
-                  onChange={handleChange}
-                />
-                {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
-              </div>
+  <label>Doctor Specialization</label>
+  <select
+    name='doctorSpecialization'
+    value={inputs.doctorSpecialization}
+    onChange={handleChange}
+  >
+    <option value=''>Select Specialization</option>
+    <option value='Pediatrics'>Pediatrics</option>
+    <option value='Cardiology'>Cardiology</option>
+    <option value='Dermatology'>Dermatology</option>
+    <option value='ENT'>ENT</option>
+    <option value='Emergency Medicine'>Emergency Medicine</option>
+    <option value='Gastroenterology'>Gastroenterology</option>
+    <option value='General Practice'>General Practice</option>
+    <option value='Geriatrics'>Geriatrics</option>
+    <option value='Internal Medicine'>Internal Medicine</option>
+    <option value='Neurology'>Neurology</option>
+    <option value='Obstetrics & Gynecology'>Obstetrics & Gynecology</option>
+    <option value='Orthopedics'>Orthopedics</option>
+    <option value='Pediatric Dermatology'>Pediatric Dermatology</option>
+    <option value='Pediatric ENT'>Pediatric ENT</option>
+    <option value='Urology'>Urology</option>
+  </select>
+  {errors.doctorSpecialization && <span className='error-text'>{errors.doctorSpecialization}</span>}
+</div>
+
               <div className='form-group-unique'>
                 <label>Qualifications</label>
                 <input
@@ -355,15 +372,31 @@ const handleChange = (e) => {
             <div className='doc-form-section-unique'>
               <label className='doc-form-subhead-unique'>Availability</label>
               <div className='form-group-unique'>
-                <label>Available Days (Seperate from a comma)</label>
-                <input
-                  type='text'
-                  name='doctorAvailableDays'
-                  value={inputs.doctorAvailableDays}
-                  onChange={handleChange}
-                />
-                {errors.doctorAvailableDays && <span className='error-text'>{errors.doctorAvailableDays}</span>}
-              </div>
+  <label>Available Days</label>
+  <select
+    name='doctorAvailableDays'
+    multiple
+    value={inputs.doctorAvailableDays}
+    onChange={e => {
+      const options = Array.from(e.target.selectedOptions, option => option.value);
+      setInputs(prev => ({
+        ...prev,
+        doctorAvailableDays: options,
+      }));
+      validateField('doctorAvailableDays', options);
+    }}
+  >
+    <option value='Monday'>Monday</option>
+    <option value='Tuesday'>Tuesday</option>
+    <option value='Wednesday'>Wednesday</option>
+    <option value='Thursday'>Thursday</option>
+    <option value='Friday'>Friday</option>
+    <option value='Saturday'>Saturday</option>
+    <option value='Sunday'>Sunday</option>
+  </select>
+  {errors.doctorAvailableDays && <span className='error-text'>{errors.doctorAvailableDays}</span>}
+</div>
+
               <div className='form-group-unique'>
                 <label>Available Time Start</label>
                 <input

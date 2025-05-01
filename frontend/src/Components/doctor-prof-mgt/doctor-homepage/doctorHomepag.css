@@ -102,3 +102,198 @@
 .suggestion-item-unique:hover {
   background-color: #f0f0f0;
 }
+
+/* Modal Overlay */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Modal Content */
+.modal-content {
+  background: #fff;
+  padding: 32px 32px 24px 32px;
+  border-radius: 18px;
+  width: 90vw;
+  max-width: 1000px;
+  min-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  animation: popIn 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 18px 6px 12px 6px;
+    width: 98vw;
+    min-width: unset;
+  }
+}
+
+/* Modal Title */
+.modal-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 26px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Field Selection Grid */
+.field-selection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 36px;
+  margin-bottom: 22px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .field-selection {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+  }
+}
+
+.field-selection-item {
+  display: flex;
+  align-items: center;
+}
+
+.field-checkbox {
+  margin-right: 9px;
+  accent-color: #1976d2;
+  width: 18px;
+  height: 18px;
+}
+
+.field-label {
+  font-size: 1.03rem;
+  color: #222;
+  cursor: pointer;
+}
+
+/* Button Rows */
+.modal-buttons-row {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.modal-buttons-row.secondary {
+  justify-content: flex-end;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.modal-buttons-row.primary {
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.cancel-button, .clear-button, .select-all-button {
+  background: #f5f5f5;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+  border-radius: 7px;
+  padding: 7px 15px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.cancel-button:hover {
+  background: #ffeaea;
+  color: #d32f2f;
+  border-color: #d32f2f;
+}
+.clear-button:hover {
+  background: #e3f2fd;
+  color: #0d47a1;
+  border-color: #0d47a1;
+}
+.select-all-button:hover {
+  background: #e8f5e9;
+  color: #388e3c;
+  border-color: #388e3c;
+}
+
+.preview-button, .download-button {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 22px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.preview-button:hover, .download-button:hover {
+  background: #125ea7;
+}
+
+/* Preview Table Container: scrollable */
+.preview-table {
+  width: 100%;
+  margin-top: 22px;
+  overflow-x: auto;
+  max-height: 40vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding-bottom: 12px;
+}
+
+/* Table: fixed layout, min width for columns */
+.preview-table-content {
+  width: 100%;
+  min-width: 700px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+/* Table header and cells */
+.preview-table-content th,
+.preview-table-content td {
+  border: 1px solid #cfd8dc;
+  padding: 8px 12px;
+  font-size: 0.97rem;
+  text-align: center;
+  word-break: break-word;
+  background: #f9f9f9;
+}
+
+.preview-table-content th {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+}
+
+.preview-table-content tr:nth-child(even) {
+  background: #f6fafd;
+}

@@ -285,10 +285,35 @@ function UpdateDoctor() {
               <div className="section-upd">
                 <label className="sub-head-upd">Professional Information</label>
                 <div className="form-group-upd">
-                  <label htmlFor="doctorSpecialization" className="form-label-upd">Specialization</label>
-                  <input type="text" className="form-input-upd" id="doctorSpecialization" name="doctorSpecialization" value={inputs.doctorSpecialization || ''} onChange={handleChange} required />
-                  {errors.doctorSpecialization && <span className='error-text-upd'>{errors.doctorSpecialization}</span>}
-                </div>
+  <label htmlFor="doctorSpecialization" className="form-label-upd">Specialization</label>
+  <select
+    className="form-input-upd"
+    id="doctorSpecialization"
+    name="doctorSpecialization"
+    value={inputs.doctorSpecialization || ''}
+    onChange={handleChange}
+    required
+  >
+    <option value="">Select Specialization</option>
+    <option value="Pediatrics">Pediatrics</option>
+    <option value="Cardiology">Cardiology</option>
+    <option value="Dermatology">Dermatology</option>
+    <option value="ENT">ENT</option>
+    <option value="Emergency Medicine">Emergency Medicine</option>
+    <option value="Gastroenterology">Gastroenterology</option>
+    <option value="General Practice">General Practice</option>
+    <option value="Geriatrics">Geriatrics</option>
+    <option value="Internal Medicine">Internal Medicine</option>
+    <option value="Neurology">Neurology</option>
+    <option value="Obstetrics & Gynecology">Obstetrics & Gynecology</option>
+    <option value="Orthopedics">Orthopedics</option>
+    <option value="Pediatric Dermatology">Pediatric Dermatology</option>
+    <option value="Pediatric ENT">Pediatric ENT</option>
+    <option value="Urology">Urology</option>
+  </select>
+  {errors.doctorSpecialization && <span className='error-text-upd'>{errors.doctorSpecialization}</span>}
+</div>
+
                 <div className="form-group-upd">
                   <label htmlFor="doctorQualifications" className="form-label-upd">Qualifications</label>
                   <input type="text" className="form-input-upd" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />
@@ -319,10 +344,36 @@ function UpdateDoctor() {
               <div className="section-upd">
                 <label className="sub-head-upd">Availability</label>
                 <div className="form-group-upd">
-                  <label htmlFor="doctorAvailableDays" className="form-label-upd">Available Days</label>
-                  <input type="text" className="form-input-upd" id="doctorAvailableDays" name="doctorAvailableDays" value={inputs.doctorAvailableDays?.join(", ") || ''} onChange={handleChange} />
-                  <small>Enter days separated by commas (e.g., Monday, Tuesday, Wednesday)</small>
-                </div>
+  <label htmlFor="doctorAvailableDays" className="form-label-upd">Available Days</label>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => (
+      <label key={day} style={{ minWidth: '100px' }}>
+        <input
+          type="checkbox"
+          name="doctorAvailableDays"
+          value={day}
+          checked={Array.isArray(inputs.doctorAvailableDays) && inputs.doctorAvailableDays.includes(day)}
+          onChange={e => {
+            let newDays;
+            if (e.target.checked) {
+              newDays = [...(inputs.doctorAvailableDays || []), day];
+            } else {
+              newDays = (inputs.doctorAvailableDays || []).filter(d => d !== day);
+            }
+            setInputs(prev => ({
+              ...prev,
+              doctorAvailableDays: newDays,
+            }));
+            validateField('doctorAvailableDays', newDays);
+          }}
+        />
+        {day}
+      </label>
+    ))}
+  </div>
+  {errors.doctorAvailableDays && <span className='error-text-upd'>{errors.doctorAvailableDays}</span>}
+</div>
+
                 <div className="form-group-upd">
                   <label htmlFor="doctorAvailableTimeStart" className="form-label-upd">Available Time Start</label>
                   <input type="time" className="form-input-upd" id="doctorAvailableTimeStart" name="doctorAvailableTimeStart" value={inputs.doctorAvailableTimeStart || ''} onChange={handleChange} />
