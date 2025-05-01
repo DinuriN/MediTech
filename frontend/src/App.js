@@ -25,6 +25,14 @@ import AdminProfiileSample from './Components/Common/AdminProfile/AdminProfileSa
 import DoctorSuggestForm from './Components/doctor-suggest-form/SymptomForm'
 import SingleVisitDetails from './Components/MedicalHistory/SingleVisitDetails';
 
+import Orderbrief from "./Components/OnlinePharmacy/pharmacy-order-view-more/OrderViewMore";
+import AddPharmacyOrder from "./Components/OnlinePharmacy/pharmacy-order-add/AddPharmacyOrder";
+import PharmacyHome from "./Components/OnlinePharmacy/pharmacy-home-page/PharmacyHome";
+import UpdatePharmacyOrder from "./Components/OnlinePharmacy/pharmacy-order-update/UpdatPharmacyOrder"
+import TextExtractor from "./Components/OnlinePharmacy/pharmacy-text-extract/TextExtractor";
+import DrugInteractionChecker from './Components/OnlinePharmacy/pharmacy-drug-checker/DrugInteractionChecker';
+import SingleOrderDetails from './Components/OnlinePharmacy/pharmacy-singleorder-details/SingleOrderDetails';
+
 import AddAppoinment from './Components/Add Appoinment/AddAppoinment';
 import AddPayment from './Components/Add Payment/AddPayment';
 import AppointmentDetails from './Components/Appoinment Detail/Appoinments';
@@ -67,6 +75,14 @@ function App() {
           <Route path="/doctorSuggestForm" element={<DoctorSuggestForm/>} />
 
           <Route path="/medicalHistory/:visitId" element={<SingleVisitDetails/>}/>
+
+          <Route path="/order-details" element={<PharmacyHome/>} />
+          <Route path="/addPharmacyOrder" element={<AddPharmacyOrder/>} />
+          <Route path="/order-details/:id" element={<UpdatePharmacyOrder/>} />
+          <Route path="/order-brief/:id" element={<Orderbrief/>} />
+          <Route path="/extract-text" element={<TextExtractor />} />
+          <Route path="/drug-checker" element={<DrugInteractionChecker />} />
+          <Route path="/order-single" element={<SingleOrderDetails />} />
 
           <Route path="/addappointment" element={<AddAppoinment/>}/>
           <Route path="/addPayments" element={<AddPayment />} />

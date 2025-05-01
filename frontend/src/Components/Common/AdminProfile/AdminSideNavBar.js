@@ -6,6 +6,7 @@ import AdminProfpatientsIcon from "../AdminProfile/AdminProfImages/admin-prof-pa
 import AdminProfAppointmentIcon from "../AdminProfile/AdminProfImages/admin-prof-appointment-icon.png"
 import AdminProfInventoryIcon from "../AdminProfile/AdminProfImages/admin-prof-laboratory-icon.png"
 import AdminProfDepartmentsIcon from "../AdminProfile/AdminProfImages/admin-prof-department-icon.png"
+import AdminProfOnlinePharmacyIcon from "../AdminProfile/AdminProfImages/admin-prof-onlinepharmacy-icon.png"
 import LogOutForUsers from "../LoginForUsers/LogoutFUsers";
 
 
@@ -29,6 +30,7 @@ function AdminSideNavBar() {
                 <li><a href='/patientDetails'><img src={AdminProfpatientsIcon}/>     Patients</a></li>
                 <li><a href='/appointmentDetails'><img src={AdminProfAppointmentIcon}/>     Appointments</a></li>
                 <li><a href='#'><img src={AdminProfInventoryIcon}/>     Inventory</a></li>
+                <li><a href='/order-details'><img src={AdminProfOnlinePharmacyIcon}/>  OnlinePharmacy</a></li>
                 <li><a href='/paymentDetails'><img src={AdminProfDepartmentsIcon}/>     Payments</a></li>
                 
               </ul>
