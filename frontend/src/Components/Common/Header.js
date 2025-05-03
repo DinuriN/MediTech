@@ -53,6 +53,7 @@ function Header() {
                   <ul className="dropdown-menu-home-page">
                     <li><Link to="/doctorsTimetable">Available Doctors' Timetable</Link></li>
                     <li><Link to="/doctorSuggestForm">Doctor Recommendation Using AI</Link></li>
+                    <li><Link to="/drug-checker">AI Drug Interaction Checker</Link></li>
                   </ul>
                 </li>
                 <li className="col-2-row-2-menu-li"><a href="#">About Us</a></li>

@@ -70,7 +70,7 @@ textarea:focus {
 }
 
 .btn-submit {
-  background-color: #0288d1;
+  background-color: #305651;
   color: white;
   padding: 12px;
   width: 100%;
@@ -83,7 +83,7 @@ textarea:focus {
 }
 
 .btn-submit:hover {
-  background-color: #02669b;
+  background-color: #233d2f;
 }
 
 .error-text {
