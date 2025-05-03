@@ -18,6 +18,52 @@ const Doctor = require("../Models/doctor-model");
     doctorConsultationFees 
 }*/
 
+const specializationCodes = {
+    "Pediatrics": "PED",
+    "Cardiology": "CAR",
+    "Dermatology": "DER",
+    "ENT": "ENT",
+    "Emergency Medicine": "EME",
+    "Gastroenterology": "GAS",
+    "General Practice": "GEN",
+    "Geriatrics": "GER",
+    "Internal Medicine": "INT",
+    "Neurology": "NEU",
+    "Obstetrics & Gynecology": "OBG",
+    "Orthopedics": "ORT",
+    "Pediatric Dermatology": "PDER",
+    "Pediatric ENT": "PENT",
+    "Urology": "URO"
+  };
+
+  const generateDoctorId = async (req, res, next) => {
+    const { specialization } = req.params;
+
+    if (!specialization) {
+        return res.status(400).json({ message: "Specialization is required" });
+    }
+
+    const code = specializationCodes[specialization];
+    if (!code) {
+        return res.status(400).json({ message: "Invalid specialization" });
+    }
+
+    const year = new Date().getFullYear();
+
+    try {
+        const existingDoctors = await Doctor.find({ doctorSpecialization: specialization });
+        const count = existingDoctors.length + 1;
+        const paddedNumber = String(count).padStart(3, '0');
+        const generatedId = `DR-${code}-${year}-${paddedNumber}`;
+
+        return res.status(200).json({ doctorId: generatedId });
+
+    } catch (err) {
+        return res.status(500).json({ message: "Error generating doctor ID", error: err.message });
+    }
+};
+
+
 //data display
 const getAllDoctors = async (req, res, next) => {
 
@@ -157,3 +203,4 @@ exports.addDoctors = addDoctors;
 exports.getById = getById;
 exports.updateDoctor = updateDoctor;
 exports.deleteDoctor = deleteDoctor;
+exports.generateDoctorId = generateDoctorId;

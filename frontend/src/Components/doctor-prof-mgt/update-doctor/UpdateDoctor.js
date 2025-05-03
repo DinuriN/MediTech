@@ -248,9 +248,72 @@ function UpdateDoctor() {
               <div className="section-upd">
                 <label className="sub-head-upd">Basic Information</label>
                 <div className="form-group-upd">
-                  <label htmlFor="doctorId" className="form-label-upd">Doctor ID</label>
-                  <input type="text" className="form-input-upd" id="doctorId" name="doctorId" value={inputs.doctorId || ''} onChange={handleChange} required />
-                  {errors.doctorId && <span className='error-text-upd'>{errors.doctorId}</span>}
+                  <label htmlFor="doctorSpecialization" className="form-label-upd">Specialization</label>
+                  <select
+                    className="form-input-upd"
+                    id="doctorSpecialization"
+                    name="doctorSpecialization"
+                    value={inputs.doctorSpecialization || ''}
+                    onChange={async (e) => {
+                      const value = e.target.value;
+                      setInputs((prev) => ({
+                        ...prev,
+                        doctorSpecialization: value,
+                      }));
+                      validateField('doctorSpecialization', value);
+                  
+                      // Only generate new ID if specialization is selected
+                      if (value) {
+                        try {
+                          const res = await axios.get(`http://localhost:5000/doctors/generateDoctorId/${encodeURIComponent(value)}`);
+                          if (res.data && res.data.doctorId) {
+                            setInputs((prev) => ({
+                              ...prev,
+                              doctorId: res.data.doctorId,
+                            }));
+                            validateField('doctorId', res.data.doctorId);
+                          }
+                        } catch (err) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            doctorId: 'Failed to auto-generate Doctor ID',
+                          }));
+                        }
+                      }
+                    }}
+                    required
+                  >
+                    <option value="">Select Specialization</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="ENT">ENT</option>
+                    <option value="Emergency Medicine">Emergency Medicine</option>
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    <option value="General Practice">General Practice</option>
+                    <option value="Geriatrics">Geriatrics</option>
+                    <option value="Internal Medicine">Internal Medicine</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Obstetrics & Gynecology">Obstetrics & Gynecology</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Pediatric Dermatology">Pediatric Dermatology</option>
+                    <option value="Pediatric ENT">Pediatric ENT</option>
+                    <option value="Urology">Urology</option>
+                  </select>
+                  {errors.doctorSpecialization && <span className='error-text-upd'>{errors.doctorSpecialization}</span>}
+                </div>
+                <div className="form-group-upd">
+                  <label htmlFor="doctorId" className="form-label-upd">Doctor ID (Auto Generated)</label>
+                  <input
+                      type="text"
+                      className="form-input-upd"
+                      id="doctorId"
+                      name="doctorId"
+                      value={inputs.doctorId || ''}
+                      readOnly
+                      required
+                    />
+
                 </div>
                 <div className="form-group-upd">
                   <label htmlFor="doctorId" className="form-label-upd">Doctor Address</label>
@@ -284,36 +347,6 @@ function UpdateDoctor() {
               {/* Professional Information Section */}
               <div className="section-upd">
                 <label className="sub-head-upd">Professional Information</label>
-                <div className="form-group-upd">
-  <label htmlFor="doctorSpecialization" className="form-label-upd">Specialization</label>
-  <select
-    className="form-input-upd"
-    id="doctorSpecialization"
-    name="doctorSpecialization"
-    value={inputs.doctorSpecialization || ''}
-    onChange={handleChange}
-    required
-  >
-    <option value="">Select Specialization</option>
-    <option value="Pediatrics">Pediatrics</option>
-    <option value="Cardiology">Cardiology</option>
-    <option value="Dermatology">Dermatology</option>
-    <option value="ENT">ENT</option>
-    <option value="Emergency Medicine">Emergency Medicine</option>
-    <option value="Gastroenterology">Gastroenterology</option>
-    <option value="General Practice">General Practice</option>
-    <option value="Geriatrics">Geriatrics</option>
-    <option value="Internal Medicine">Internal Medicine</option>
-    <option value="Neurology">Neurology</option>
-    <option value="Obstetrics & Gynecology">Obstetrics & Gynecology</option>
-    <option value="Orthopedics">Orthopedics</option>
-    <option value="Pediatric Dermatology">Pediatric Dermatology</option>
-    <option value="Pediatric ENT">Pediatric ENT</option>
-    <option value="Urology">Urology</option>
-  </select>
-  {errors.doctorSpecialization && <span className='error-text-upd'>{errors.doctorSpecialization}</span>}
-</div>
-
                 <div className="form-group-upd">
                   <label htmlFor="doctorQualifications" className="form-label-upd">Qualifications</label>
                   <input type="text" className="form-input-upd" id="doctorQualifications" name="doctorQualifications" value={inputs.doctorQualifications || ''} onChange={handleChange} />

@@ -87,6 +87,7 @@ router.post('/search', async (req, res) => {
 // Doctor routes
 router.get("/", DoctorController.getAllDoctors);
 router.post("/", DoctorController.addDoctors);
+router.get("/generateDoctorId/:specialization", DoctorController.generateDoctorId);
 router.get("/:id", DoctorController.getById);
 router.put("/:id", DoctorController.updateDoctor);
 router.delete("/:id", DoctorController.deleteDoctor);

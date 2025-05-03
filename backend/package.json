@@ -24,6 +24,7 @@
     "multer": "^1.4.5-lts.2",
     "node-tesseract-ocr": "^2.2.1",
     "nodemailer": "^6.10.1",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "readable-stream": "^4.7.0"
   }
 }

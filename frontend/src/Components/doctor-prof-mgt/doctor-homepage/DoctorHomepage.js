@@ -83,6 +83,8 @@ function DoctorHomepage() {
   };
 
   const generatePreview = () => {
+    console.log("Generating preview with doctors:", doctors);
+    setCurrentPage(1);
     const preview = doctors.map((doctor) => {
       const filtered = {};
       selectedFields.forEach((field) => {
@@ -92,12 +94,13 @@ function DoctorHomepage() {
     });
     setPreviewData(preview);
   };
+  
 
   const downloadPDF = () => {
     const doc = new jsPDF("landscape"); // Set orientation to 'landscape'
     
     // Add Logo and Company info
-    const imgWidth = 40;
+    const imgWidth = 20;
     const imgHeight = 20;
     doc.addImage(meditechLogo, "PNG", 10, 10, imgWidth, imgHeight);
     doc.setFontSize(16);
@@ -126,28 +129,49 @@ function DoctorHomepage() {
       head: [tableColumn],
       body: tableRows,
       startY: 40,
-      styles: { halign: "center", valign: "middle" },
+      horizontalPageBreak: true,
+      horizontalPageBreakRepeat: [0], 
+      horizontalPageBreakBehaviour: 'immediately',
+      tableWidth: 'wrap',
+      styles: { 
+        halign: "center", 
+        valign: "middle",
+        cellPadding: 2,
+        fontSize: 7,
+        minCellWidth: 20
+      },
       headStyles: {
         fillColor: [30, 144, 255],
         textColor: [255, 255, 255],
-        fontSize: 10,
+        fontSize: 8,
       },
-      bodyStyles: { fontSize: 9 },
-      margin: { top: 40, left: 10, right: 10 },
+      margin: { top: 40, left: 5, right: 5 },
+      pageBreak: 'auto',
+      showHead: 'everyPage',
     });
-    
-    doc.save("Doctor_Report_Landscape.pdf");
+  
+    doc.save("Doctor_Report_All.pdf");
   };
   
-  
+  useEffect(() => {
+    setPreviewData(null);
+  }, [selectedFields]); 
 
   const clearSelections = () => {
     setSelectedFields([]);
+    setPreviewData(null); // Clear preview
   };
-
+  
   const selectAllFields = () => {
     setSelectedFields(availableFields.map((field) => field.value));
+    setPreviewData(null); // Clear preview
   };
+  
+  const handleModalClose = () => {
+    setShowModal(false);
+    setPreviewData(null); // Clear preview on close
+  };
+  
 
   return (
     <div className="doc-prof-container">
@@ -181,64 +205,72 @@ function DoctorHomepage() {
           <hr />
 
           {showModal && (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <h2 className="modal-title">Select Fields to Include</h2>
-      <div className="field-selection">
-        {availableFields.map((field) => (
-          <div key={field.value} className="field-selection-item">
-            <input
-              type="checkbox"
-              id={field.value}
-              value={field.value}
-              checked={selectedFields.includes(field.value)}
-              onChange={() => toggleFieldSelection(field.value)}
-              className="field-checkbox"
-            />
-            <label htmlFor={field.value} className="field-label">
-              {field.label}
-            </label>
-          </div>
-        ))}
-      </div>
-      {/* Secondary buttons: Cancel, Clear, Select All */}
-      <div className="modal-buttons-row secondary">
-        <button onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
-        <button onClick={clearSelections} className="clear-button">Clear</button>
-        <button onClick={selectAllFields} className="select-all-button">Select All</button>
-      </div>
-      {/* Primary buttons: Preview, Download PDF */}
-      <div className="modal-buttons-row primary">
-        <button onClick={generatePreview} className="preview-button">Preview</button>
-        <button onClick={downloadPDF} className="download-button">Download PDF</button>
-      </div>
-      {previewData && (
-        <div className="preview-table">
-          <h3>Preview</h3>
-          <table className="preview-table-content">
-            <thead>
-              <tr>
-                {selectedFields.map((field) => (
-                  <th key={field}>
-                    {availableFields.find((f) => f.value === field)?.label}
-                  </th>
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h2 className="modal-title">Select Fields</h2>
+              <div className="field-selection">
+                {availableFields.map((field) => (
+                  <div key={field.value} className="field-selection-item">
+                    <input
+                      type="checkbox"
+                      id={field.value}
+                      value={field.value}
+                      checked={selectedFields.includes(field.value)}
+                      onChange={() => toggleFieldSelection(field.value)}
+                      className="field-checkbox"
+                    />
+                    <label htmlFor={field.value} className="field-label">
+                      {field.label}
+                    </label>
+                  </div>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {previewData.map((doctor, index) => (
-                <tr key={index}>
-                  {selectedFields.map((field) => (
-                    <td key={field}>
-                      {Array.isArray(doctor[field])
-                        ? doctor[field].join(", ")
-                        : doctor[field]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </div>
+              {/* Secondary buttons: Cancel, Clear, Select All */}
+              <div className="modal-buttons-row secondary">
+              <button onClick={handleModalClose} className="cancel-button">Cancel</button>
+              <button onClick={clearSelections} className="clear-button">Clear</button>
+                <button onClick={selectAllFields} className="select-all-button">Select All</button>
+              </div>
+              {/* Primary buttons: Preview, Download PDF */}
+              <div className="modal-buttons-row primary">
+                <button onClick={downloadPDF} className="download-button">Download PDF</button>
+              </div>
+              {previewData && (
+                <div className="preview-table">
+                  <h3>Preview</h3>
+                        
+                <table className="preview-table-content">
+                  <thead>
+                    <tr>
+                      {selectedFields.map((field) => (
+                        <th key={field}>
+                          {availableFields.find((f) => f.value === field)?.label}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {paginatedDoctors.map((doctor, index) => (
+                      <tr key={index}>
+                        {selectedFields.map((field) => (
+                          <td key={field}>
+                            {Array.isArray(doctor[field])
+                              ? doctor[field].join(", ")
+                              : doctor[field]}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="pagination-controls">
+                {currentPage > 1 && (
+                  <button onClick={() => handlePageChange(currentPage - 1)}>Previous</button>
+                )}
+                {currentPage < Math.ceil(previewData.length / itemsPerPage) && (
+                  <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+                )}
+              </div>
         </div>
       )}
     </div>
