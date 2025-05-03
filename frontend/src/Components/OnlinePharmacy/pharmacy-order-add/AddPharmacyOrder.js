@@ -107,7 +107,7 @@ function AddPharmacyOrder() {
 
         console.log("Server Response:", response.data);
         alert("Order placed successfully!");
-        navigate("/order-details");
+        navigate("/");
 
       } catch (error) {
         console.error("Error submitting form:", error.response ? error.response.data : error.message);
