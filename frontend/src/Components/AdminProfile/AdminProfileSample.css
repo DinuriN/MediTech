@@ -1,0 +1,28 @@
+.admin-prof-container {
+    display: flex;
+    position: relative;
+    margin-top: 60px; /* Space for navbar */
+}
+
+.col-1 {
+    width: 250px; /* Match sidebar width */
+    flex-shrink: 0;
+}
+
+.col-2 {
+    /* margin-left: 250px; /* Match sidebar width */
+    /* padding: 20px; */
+    width: 100%; /* Take remaining width */
+    box-sizing: border-box;
+    /* display: flex; */
+    justify-content: center; /* Horizontally center the content */
+    height: 100vh; /* Make sure the height of the column takes full viewport height */
+    text-align: center; /* Center text */
+}
+
+/* For main content area */
+.main-content {
+    padding: 20px;
+    margin-left: 250px; /* Match sidebar width */
+    margin-top: 60px; /* Match navbar height */
+}
