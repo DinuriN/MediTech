@@ -1,15 +1,23 @@
 //TyslDJir7WM2Up5u
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
-const registerPatientRouter = require("./Routes/register-patient-route");
-
+const doctorRoute = require("./Routes/doctor-route")
+const multer = require('multer');
+const path = require('path');
 const app = express();
+const cors = require("cors")
 
+app.use(express.json());
+app.use(cors());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //Middleware
- app.use("/", (req, res, next)=>{
-     res.send("Working...");
- })
+app.get("/", (req, res) => {
+    res.send("Working...");
+});
+
+app.use("/doctors", doctorRoute);
+// Serve static files from the 'uploads' folder
 
 
 //Connecting mongodb

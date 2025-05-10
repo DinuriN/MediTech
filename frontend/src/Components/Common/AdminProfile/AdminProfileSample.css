@@ -1,0 +1,12 @@
+.admin-prof-container{
+    display: flex;
+    position: relative;
+}
+
+.col-1{
+    width: 20vh;
+}
+
+.col-2-d{
+    margin-left: 20vh;
+}

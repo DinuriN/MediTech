@@ -1,0 +1,102 @@
+body {
+  background: linear-gradient(to right, #00b4d8, #0077b6, #ffffff);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.doctor-topic {
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.doctor-topic h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.doctor-timetable-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.doctor-filters {
+  width: 350px;
+  margin-right: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.doctor-filters input,
+.doctor-filters select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.doctor-timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.doctor-timetable-table th,
+.doctor-timetable-table td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.doctor-timetable-table th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.doctor-timetable-table td {
+  background-color: #fafafa;
+}
+
+.doctor-timetable-table tr:nth-child(even) {
+  background-color: #e0f7fa;
+}
+
+.doctor-timetable-table tr:nth-child(odd) {
+  background-color: #e3f2fd;
+}
+
+.doctor-timetable-table tr:hover {
+  background-color: #b3e5fc;
+}
+
+.doctor-available-slot {
+  background-color: #d1f0d1;
+  color: #006400;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.doctor-not-available-slot {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}

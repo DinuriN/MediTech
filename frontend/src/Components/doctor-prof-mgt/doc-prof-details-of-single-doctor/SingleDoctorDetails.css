@@ -1,0 +1,82 @@
+/* General table row styles */
+.doctorRowUnique {
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.tableDataUnique {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Row Background Color */
+.tableOfDoctors tr:nth-child(odd) {
+  background-color: #e3f2fd !important; /* Light blue background for odd rows */
+}
+
+.tableOfDoctors tr:nth-child(even) {
+  background-color: #ffffff !important; /* White background for even rows */
+}
+
+/* Hover effect for rows */
+.tableOfDoctors tr:hover {
+  background-color: #f1f1f1; /* Light grey background on hover */
+}
+
+/* Button styles */
+.actionButtonsUnique {
+  text-align: center;
+}
+
+.actionButtonsUnique button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* View More Button */
+.btno-view-moreUnique {
+  background-color: #0077b6; /* Blue color */
+  color: white;
+}
+
+.btno-view-moreUnique:hover {
+  background-color: #00b4d8; /* Lighter blue on hover */
+}
+
+/* Update Button */
+.btno-updateUnique {
+  background-color: #4caf50; /* Green color */
+  color: white;
+}
+
+.btno-updateUnique:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Delete Button (Red) */
+.btno-deleteUnique {
+  background-color: #f44336; /* Red color */
+  color: white;
+}
+
+.btno-deleteUnique:hover {
+  background-color: #e53935; /* Darker red on hover */
+}
+
+/* Mobile responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .tableDataUnique {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .actionButtonsUnique button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
