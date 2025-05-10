@@ -24,7 +24,7 @@ function NavBar() {
         </li>
 
         <li className='nav-li'>
-            <Link to ="/" className="active home-a">
+            <Link to ="/doctorDetails" className="active home-a">
             <h1>Doctor Profiles</h1>
             </Link>
         </li>

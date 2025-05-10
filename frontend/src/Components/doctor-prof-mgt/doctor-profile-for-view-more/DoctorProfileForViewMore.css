@@ -1,0 +1,97 @@
+/* General Styling */
+.container{
+    background: linear-gradient(to bottom, #00b4d8, #0077b6, #ffffff); /* Gradient background */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fb;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header Styling */
+  .container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  /* Profile Container */
+  .doctor-profile {
+    background-color: rgb(212, 224, 233);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 900px;
+    margin: 3rem auto;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  /* Profile Image */
+  .doctor-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid #007bff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Information Display */
+  .doctor-profile p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  strong {
+    font-weight: 600;
+    color: #007bff;
+  }
+  
+  /* Back Button Styling */
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .doctor-profile {
+      padding: 1.5rem;
+    }
+  
+    h2 {
+      font-size: 1.75rem;
+    }
+  
+    h3 {
+      font-size: 1.25rem;
+    }
+  
+    .btn-secondary {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+  
